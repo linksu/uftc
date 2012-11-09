@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!--
+  - Sample namespace-based configuration
+  -
+  - $Id: applicationContext-security.xml 3019 2008-05-01 17:51:48Z luke_t $
+  -->
+ 
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+
+<global-method-security secured-annotations="enabled"></global-method-security>
+
+    <http auto-config="true" use-expressions="true">
+   		<form-login login-page="/denied" always-use-default-target="true" authentication-failure-url="/?login_error=true" authentication-failure-handler-ref="failureHandler"/>	
+        <intercept-url pattern="/user/add" access="permitAll" />
+    	<intercept-url pattern="/user/edit" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
+    	<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
+    	<intercept-url pattern="/admin/userlist" access="hasRole('ROLE_ADMIN')" />
+    	<intercept-url pattern="/challenge/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
+        <intercept-url pattern="/**" access="permitAll" />
+        <access-denied-handler error-page="/denied"/>
+    </http>
+    
+
+<beans:bean id="failureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler" >
+	<beans:property name="defaultFailureUrl" value="/?login_error=true" />
+</beans:bean>
+    <!--
+    Usernames/Passwords are
+        rod/koala
+        dianne/emu
+        scott/wombat
+        peter/opal
+        authorities-by-username-query="SELECT u.username, a.authority from user u, authorities a WHERE u.userId = a.userId and u.username=?"
+    -->
+    <authentication-manager>
+    <authentication-provider>
+        <password-encoder hash="md5"/>
+		<jdbc-user-service data-source-ref="dataSource" 
+			users-by-username-query="SELECT username AS username, password AS password, enabled FROM user where username=?"
+			authorities-by-username-query="SELECT username AS username, authority AS authority FROM user WHERE username=?" />
+    </authentication-provider>
+  </authentication-manager>
+</beans:beans>

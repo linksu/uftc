@@ -1,0 +1,242 @@
+html{
+	}
+
+body {
+	margin:0;
+	padding:0;
+	background:#7d8592;
+	background-repeat:repeat;
+}
+#wrapper{
+	margin:0 auto;
+	width:1000px;
+}
+
+#header{
+	height:190px;
+	
+	}
+#new_user{width:520px; float:left; left: 350px; position: relative;}
+#new_sportevent{width:300px; float:left;}
+#edit_user{width:300px; float:left;}
+td p{
+ font-size:13px;
+}
+td .teksti{
+ background-color:white;
+ color:#333;
+ }
+ .warning{
+ margin: 5px;
+ border-radius:3px;
+ padding:5px;
+ background:red;
+ float:left;
+ }
+#register{
+	width:150px;
+	height: 40px;
+	border-bottom-left-radius:10px;
+	border-bottom-right-radius:10px;
+	background-color:#333;
+	float:right;
+	}
+#register h2{
+	margin: 8px 0px 0px 19px;
+	}	
+#logo{
+	margin-top: 21px;
+	float:left;
+	}
+#login{
+	margin-top: 80px;
+	float:right;
+	clear:right;
+	}
+.forget{
+	top: 5px;
+	left: 275px;
+	position: relative;
+	margin:0;
+	font-size:9px;
+	}
+	
+/*NAVIGAATIO*/	
+#navi{
+	height: 70px;
+	float:left;
+	width:100%;
+	margin-bottom: 100px;
+	}
+#navi li{
+	
+	float:left;
+	}	
+#navi ul{
+	margin: 0;
+	list-style: none;
+	padding: 0;
+	}	
+#navi ul li a {
+	display: block;
+	background-repeat:no-repeat;
+	background-image:url('../pics/navipallo.png');
+	padding: 28px 15px 28px 7px;
+	font-size:12px;
+	}
+/*NAVIGAATIO*/	
+
+.teksti{
+	border-bottom:1px solid #A3A7B0 !important;
+	margin-right: 20px;
+	border-radius: 5px;
+	width: 170px;
+	height: 25px;
+	background-color:#333;
+	border:none;
+	color:white;
+	}
+	
+.kirjaudu{
+	width: 100px;
+	border-radius: 3px;
+	background-color:#ff713f;
+	height: 25px;
+	color:white;
+	border:1px solid black;
+	}	
+#content{
+
+	}
+h1,h2,h3,h4,h5{font-family:Helvetica Neue, Helvetica, sans-serif; margin: 0;}
+h1{}
+h2{color:white; font-size:15px;}
+h3{color:white; font-size: 12px;}
+h4{}
+h5{}
+
+p{
+	margin:0;
+	color:white; 
+	font-family:Helvetica;
+	}
+
+a{text-decoration:none; color:white;}
+
+.headerbox{
+	background-color:#282D33;
+	height:40px; 
+	border-radius: 6px;
+	border-bottom: 1px solid #A3A7B0;
+	}
+
+#column1, #column2, #column3 {width:320px; float:left;}
+
+.leipis{
+	padding-left: 10px;
+	padding-top:48px;	
+}
+.headertext{
+	float:left;
+	padding: 10px 0 0 104px;	
+}
+.top5{height:50px;}
+.text1{
+	float:left;
+	padding-top:11px;
+	}
+.text2{
+	font-size:10px;
+	padding-top: 18px;
+	float:right;
+}
+
+.top5_content_box{
+	height: 45px;
+	margin: 0px 0px 5px 0px;
+	color:white;
+	border-radius:5px;
+	border: 1px solid black;
+	background-color:#282d33
+	}
+.group{
+	float:left;
+	}
+.points{
+	float:right;
+	}
+
+#column1, #column2{margin-right:20px;}
+
+.alanappi1{
+	padding-top: 10px;
+	padding-left: 57px;
+	float: left;
+	height:44px;
+	}
+	
+.alanappi2{
+	padding: 10px 0px 0px 45px;
+	float: left;
+	}	
+.alanappi a{
+	
+	}	
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+#login .headerbox{
+	width:250px;
+	}
+.headerlogo{padding: 3px 10px 0px 0px; float: right;}	
+.challenge{padding-top:10px;}	
+.upper-header{float: right; padding-bottom: 10px;}	
+.riviteksti{padding-top: 15px;}	
+.riviteksti p{font-size:12px;}
+.rivi{height: 45px; margin-right: 10px; margin-left: 10px; clear: both;}
+.rivi_selected{height: 45px; background: #AA81B9; margin-right: 10px; margin-left: 10px; clear: both;}	
+.nimi, .pisteet {float:left;}
+.nimi{width: 94px; padding-left: 50px;}
+.pisteet {}
+.yht{float:right; padding-right: 23px;}
+.chartbox{background:#282d33; height: 350px; border-radius:10px;}
+.chartbox_sportevent{background:#282d33; border-radius:10px; margin-bottom: 1px;}
+.tapahtumat{padding-top: 15px; padding-left: 10px;} 
+.single{padding-bottom: 15px;}
+.date{float:left; font-size: 12px;}
+.date p {color:#ff784b;}
+.action{float:left; font-size: 11px; padding-right: 75px; padding-left: 5px; padding-top: 1px;}
+.like{}
+.right{float:right; padding-right: 17px;}
+.left{float:left; padding-right: 50px;}
+.block{display:block;width:inherit; height:inherit;}
+.some{
+	clear:both;
+	padding-bottom: 90px;
+	}
+.facebook{
+	position: relative;
+    top: 12px;
+	}
+#footer{
+	height:500px;
+	background-color:#35393c;
+	}
+#footer p, #footer a{
+	font-family:Helvetica;
+	font-size:10px;
+	}	
+#footer_content{
+	padding-top:10px;
+	margin:0 auto;
+	width:1000px;
+	}	
+.footertext{
+	float:left;
+	}
+.admin{float:right;}	
