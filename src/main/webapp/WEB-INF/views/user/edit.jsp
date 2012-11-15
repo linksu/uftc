@@ -58,31 +58,7 @@
 							<td><form:input class="teksti"
 									value="${userInstance.getLastName()}" path="lastName" /></td>
 						</tr>
-						<tr>
-							<td><form:label path="isChallenger">
-									<spring:message code="user.isChallenger" text="Is challenger:" />
-								</form:label></td>
-							<td><form:select path="isChallenger">
-									<c:choose>
-										<c:when test="${userInstance.getIsChallenger()}">
-											<form:option value="true" selected="selected">
-												<spring:message code="misc.yes" text="Yes" />
-											</form:option>
-											<form:option value="false">
-												<spring:message code="misc.no" text="No" />
-											</form:option>
-										</c:when>
-										<c:when test="${userInstance.getIsChallenger() == false}">
-											<form:option value="true">
-												<spring:message code="misc.yes" text="Yes" />
-											</form:option>
-											<form:option value="false" selected="selected">
-												<spring:message code="misc.no" text="No" />
-											</form:option>
-										</c:when>
-									</c:choose>
-								</form:select></td>
-						</tr>
+						
 						<tr>
 							<c:forEach items="${workoutList}" var="workout">
 								<tr>
