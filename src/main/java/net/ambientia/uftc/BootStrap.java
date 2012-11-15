@@ -6,6 +6,7 @@ import java.util.List;
 import net.ambientia.uftc.domain.Authorities;
 import net.ambientia.uftc.domain.Challenge;
 import net.ambientia.uftc.domain.ChallengeSportEvent;
+import net.ambientia.uftc.domain.ChallengerUser;
 import net.ambientia.uftc.domain.PointFactorType;
 import net.ambientia.uftc.domain.SportEvent;
 import net.ambientia.uftc.domain.Uftc;
@@ -24,7 +25,9 @@ import org.springframework.test.context.ContextConfiguration;
 public class BootStrap {
 
 	private SessionFactory sessionFactory;
-
+	private static final String ADMIN = "ROLE_ADMIN";
+	private static final String CHALLENGER = "ROLE_CHALLENGER";
+	private static final String USER = "ROLE_USER";
 	
 	
 
@@ -39,15 +42,15 @@ public class BootStrap {
 		Challenge challenge = addChallenge(session, "BootstrapChallenge");
 		addChallengeSportEvent(session,challenge,"Juoksu");
 		addChallengeSportEvent(session,challenge,"Kävely");
-		User user = addUser(session, "testi");
-		User user2 = addUser(session, "testi2");
-		User user3 = addUser(session, "testi3");
-		User user4 = addUser(session, "testi4");
-		User user5 = addUser(session, "testi5");
-		User user6 = addUser(session, "testi6");
-		User user7 = addUser(session, "testi7");
-		User user8 = addUser(session, "testi8");
-		User user9 = addUser(session, "testi9");
+		User user = addUser(session, "testi", ADMIN);
+		ChallengerUser user2 = addChallenger(session, "testi2");
+		User user3 = addUser(session, "testi3", USER);
+		User user4 = addUser(session, "testi4", USER);
+		User user5 = addUser(session, "testi5", USER);
+		User user6 = addUser(session, "testi6", USER);
+		User user7 = addUser(session, "testi7", USER);
+		User user8 = addUser(session, "testi8", USER);
+		User user9 = addUser(session, "testi9", USER);
 		addWorkout(session, user);
 		session.getTransaction().commit();
 
@@ -87,11 +90,11 @@ public class BootStrap {
 	}
 
 
-	private User addUser(Session session, String userName) {
+	private User addUser(Session session, String userName, String userLevel) {
 		User user = new User();
 		user.setUsername(userName);
 		user.setPassword(userName);
-		user.setAuthority("ROLE_ADMIN");
+		user.setAuthority(userLevel);
 		
 		//Authorities auth = new Authorities();
 		//auth.setAuthority("ROLE_ADMIN");
@@ -110,6 +113,30 @@ public class BootStrap {
 		uftc.getUsers().add(user);
 		
 		return user;
+	}
+	
+	private ChallengerUser addChallenger(Session session, String userName) {
+		User user = new ChallengerUser();
+		user.setUsername(userName);
+		user.setPassword(userName);
+		
+		//Authorities auth = new Authorities();
+		//auth.setAuthority("ROLE_ADMIN");
+		//auth.setUser(user);
+		//user.getAuthorities().add(auth);
+		//session.save(auth);
+		
+		user.setFirstName(userName);
+		user.setLastName("tlast");
+		user.setEnabled(true);
+		Uftc uftc = (Uftc) session.get(Uftc.class, 1);
+		user.setUftc(uftc);
+		Challenge challenge = (Challenge) session.get(Challenge.class, 1);
+		//user.getChallenges().add(challenge);
+		session.save(user);
+		uftc.getUsers().add(user);
+		
+		return (ChallengerUser) user;
 	}
 	
 	private Challenge addChallenge(Session session, String challengeTitle) {

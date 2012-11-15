@@ -27,56 +27,59 @@ import org.springframework.security.authentication.encoding.PasswordEncoder;
 @Entity
 @Table(name = "USER")
 public class User {
+	public static final String ADMIN = "ROLE_ADMIN";
+	public static final String CHALLENGER = "ROLE_CHALLENGER";
+	public static final String USER = "ROLE_USER";
 
 	@Id
 	@Column(name = "userId")
 	@GeneratedValue
-	private Integer id;
+	protected Integer id;
 
 	@Column(name = "USERNAME", length = 20, nullable = false)
-	private String username;
+	protected String username;
 	
 	@Column(name = "AUTHORITY")
-	private String authority;
+	protected String authority;
 	
 	@OneToMany(mappedBy="user",cascade = {CascadeType.REMOVE, CascadeType.ALL})
 	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
-	private List<Authorities> authorities = new ArrayList<Authorities>();
+	protected List<Authorities> authorities = new ArrayList<Authorities>();
 	
 	@Column(name = "PASSWORD")
-	private String password;
+	protected String password;
 	
 	@Transient
-	private String retypePassword;
+	protected String retypePassword;
 	
 	@Column(name = "ENABLED")
-	private boolean enabled;
+	protected boolean enabled;
 
 	@Column(name = "FIRSTNAME", length = 30, nullable = false)
-	private String firstName;
+	protected String firstName;
 
 	@Column(name = "LASTNAME", length = 50, nullable = false)
-	private String lastName;
+	protected String lastName;
 
 	
 	  @ManyToMany  
 	  @JoinTable(name = "user_challenge",    
 	    joinColumns = { @JoinColumn(name = "userId")},  
 	      inverseJoinColumns={@JoinColumn(name="challengeId")})  
-	private List<Challenge> challenges;
+	protected List<Challenge> challenges;
 
 	@ManyToOne
 	@JoinColumn(name = "uftcId", nullable = false)
-	private Uftc uftc;
+	protected Uftc uftc;
 
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.REMOVE,
 			CascadeType.ALL })
 	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
-	private List<Workout> workouts = new ArrayList<Workout>();
+	protected List<Workout> workouts = new ArrayList<Workout>();
 
 	@Version
 	@Column(name = "OPTLOCK")
-	private Integer version;
+	protected Integer version;
 
 	public enum FieldTypes {
 		username, firstName, lastName, isChallenger, uftcId, workouts,password,retypePassword
@@ -183,7 +186,7 @@ public class User {
 		workouts.add(workout);
 	}
 
-	private String GenerateMd5(String password){
+	protected String GenerateMd5(String password){
 		if(password.equals(""))
 			return "";
 		PasswordEncoder encoder = new Md5PasswordEncoder();	
