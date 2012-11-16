@@ -7,7 +7,7 @@
 <html>
 <head>
 <title>Ultimate</title>
-<link rel="stylesheet" type="text/css" href="style/style.css" />
+<link rel="stylesheet" type="text/css" href="/uftc/style/style.css" />
 
 </head>
 
