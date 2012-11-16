@@ -30,6 +30,11 @@ public class User {
 	public static final String ADMIN = "ROLE_ADMIN";
 	public static final String CHALLENGER = "ROLE_CHALLENGER";
 	public static final String USER = "ROLE_USER";
+	
+	
+	public User() {
+		this.authority = USER; 
+	}
 
 	@Id
 	@Column(name = "userId")
