@@ -27,7 +27,8 @@
 			<form name='f' action="<c:url value='j_spring_security_check' />"
 				method='POST'>
 				<input type="text" class="teksti" name="j_username" value="Tunnus"
-					maxlength="15" size="15" /> <input name="j_password" type="text"
+					maxlength="15" size="15" onfocus="this.value=''" />
+					<input name="j_password" type="text"
 					value="Salasana" class="teksti"
 					onfocus="this.type='password'; this.value=''" /> <input
 					type="submit" name="submitform" class="kirjaudu" value="Kirjaudu" />
