@@ -43,29 +43,6 @@ public class UserController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(UserController.class);
 
-	@RequestMapping(value = "/user/add", method = RequestMethod.GET)
-	public String getAdd(Model model) {
-		logger.debug("Received request to show add page");
-		model.addAttribute("userInstance", new User());
-		return "user/add";
-	}
-
-	
-	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
-	public String add(@ModelAttribute("userInstance") User user, Model model) {
-		logger.debug("Received request to add new user");
-		Uftc uftc = uftcService.getById(1);
-		userService.setUserUftc(user, uftc);
-		if (userService.isValid(user)) {
-			user.setAuthority("ROLE_USER");
-			userService.add(user);
-			return "redirect:/";
-		} else {
-			setupErrorModel(model, user);
-			return "user/add";
-		}
-	}
-
 	@RequestMapping(value = "/user/list", method = RequestMethod.GET)
 	public String getUsers(Model model) {
 		logger.debug("Received request to show all users");

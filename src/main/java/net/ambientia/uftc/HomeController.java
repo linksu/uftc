@@ -64,58 +64,6 @@ public class HomeController {
 		return "uftc/UFTC";
 	}
 
-	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String admin(Locale locale, Model model) {
-
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
-		String name = auth.getName();
-		User user = userService.getUserByUsername(name);
-		List<SportEvent> sportEventList = sportEventService.getAll();
-
-		model.addAttribute("sportEventInstance", new SportEvent());
-		model.addAttribute("sportEventList", sportEventList);
-		model.addAttribute("userInstance", new User());
-		model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
-		return "uftc/admin";
-	}
-
-	@RequestMapping(value = "/admin/userlist", method = RequestMethod.GET)
-	public String getUsers(
-			@RequestParam(value = "from", defaultValue = "0") int from,
-			@RequestParam(value = "to", defaultValue = "0") int to,
-			@RequestParam(value = "count", defaultValue = "3") int count,
-			@RequestParam(value = "r", defaultValue = "false") boolean reversed,
-			Model model) {
-		logger.debug("Received request to show all users");
-		List<User> users = userService.getAll();
-		List<User> trimmedUserList;
-		count = clamp(count,0,users.size());
-		if(!reversed){
-			from = clamp(from, 0, users.size());
-			to = from + count;
-			to = clamp(to, from, users.size());
-			trimmedUserList = users.subList(from, to);
-			from = from + count;
-		} else {
-			from = clamp(from - count, 0, users.size());
-			to = from - count;
-			to = clamp(to, from - count, users.size());
-			trimmedUserList = users.subList(to, from);
-			from = from - count;
-		}
-		
-		from = clamp(from, 0, users.size());
-		
-		
-		
-		model.addAttribute("from", from);
-		model.addAttribute("to", to);
-		model.addAttribute("count", count);
-		model.addAttribute("userList", trimmedUserList);
-		return "uftc/userlist";
-	}
-
 	@RequestMapping(value = "/denied", method = RequestMethod.GET)
 	public String denied(Locale locale, Model model) {
 
