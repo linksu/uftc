@@ -22,7 +22,7 @@
         <intercept-url pattern="/user/add" access="permitAll" />
     	<intercept-url pattern="/user/edit" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
     	<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
-    	<intercept-url pattern="/admin/userlist" access="hasRole('ROLE_ADMIN')" />
+    	<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
     	<intercept-url pattern="/challenge/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
         <intercept-url pattern="/**" access="permitAll" />
         <access-denied-handler error-page="/denied"/>
