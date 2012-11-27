@@ -230,6 +230,15 @@
 						</h2>
 					</div>
 				</div>
+				<div id="user_list">
+					<c:forEach items="${userList}" var="user">
+						<div>
+							<a class="saa" href="#" id="${user.getId()}"><c:out
+									value="${user.getFirstName()}" /> <c:out
+									value="${user.getLastName()}" /></a>
+						</div>
+					</c:forEach>
+				</div>
 			</div>
 		</div><!--End of content-->
 		
