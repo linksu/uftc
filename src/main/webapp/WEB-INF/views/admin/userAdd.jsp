@@ -26,7 +26,7 @@
 					</div>
 					<div class="chartbox">
 
-						<c:url var="saveUrl" value="/user/add" />
+						<c:url var="saveUrl" value="/admin/userAdd" />
 						<c:set var="error" value="${errors}" />
 						<form:form modelAttribute="userInstance" method="POST"
 							action="${saveUrl}">
@@ -127,22 +127,6 @@
 												<spring:message code="user.validationErrors.lastName" />
 											</div>
 										</c:if></td>
-								</tr>
-								<tr>
-									<td><p>
-											<form:label path="isChallenger">
-												<spring:message code="user.isChallenger"
-													text="Is challenger:" />
-											</form:label>
-										</p></td>
-									<td><form:select path="isChallenger">
-											<form:option value="true">
-												<spring:message code="misc.yes" text="Yes" />
-											</form:option>
-											<form:option value="false">
-												<spring:message code="misc.no" text="No" />
-											</form:option>
-										</form:select></td>
 								</tr>
 							</table>
 

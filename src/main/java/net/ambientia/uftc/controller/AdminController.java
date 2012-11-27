@@ -47,15 +47,15 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(AdminController.class);
 	
-	@RequestMapping(value = "/user/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/userAdd", method = RequestMethod.GET)
 	public String getAdd(Model model) {
 		logger.debug("Received request to show add page");
 		model.addAttribute("userInstance", new User());
-		return "user/add";
+		return "admin/userAdd";
 	}
 
 	
-	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/userAdd", method = RequestMethod.POST)
 	public String add(@ModelAttribute("userInstance") User user, Model model) {
 		logger.debug("Received request to add new user");
 		Uftc uftc = uftcService.getById(1);
@@ -66,11 +66,11 @@ public class AdminController {
 			return "redirect:/";
 		} else {
 			setupErrorModel(model, user);
-			return "user/add";
+			return "admin/userAdd";
 		}
 	}
 	
-	@RequestMapping(value = "/admin/show", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/userShow", method = RequestMethod.GET)
 	public String getUserInfo(@RequestParam("userId") int id, Model model, Principal principal) {
 		logger.debug("Received request to show add page");
 		
