@@ -19,11 +19,11 @@
 
     <http auto-config="true" use-expressions="true">
    		<form-login login-page="/denied" always-use-default-target="true" authentication-failure-url="/?login_error=true" authentication-failure-handler-ref="failureHandler"/>	
-        <intercept-url pattern="/user/add" access="permitAll" />
-    	<intercept-url pattern="/user/edit" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
+    	<!-- <intercept-url pattern="/user" access="hasRole('ROLE_USER')" /> -->
+    	<intercept-url pattern="/user/**" access="hasRole('ROLE_USER', 'ROLE_CHALLENGER', 'ROLE_ADMIN')" />
     	<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
     	<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-    	<intercept-url pattern="/challenge/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
+    	<intercept-url pattern="/challenge/**" access="hasAnyRole('ROLE_USER', 'ROLE_CHALLENGER', 'ROLE_ADMIN')" />
         <intercept-url pattern="/**" access="permitAll" />
         <access-denied-handler error-page="/denied"/>
     </http>
