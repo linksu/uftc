@@ -44,7 +44,7 @@ public class WorkoutService {
 	}
 
 	public void add(Integer userId,Workout workout) {
-		workoutDao.add(1, workout);
+		workoutDao.add(userId, workout);
 	}
 	
 	public void edit(Workout workout) {
