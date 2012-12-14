@@ -1,19 +1,4 @@
-<%@ taglib prefix="security"
-	uri="http://www.springframework.org/security/tags"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Ultimate</title>
-<link rel="stylesheet" type="text/css" href="style/style.css" />
-
-</head>
-
-<body>
-	<div id="wrapper">
-		<%@ include file="/templates/header.jsp"%>
+	<%@ include file="/templates/header.jsp"%>
 		<div id="content">
 			<div id="column1">
 				<div class="headerbox">
@@ -109,6 +94,3 @@
 		<!--End of content-->
 
 		<%@ include file="/templates/footer.jsp"%>
-	</div>
-</body>
-</html>

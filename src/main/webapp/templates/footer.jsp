@@ -18,3 +18,5 @@
 		</div>
 	</div>
 	<!--End of footer-->
+	</body>
+</html>
