@@ -1,19 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Ultimate</title>
-<link rel="stylesheet" type="text/css" href="/uftc/style/style.css" />
-</head>
-
-<body>
-	<div id="wrapper">
-
-
-		<%@ include file="/templates/header.jsp"%>
+<%@ include file="/templates/header.jsp"%>
 
 		<div id="content">
 			<div id="column1">
@@ -91,7 +76,9 @@
 					</c:forEach>
 				</div>
 				<div class="alanappi2">
-					<a href="/uftc/workout/add?userId=${userInstance.getId()}"><img src="/uftc/pics/alanappi2.png"></a>
+								<input type="submit"
+								value="Lis&auml;&auml; workout"
+								class="kirjaudu" onClick="window.location.href='/uftc/workout/add?userId=${userInstance.getId()}';" />
 				</div>
 			</div>
 			<!--End if column2-->
@@ -161,6 +148,3 @@
 		<!--End of content-->
 
 		<%@ include file="/templates/footer.jsp"%>
-	</div>
-</body>
-</html>
