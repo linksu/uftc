@@ -1,14 +1,6 @@
-<%@ taglib prefix="security"
-	uri="http://www.springframework.org/security/tags"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Ultimate</title>
-<link rel="stylesheet" type="text/css" href="/uftc/style/style.css" />
+<%@ include file="/templates/header.jsp"%>
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -21,7 +13,7 @@
 
 		// Nappaa kiinni kaikkiin linkkeihin, joiden luokka on "block"
 		jQuery('a.block').click(function(event) {
-			// Etsit√§√§n linkin id 
+			// Etsit‰‰n linkin id 
 			var id = jQuery(this).attr("id");
 
 			jQuery(sportEventArray).each(function(index, value) {
@@ -58,11 +50,8 @@
 		return sportEvents;
 	};
 </script>
-</head>
 
-<body>
-	<div id="wrapper">
-		<%@ include file="/templates/header.jsp"%>
+
 		<div id="content">
 			<div id="column1">
 				<div id="new_sportevent">
@@ -247,8 +236,3 @@
 		
 		</div>
 		<%@ include file="/templates/footer.jsp"%>
-	</div>
-	
-
-</body>
-</html>
