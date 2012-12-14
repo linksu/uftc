@@ -1,19 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Ultimate</title>
-<link rel="stylesheet" type="text/css" href="/uftc/style/style.css" />
-</head>
+<%@ include file="/templates/header.jsp"%>
 
-<body>
-	<div id="wrapper">
-
-		<%@ include file="/templates/header.jsp"%>
 		<div id="content">
 			<div id="column1">
 				<div class="headerbox">
@@ -68,7 +55,7 @@
 						</tr>
 						<tr>
 							<td><a
-								href="/uftc/workout/add?userId=${userInstance.getId()}">Lis√§√§
+								href="/uftc/workout/add?userId=${userInstance.getId()}">Lis‰‰
 									workout</a></td>
 						</tr>
 					</table>
@@ -159,6 +146,3 @@
 		<!--End of content-->
 
 		<%@ include file="/templates/footer.jsp"%>
-	</div>
-</body>
-</html>
