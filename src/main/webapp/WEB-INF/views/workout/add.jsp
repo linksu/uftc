@@ -1,15 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Ultimate</title>
-<link rel="stylesheet" type="text/css" href="/uftc/style/style.css" />
+<%@ include file="/templates/header.jsp"%>
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -61,12 +54,9 @@ function createSportEventList(){
 	  
 };
 </script>
-</head>
 
-<body>
-	<div id="wrapper">
-<fmt:message key=""/>
-		<%@ include file="/templates/header.jsp"%>
+<!-- <fmt:message key=""/> -->
+		
 		<div id="content">
 			<div id="column1">
 				<div id="new_user">
@@ -162,7 +152,3 @@ function createSportEventList(){
 		</div>
 		<!--End of content-->
 		<%@ include file="/templates/footer.jsp"%>
-	</div>
-</body>
-
-</html>
