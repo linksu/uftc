@@ -1,30 +1,12 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Ultimate</title>
-<link rel="stylesheet" type="text/css" href="/uftc/style/style.css" />
-<link rel="stylesheet" type="text/css"
-	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
+<%@ include file="/templates/header.jsp"%>
 
-
-</head>
-
-<body>
-	<div id="wrapper">
-
-
-		<%@ include file="/templates/header.jsp"%>
 		<div id="login"></div>
 
 		<div id="content">
 			<div id="column1">
 				<div class="headerbox">
-					<h2 class="headertext">K√§ytt√§j√§t</h2>
+					<h2 class="headertext">K‰ytt‰j‰t</h2>
 				</div>
 				<div class="chartbox">
 
@@ -32,8 +14,8 @@
 
 
 						<div class="upper-header">
-							<h3 class="left">K√§ytt√§j√§n nimi</h3>
-							<h3 class="right">K√§ytt√§j√§n pisteet</h3>
+							<h3 class="left">K‰ytt‰j‰n nimi</h3>
+							<h3 class="right">K‰ytt‰j‰n pisteet</h3>
 						</div>
 
 						<c:forEach items="${challengeUsers}" var="cUser">
@@ -192,6 +174,3 @@
 		<!--End of content-->
 
 		<%@ include file="/templates/footer.jsp"%>
-	</div>
-</body>
-</html>
