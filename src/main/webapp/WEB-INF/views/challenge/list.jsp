@@ -1,15 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<!DOCTYPE html>
-<html>
-<head>
-<title>Ultimate</title>
-<link rel="stylesheet" type="text/css" href="/uftc/style/style.css" />
-<link rel="stylesheet" type="text/css"
-	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
+<%@ include file="/templates/header.jsp"%>
 
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -34,13 +24,6 @@
 	});
 </script>
 
-</head>
-
-<body>
-	<div id="wrapper">
-
-
-		<%@ include file="/templates/header.jsp"%>
 		<div id="login"></div>
 
 		<div id="content">
@@ -215,6 +198,3 @@
 		<!--End of content-->
 
 		<%@ include file="/templates/footer.jsp"%>
-	</div>
-</body>
-</html>

@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Ultimate</title>
 <link rel="stylesheet" type="text/css" href="http://localhost:8080/uftc/style/style.css" />
+<link rel="stylesheet" type="text/css"
+	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
+
 </head>
 <body>
 <div id="wrapper">
