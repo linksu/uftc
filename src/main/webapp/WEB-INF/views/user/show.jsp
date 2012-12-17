@@ -60,7 +60,7 @@
 			<div id="column2">
 				<div class="headerbox">
 					<h2 class="headertext">Omat suoritukset</h2>
-					<img class="headerlogo" src="pics/star.jpg">
+					<img class="headerlogo" src="/pics/star.jpg">
 				</div>
 				<div class="chartbox">
 					<c:forEach items="${workouts}" var="workout">
@@ -133,7 +133,7 @@
 							<p>Janne teki 20 punnerrusta</p>
 						</div>
 						<div class="like">
-							<a href="#"><img src="uftc/pics/like.jpeg"
+							<a href="#"><img src="/uftc/pics/like.jpeg"
 								style="width: 15%;"></a>
 						</div>
 					</div>
