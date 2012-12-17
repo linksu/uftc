@@ -68,7 +68,7 @@ function createSportEventList(){
 					</div>
 					<div class="chartbox">
 
-						<c:url var="saveUrl" value="/workout/add?userId=${userId}" />
+						<c:url var="saveUrl" value="/workout/add?userId=${userInstance.getId()}" />
 						<c:set var="error" value="${errors}" />
 						<form:form modelAttribute="workoutInstance" method="POST"
 							action="${editUrl}">
