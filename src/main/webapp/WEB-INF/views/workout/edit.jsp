@@ -66,7 +66,6 @@ function createSportEventList(){
 					</div>
 					<div class="chartbox">
 
-						<c:url var="editUrl" value="/workout/edit?workoutId=${workoutId}" />
 						<c:set var="error" value="${errors}" />
 
 
