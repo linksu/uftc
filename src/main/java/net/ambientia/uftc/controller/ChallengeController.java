@@ -10,6 +10,7 @@ import net.ambientia.uftc.domain.Uftc;
 import net.ambientia.uftc.domain.User;
 import net.ambientia.uftc.service.ChallengeService;
 import net.ambientia.uftc.service.UftcService;
+import net.ambientia.uftc.service.UserService;
 
 import org.hibernate.Hibernate;
 import org.slf4j.Logger;
@@ -27,6 +28,9 @@ public class ChallengeController {
 
 	@Autowired
 	private ChallengeService challengeService;
+	
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	private UftcService uftcService;
@@ -40,12 +44,15 @@ public class ChallengeController {
 			.getLogger(ChallengeController.class);
 
 	@RequestMapping(value = "/challenge/list", method = RequestMethod.GET)
-	public String getAdd(Model model) {
+	public String getAdd(Model model, Principal principal) {
 		logger.debug("Received request to list add page");
+		String currentUser = principal.getName();	
+		User user = userService.getUserByUsername(currentUser);
 
 		List<Challenge> challenges = challengeService.getAll();
 		model.addAttribute("challengeInstance", new Challenge());
 		model.addAttribute("challenges", challenges);
+		model.addAttribute("userInstance", user);
 		return "challenge/list";
 	}
 
@@ -116,7 +123,7 @@ public class ChallengeController {
 
 		model.addAttribute("challengeInstance", challenge);
 		model.addAttribute("challengeUsers", challengeUsers);
-		model.addAttribute("user", currentUser);
+		model.addAttribute("userInstance", currentUser);
 		return "challenge/show";
 	}
 

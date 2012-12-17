@@ -33,7 +33,7 @@
 
 						</c:forEach>
 						<c:url var="joinUrl"
-							value="/challenge/join?userId=${user.getId()}&challengeId=${challengeInstance.getId() }" />
+							value="/challenge/join?userId=${userInstance.getId()}&challengeId=${challengeInstance.getId() }" />
 						<form:form modelAttribute="challengeInstance" method="POST"
 							action="${joinUrl}">
 							<input type="submit" value="Save" name="submitform"
