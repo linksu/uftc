@@ -95,7 +95,8 @@ public class WorkoutService {
 
 	public Workout setNewPropertiesToExistingWorkout(Workout workout) {
 		Workout persistedWorkout = getById(workout.getId());
-	//	persistedWorkout.setName(workout.getName());
+		persistedWorkout.setName(workout.getName());
+		persistedWorkout.setChallengeSportEventId(workout.getChallengeSportEventId());
 		persistedWorkout.setRepetition(workout.getRepetition());
 		return persistedWorkout;
 	}	

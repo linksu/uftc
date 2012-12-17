@@ -51,7 +51,7 @@ public class WorkoutController {
 		}
 
 		model.addAttribute("workoutInstance", new Workout());
-		model.addAttribute("userId", userId);
+		model.addAttribute("userInstance", user);
 		model.addAttribute("challengeSportEventsList",
 				getChallengeSportEvents());
 		model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
@@ -99,7 +99,7 @@ public class WorkoutController {
 			model.addAttribute("challengeSportEventsList",
 					getChallengeSportEvents());
 			model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
-			model.addAttribute("userId", user.getId());
+			model.addAttribute("userInstance", user);
 			return "workout/edit";
 		}
 	}
@@ -115,10 +115,12 @@ public class WorkoutController {
 			setupOptimisticLockErrorModel(model, workout);
 			return "workout/edit";
 		}
+		workout.setName(challengeSportEventsService.getById(
+				workout.getChallengeSportEventId()).getTitle());
 		Workout editedWorkout = workoutService
 				.setNewPropertiesToExistingWorkout(workout);
 		if (workoutService.isValid(editedWorkout)) {
-			User user = userService.getById(workoutService.getById(workout.getId()).getId());
+			User user = workoutService.getById(workout.getId()).getUser();
 			workout.setUser(user);
 			workoutService.save(editedWorkout);
 			return "redirect:/user/show?userId=" + user.getId();
