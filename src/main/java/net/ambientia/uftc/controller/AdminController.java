@@ -98,7 +98,7 @@ public class AdminController {
 		model.addAttribute("userInstance", user);
 		model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
 		model.addAttribute("userList", userList);
-		return "uftc/admin";
+		return "admin/admin";
 	}
 
 	/**@RequestMapping(value = "/admin/userlist", method = RequestMethod.GET)
