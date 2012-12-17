@@ -62,4 +62,4 @@
 			<input type="submit" value="Save" />
 		</form:form>
 	</div>
-	<%@ include file="/templates/header.jsp"%>
+	<%@ include file="/templates/footer.jsp"%>
