@@ -63,7 +63,7 @@ public class AdminController {
 		if (userService.isValid(user)) {
 			//user.setAuthority("ROLE_USER");
 			userService.add(user);
-			return "redirect:/";
+			return "redirect:/admin";
 		} else {
 			setupErrorModel(model, user);
 			return "admin/userAdd";
