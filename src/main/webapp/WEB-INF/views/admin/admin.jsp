@@ -211,7 +211,7 @@
 
 				</div>
 			</div>
-			<div id="column2">
+			<div id="column2" style="background-color: rgb(40, 45, 51); padding-left: 10px;">
 				<div id="edit_user">
 					<div class="headerbox">
 						<h2 class="headertext">
@@ -219,15 +219,16 @@
 						</h2>
 					</div>
 				</div>
-				<div id="user_list">
+				<div id="user_list" style="margin-bottom: 10px;">
 					<c:forEach items="${userList}" var="user">
 						<div>
-							<a class="saa" href="#" id="${user.getId()}"><c:out
+							<a style="border-bottom: 1px solid white; " href="/uftc/admin/userShow?userId=${user.getId()}" id="${user.getId()}"><c:out
 									value="${user.getFirstName()}" /> <c:out
 									value="${user.getLastName()}" /></a>
 						</div>
 					</c:forEach>
 				</div>
+				<a href="/uftc/admin/userAdd">Uusi k&auml;ytt&auml;j&auml;</a>
 			</div>
 		</div><!--End of content-->
 		
