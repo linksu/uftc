@@ -51,7 +51,7 @@ public class ChallengeController {
 
 		List<Challenge> challenges = challengeService.getAll();
 		model.addAttribute("challengeInstance", new Challenge());
-		model.addAttribute("challenges", challenges);
+		model.addAttribute("challenges", user.getChallenges());
 		model.addAttribute("userInstance", user);
 		return "challenge/list";
 	}
