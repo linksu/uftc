@@ -2,12 +2,13 @@ package net.ambientia.uftc.domain;
 
 import java.util.EnumSet;
 
-import javax.jws.Oneway;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -36,11 +37,9 @@ public class Workout {
 	@Version
 	private Integer version;
 	
-	@Column(name = "NAME", length = 50, nullable = false)
-	private String name;
-	
-	@Column(name = "SPORTEVENT",nullable=false)
-	private Integer challengeSportEventId;
+	@ManyToOne
+	@JoinColumn(name = "challengeSportEventId",nullable=false)
+	private ChallengeSportEvent challengeSportEventId;
 	
 	@Transient
 	private Integer points;
@@ -89,11 +88,11 @@ public class Workout {
 		return fieldTypeErrorList;
 	}
 
-	public Integer getChallengeSportEventId() {
+	public ChallengeSportEvent getChallengeSportEventId() {
 		return challengeSportEventId;
 	}
 
-	public void setChallengeSportEventId(Integer challengeSportEventId) {
+	public void setChallengeSportEventId(ChallengeSportEvent challengeSportEventId) {
 		this.challengeSportEventId = challengeSportEventId;
 	}
 
@@ -104,14 +103,5 @@ public class Workout {
 	public void setPoints(Integer points) {
 		this.points = points;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
 	
 }
