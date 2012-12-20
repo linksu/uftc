@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.ambientia.uftc.domain.AdminUser;
-import net.ambientia.uftc.domain.Authorities;
 import net.ambientia.uftc.domain.Challenge;
 import net.ambientia.uftc.domain.ChallengeSportEvent;
 import net.ambientia.uftc.domain.ChallengerUser;
@@ -41,7 +40,7 @@ public class BootStrap {
 		Uftc uftc = addUftc(session);
 		addSportEvent(session, uftc);
 		Challenge challenge = addChallenge(session, "BootstrapChallenge");
-		addChallengeSportEvent(session,challenge,"Juoksu");
+		ChallengeSportEvent sportEvent = addChallengeSportEvent(session,challenge,"Juoksu");
 		addChallengeSportEvent(session,challenge,"Kävely");
 		User user = addUser(session, "testi", ADMIN);
 		User user2 = addUser(session, "testi2", CHALLENGER);
@@ -52,7 +51,7 @@ public class BootStrap {
 		User user7 = addUser(session, "testi7", USER);
 		User user8 = addUser(session, "testi8", USER);
 		User user9 = addUser(session, "testi9", USER);
-		addWorkout(session, user3);
+		addWorkout(session,sportEvent, user3);
 		session.getTransaction().commit();
 
 
@@ -70,21 +69,23 @@ public class BootStrap {
 		session.save(sportEvent);	
 	}
 	
-	private void addChallengeSportEvent(Session session, Challenge challenge,String title){
+	private ChallengeSportEvent addChallengeSportEvent(Session session, Challenge challenge,String title){
 		ChallengeSportEvent challengeSportEvent = new ChallengeSportEvent();
 		challengeSportEvent.setPointFactor(2);
 		challengeSportEvent.setPointFactorType(PointFactorType.Minutes);
 		challengeSportEvent.setTitle(title);
 		challengeSportEvent.setChallenge(challenge);
 		session.save(challengeSportEvent);	
+		
+		return challengeSportEvent;
 	}
 	
-	private void addWorkout(Session session, User user){
+	private void addWorkout(Session session, ChallengeSportEvent sportEvent, User user){
 		Workout workout = new Workout();
 		workout.setRepetition(2);
 		workout.setUser(user);
-		workout.setName("Juoksu");
-		workout.setChallengeSportEventId(1);
+//		workout.setName("Juoksu");
+		workout.setChallengeSportEventId(sportEvent);
 		
 		session.save(workout);
 		
