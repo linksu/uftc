@@ -162,7 +162,7 @@ public class UserDaoIntTest extends
 	public void shouldPersistWorkout_afterUserIsSaved_whenUsingUserDao(){
 		User user = userDao.getAll().get(0);
 		Workout workout = new Workout();
-		workout.setName("TestWorkOut");
+//		workout.setName("TestWorkOut");
 		workout.setRepetition(1);
 		user.getWorkouts().add(workout);
 		workout.setUser(user);
@@ -177,7 +177,7 @@ public class UserDaoIntTest extends
 		
 		User user = userDao.getAll().get(0);
 		Workout workout = new Workout();
-		workout.setName("TestWorkOut");
+//		workout.setName("TestWorkOut");
 		workout.setRepetition(1);
 		workout.setUser(user);
 		user.getWorkouts().add(workout);
@@ -190,7 +190,7 @@ public class UserDaoIntTest extends
 	public void shouldDeleteUserWorkoutRefence_whenWorkoutIsDeletedFromUser(){
 		User user = userDao.getAll().get(0);
 		Workout workout = new Workout();
-		workout.setName("TestWorkOut");
+//		workout.setName("TestWorkOut");
 		workout.setRepetition(1);
 		workout.setUser(user);
 		user.addWorkout(workout);
@@ -207,7 +207,7 @@ public class UserDaoIntTest extends
 	public void shouldDeleteWorkout_whenWorkoutIsDeletedFromUser(){
 		User user = userDao.getAll().get(0);
 		Workout workout = new Workout();
-		workout.setName("TestWorkOut");
+//		workout.setName("TestWorkOut");
 		workout.setRepetition(1);
 		workout.setUser(user);
 		user.getWorkouts().add(workout);
@@ -227,7 +227,7 @@ public class UserDaoIntTest extends
 	public void shouldDeleteReferencedWorkouts_whenUserIsDeleted(){
 		User user = userDao.getAll().get(0);
 		Workout workout = new Workout();
-		workout.setName("TestWorkOut");
+//		workout.setName("TestWorkOut");
 		workout.setRepetition(1);
 		workout.setUser(user);
 		user.getWorkouts().add(workout);
