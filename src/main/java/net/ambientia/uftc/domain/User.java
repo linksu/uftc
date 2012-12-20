@@ -48,10 +48,6 @@ public class User {
 	@Column(name = "AUTHORITY")
 	protected String authority;
 	
-	@OneToMany(mappedBy="user",cascade = {CascadeType.REMOVE, CascadeType.ALL})
-	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
-	protected List<Authorities> authorities = new ArrayList<Authorities>();
-	
 	@Column(name = "PASSWORD")
 	protected String password;
 	
@@ -88,7 +84,7 @@ public class User {
 	protected Integer version;
 
 	public enum FieldTypes {
-		username, firstName, lastName, isChallenger, uftcId, workouts,password,retypePassword
+		username, firstName, lastName, uftcId, workouts, password, retypePassword
 	}
 
 	public Integer getId() {
@@ -105,14 +101,6 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public List<Authorities> getAuthorities() {
-		return authorities;
-	}
-
-	public void setAuthorities(List<Authorities> authorities) {
-		this.authorities = authorities;
 	}
 
 	public String getFirstName() {
