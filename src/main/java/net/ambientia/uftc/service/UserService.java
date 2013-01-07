@@ -105,4 +105,9 @@ public class UserService {
 		challengeDao.save(challenge);
 		
 	}
+	
+	public void addUserToApprovalChallengeList(Challenge challenge, User user) {
+		challenge.getNotApprovedUsers().add(user);
+		challengeDao.save(challenge);
+	}
 }

@@ -57,6 +57,9 @@ public class Challenge {
 	@Column(name = "OPTLOCK")
 	private Integer version;
 
+	@ManyToOne
+	@JoinColumn(name = "userId")
+	private User owner;
 
 	@ManyToOne
 	@JoinColumn(name = "uftcId")
@@ -68,7 +71,11 @@ public class Challenge {
 	      inverseJoinColumns={@JoinColumn(name="userId")})  
 	  	private List<User> users;
 
-
+	  @ManyToMany(fetch=FetchType.LAZY)
+	  @JoinTable(name = "challenge_non_approved_users",    
+	    joinColumns = { @JoinColumn(name = "challengeId")},  
+	      inverseJoinColumns={@JoinColumn(name="userId")})  
+	private List<User> notApprovedUsers;
 
 	public enum FieldTypes {
 		title, starttime, endtime, challengesportevents, uftc
@@ -179,12 +186,28 @@ public class Challenge {
 		this.challengeSportEvents = challengeSportEvent;
 	}
 
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
 	public List<User> getUsers() {
 		return users;
 	}
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+
+	public List<User> getNotApprovedUsers() {
+		return notApprovedUsers;
+	}
+
+	public void setNotApprovedUsers(List<User> notApprovedUsers) {
+		this.notApprovedUsers = notApprovedUsers;
 	}
 	
 

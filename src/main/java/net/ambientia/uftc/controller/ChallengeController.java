@@ -58,9 +58,12 @@ public class ChallengeController {
 
 	@RequestMapping(value = "/challenge/list", method = RequestMethod.POST)
 	public String add(@ModelAttribute("challengeInstance") Challenge challenge,
-			Model model) {
-
+			Model model, Principal principal) {
 		logger.debug("Received request to add new challenge");
+		
+		String currentUser = principal.getName();	
+		User user = userService.getUserByUsername(currentUser);
+		challenge.setOwner(user);
 		if (challengeService.isValid(challenge)) {
 			challengeService.add(challenge);
 			return "redirect:/challenge/list";
@@ -127,7 +130,7 @@ public class ChallengeController {
 		return "challenge/show";
 	}
 
-	@RequestMapping(value = "/challenge/join", method = RequestMethod.POST)
+	@RequestMapping(value = "/challenge/join", method = RequestMethod.GET)
 	public String addUserToChallenge(@RequestParam("userId") int userId,
 			@RequestParam("challengeId") int challengeId, Model model,
 			Principal principal) {

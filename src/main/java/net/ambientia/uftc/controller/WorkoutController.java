@@ -72,8 +72,8 @@ public class WorkoutController {
 
 		User user = userService.getById(userId);
 		workout.setUser(user);
-		workout.setName(challengeSportEventsService.getById(
-				workout.getChallengeSportEventId()).getTitle());
+//		workout.setName(challengeSportEventsService.getById(
+//				workout.getChallengeSportEventId()).getTitle());
 		if (workoutService.isValid(workout)) {
 			workoutService.add(user.getId(), workout);
 			return "redirect:/user/show?userId=" + userId;
@@ -115,8 +115,8 @@ public class WorkoutController {
 			setupOptimisticLockErrorModel(model, workout);
 			return "workout/edit";
 		}
-		workout.setName(challengeSportEventsService.getById(
-				workout.getChallengeSportEventId()).getTitle());
+//		workout.setName(challengeSportEventsService.getById(
+//				workout.getChallengeSportEventId()).getTitle());
 		Workout editedWorkout = workoutService
 				.setNewPropertiesToExistingWorkout(workout);
 		if (workoutService.isValid(editedWorkout)) {

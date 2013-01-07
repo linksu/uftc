@@ -70,6 +70,12 @@ public class User {
 	      inverseJoinColumns={@JoinColumn(name="challengeId")})  
 	protected List<Challenge> challenges;
 
+	@ManyToMany(fetch=FetchType.LAZY)
+	  @JoinTable(name = "challenge_non_approved_users",    
+	    joinColumns = { @JoinColumn(name = "userId")},  
+	      inverseJoinColumns={@JoinColumn(name="challengeId")})  
+	protected List<Challenge> notApprovedChallenges;
+	
 	@ManyToOne
 	@JoinColumn(name = "uftcId", nullable = false)
 	protected Uftc uftc;
@@ -215,6 +221,14 @@ public class User {
 
 	public void setChallenges(List<Challenge> challenges) {
 		this.challenges = challenges;
+	}
+
+	public List<Challenge> getNotApprovedChallenges() {
+		return notApprovedChallenges;
+	}
+
+	public void setNotApprovedChallenges(List<Challenge> notApprovedChallenges) {
+		this.notApprovedChallenges = notApprovedChallenges;
 	}
 
 

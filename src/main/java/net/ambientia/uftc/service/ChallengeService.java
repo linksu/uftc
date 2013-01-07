@@ -118,9 +118,12 @@ public class ChallengeService {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public List getUsers(Challenge challenge) {
-		Session session = challengeDao.getCurrentSession();
+	public List<User> getUsers(Challenge challenge) {
 		return challenge.getUsers();
+	}
+	
+	public List<User> getUsersWaitingForApproval(Challenge challenge) {
+		return challenge.getNotApprovedUsers();
 	}
 
 	public boolean challengeContainsUser(Challenge challenge, User user) {

@@ -104,4 +104,7 @@ public class Workout {
 		this.points = points;
 	}
 	
+	public String getName() {
+		return "Nimi";
+	}
 }
