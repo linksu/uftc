@@ -15,7 +15,7 @@
 					<c:forEach items="${challengeList}" var="challenge">
 						<div class="top5_content_box">
 							<div class="group">
-								<a href="/uftc/challenge/edit?challengeId=${challenge.getId()}"><c:out
+								<a href="/uftc/challenge/show?challengeId=${challenge.getId()}"><c:out
 										value="${challenge.title}" /></a>
 							</div>
 							<div class="points">
