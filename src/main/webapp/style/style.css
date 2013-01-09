@@ -239,4 +239,17 @@ a{text-decoration:none; color:white;}
 .footertext{
 	float:left;
 	}
-.admin{float:right;}	
+.admin{float:right;}
+
+.nappi {
+	display: block;
+	padding: 2px;
+	text-align: center;
+	color: white;
+	width: 100px;
+	border-radius: 3px;
+	background-color:#ff713f;
+	height: 25px;
+	color:white;
+	border:1px solid black;
+}
