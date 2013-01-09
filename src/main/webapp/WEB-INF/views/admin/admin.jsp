@@ -228,7 +228,7 @@
 						</div>
 					</c:forEach>
 				</div>
-				<a href="/uftc/admin/userAdd">Uusi k&auml;ytt&auml;j&auml;</a>
+				<a class="nappi" href="/uftc/admin/userAdd">Uusi k&auml;ytt&auml;j&auml;</a>
 			</div>
 		</div><!--End of content-->
 		
