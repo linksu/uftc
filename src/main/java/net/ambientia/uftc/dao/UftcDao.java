@@ -88,20 +88,10 @@ public class UftcDao extends DaoBase<Uftc> {
 		save(uftc);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
 
-	@Autowired
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
