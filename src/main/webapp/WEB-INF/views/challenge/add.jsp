@@ -20,46 +20,67 @@
 
 	<div class="pageBody">
 
-		<h1><spring:message code="challenge.create" text="Create New Challenge"/></h1>
-
-		<c:url var="saveUrl" value="/challenge/add" />
-		<form:form modelAttribute="challengeInstance" method="POST"
-			action="${saveUrl}">
-			<%-- 		<select name="uftcIdSelector">
-			<option value=""><---Valitse---></option>
-			<c:forEach items="${uftcList}" var="uftc">
-				<option value="${uftc}">${uftc.getId()}</option>
-			</c:forEach>
-		</select> --%>
-
-			<br />
-			<table>
-				<tr>
-
-					<c:forEach items="${errors}" var="a">
-						<c:out value="${a.toString()}" />
-						<br>
-					</c:forEach>
+					<div id="column2">
+				<div class="headerbox">
+					<h2 class="headertext"><spring:message code="challenge.create" text="Create New Challenge"/></h2>
+					<img class="headerlogo" src="/uftc/pics/star.jpg">
+				</div>
 
 
 
-					<td><form:label path="title"><spring:message code="challenge.title" text="Challenge title:"/></form:label></td>
-					<td><form:input path="title" /></td>
-				</tr>
-				<tr>
-					<td><form:label path="startTime"><spring:message code="challenge.startTime" text="StartTime:"/></form:label></td>
-					<td><form:input type="text" name="startTime" id="startTime"
-							path="startTime" value=""/></td>
-				</tr>
-				<tr>
-					<td><form:label path="endTime"><spring:message code="challenge.endTime" text="EndTime:"/></form:label></td>
-					<td><form:input type="text" name="endTime" id="endTime" path="endTime" value =""/></td>
+				<div class="chartbox">
 
-				</tr>
+					<c:url var="saveUrl" value="/challenge/list" />
+					<c:set var="error" value="${errors}" />
+					<form:form modelAttribute="challengeInstance" method="POST"
+						action="${saveUrl}">
 
-			</table>
+						<br />
+						<table>
+							<tr>
 
-			<input type="submit" value="Save" />
-		</form:form>
+								<c:forEach items="${errors}" var="a">
+									<c:out value="${a.toString()}" />
+									<br>
+								</c:forEach>
+
+
+
+								<td><form:label path="title">
+										<h3>
+											<spring:message code="challenge.title"
+												text="Challenge title:" />
+										</h3>
+									</form:label></td>
+								<td><form:input path="title" /></td>
+							</tr>
+							<tr>
+								<td><form:label path="startTime">
+										<h3>
+											<spring:message code="challenge.startTime" text="StartTime:" />
+										</h3>
+									</form:label></td>
+								<td><form:input type="text" name="startTime" id="startTime"
+										path="startTime" value="" /></td>
+							</tr>
+							<tr>
+								<td><form:label path="endTime">
+										<h3>
+											<spring:message code="challenge.endTime" text="EndTime:" />
+										</h3>
+									</form:label></td>
+								<td><form:input type="text" name="endTime" id="endTime"
+										path="endTime" value="" /></td>
+
+							</tr>
+
+						</table>
+
+						<input class="kirjaudu" type="submit" value="Save" />
+					</form:form>
+				</div>
+
+			</div>
+			<!--End if column2-->
 	</div>
 	<%@ include file="/templates/footer.jsp"%>

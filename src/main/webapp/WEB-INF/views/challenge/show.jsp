@@ -32,14 +32,8 @@
 
 
 						</c:forEach>
-						<c:url var="joinUrl"
-							value="/challenge/join?userId=${userInstance.getId()}&challengeId=${challengeInstance.getId() }" />
-						<form:form modelAttribute="challengeInstance" method="POST"
-							action="${joinUrl}">
-							<input type="submit" value="Save" name="submitform"
-								class="kirjaudu" value="Kirjaudu" />
-						</form:form>
 					</div>
+					<a class="nappi" href="/uftc/challenge/join?challengeId=${challengeInstance.getId()}">Liity</a>
 				</div>
 
 
@@ -49,7 +43,7 @@
 			<div id="column2">
 				<div class="headerbox">
 					<h2 class="headertext">Lis&auml;&auml; haaste</h2>
-					<img class="headerlogo" src="pics/star.jpg">
+					<img class="headerlogo" src="/uftc/pics/star.jpg">
 				</div>
 
 

@@ -4,9 +4,7 @@ import java.security.Principal;
 import java.text.ParseException;
 import java.util.List;
 
-import net.ambientia.uftc.dao.UserDao;
 import net.ambientia.uftc.domain.Challenge;
-import net.ambientia.uftc.domain.Uftc;
 import net.ambientia.uftc.domain.User;
 import net.ambientia.uftc.service.ChallengeService;
 import net.ambientia.uftc.service.UftcService;
@@ -35,29 +33,37 @@ public class ChallengeController {
 	@Autowired
 	private UftcService uftcService;
 
-	@Autowired
-	private UserDao userDao;
-
 	private Challenge challenge;
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(ChallengeController.class);
 
 	@RequestMapping(value = "/challenge/list", method = RequestMethod.GET)
-	public String getAdd(Model model, Principal principal) {
-		logger.debug("Received request to list add page");
+	public String showChallengeList(Model model, Principal principal) {
+		logger.debug("Received request to show challenge list page");
 		String currentUser = principal.getName();	
 		User user = userService.getUserByUsername(currentUser);
 
 		List<Challenge> challenges = challengeService.getAll();
-		model.addAttribute("challengeInstance", new Challenge());
-		model.addAttribute("challenges", user.getChallenges());
+		model.addAttribute("challenges", challenges);
+		model.addAttribute("userChallenges", user.getChallenges());
 		model.addAttribute("userInstance", user);
 		return "challenge/list";
 	}
+	
+	@RequestMapping(value = "/challenge/add", method = RequestMethod.GET)
+	public String showChallengeAdd(Model model, Principal principal) {
+		logger.debug("Received request to show challenge add page");
+		String currentUser = principal.getName();	
+		User user = userService.getUserByUsername(currentUser);
 
-	@RequestMapping(value = "/challenge/list", method = RequestMethod.POST)
-	public String add(@ModelAttribute("challengeInstance") Challenge challenge,
+		model.addAttribute("challengeInstance", new Challenge());
+		model.addAttribute("userInstance", user);
+		return "challenge/add";
+	}
+
+	@RequestMapping(value = "/challenge/add", method = RequestMethod.POST)
+	public String addChallenge(@ModelAttribute("challengeInstance") Challenge challenge,
 			Model model, Principal principal) {
 		logger.debug("Received request to add new challenge");
 		
@@ -72,7 +78,7 @@ public class ChallengeController {
 			model.addAttribute("challengeInstance", challenge);
 			model.addAttribute("errors",
 					challengeService.getValidationErrorList(challenge));
-			return "challenge/list";
+			return "challenge/add";
 
 		}
 	}
@@ -88,7 +94,7 @@ public class ChallengeController {
 	}
 
 	@RequestMapping(value = "/challenge/update", method = RequestMethod.POST)
-	public String update(
+	public String updateChallenge(
 			@ModelAttribute("challengeInstance") Challenge challenge,
 			Model model) throws ParseException {
 		logger.debug("Received request to update user");
@@ -109,13 +115,13 @@ public class ChallengeController {
 	}
 
 	@RequestMapping(value = "/challenge/show", method = RequestMethod.GET)
-	public String getChallenge(@RequestParam("challengeId") int challengeId,
+	public String showChallenge(@RequestParam("challengeId") int challengeId,
 			Model model, Principal principal) {
 		logger.debug("Received request to list all challenges");
 
 		Challenge challenge = challengeService.getById(challengeId);
 		List<User> challengeUsers = challengeService.getUsers(challenge);
-		List<User> allUsers = userDao.getAll();
+		List<User> allUsers = userService.getAll();
 		String username = principal.getName();
 
 		User currentUser = null;
@@ -131,10 +137,10 @@ public class ChallengeController {
 	}
 
 	@RequestMapping(value = "/challenge/join", method = RequestMethod.GET)
-	public String addUserToChallenge(@RequestParam("userId") int userId,
-			@RequestParam("challengeId") int challengeId, Model model,
+	public String addUserToChallenge(@RequestParam("challengeId") int challengeId, Model model,
 			Principal principal) {
-		User user = userDao.getById(userId);
+		String currentUser = principal.getName();	
+		User user = userService.getUserByUsername(currentUser);
 		Challenge challenge = challengeService.getById(challengeId);
 
 		if (user.getUsername().equals(principal.getName())
@@ -146,9 +152,6 @@ public class ChallengeController {
 		return "redirect:/challenge/show?challengeId=" + challengeId;
 
 	}
-	
-	
-	
 
 	public void setupOptimisticLockErrorModel(Model model, Challenge challenge) {
 		model.addAttribute("optimisticLockingError", true);
@@ -161,18 +164,6 @@ public class ChallengeController {
 		model.addAttribute("challengeInstance", editedChallenge);
 		model.addAttribute("errors",
 				challengeService.getValidationErrorList(editedChallenge));
-	}
-
-	public void setChallengeService(ChallengeService challengeService) {
-		this.challengeService = challengeService;
-	}
-
-	public UftcService getUftcService() {
-		return uftcService;
-	}
-
-	public void setUftcService(UftcService uftcService) {
-		this.uftcService = uftcService;
 	}
 
 	public Challenge getChallenge() {
