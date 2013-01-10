@@ -42,7 +42,7 @@
 
 			<div id="column2">
 				<div class="headerbox">
-					<h2 class="headertext">Lis&auml;&auml; haaste</h2>
+					<h2 class="headertext">Muokkaa haastetta</h2>
 					<img class="headerlogo" src="/uftc/pics/star.jpg">
 				</div>
 
@@ -50,7 +50,7 @@
 
 				<div class="chartbox">
 
-					<c:url var="saveUrl" value="/challenge/list" />
+					<c:url var="saveUrl" value="/challenge/update" />
 					<c:set var="error" value="${errors}" />
 					<form:form modelAttribute="challengeInstance" method="POST"
 						action="${saveUrl}">
