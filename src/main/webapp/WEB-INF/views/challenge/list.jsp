@@ -67,7 +67,9 @@
 
 					</div>
 					
+					<c:if test="${userInstance.getAuthority() == 'ROLE_CHALLENGER'}">
 					<a class="nappi" href="/uftc/challenge/add">Lisää haaste</a>
+					</c:if>
 				</div>
 				
 			</div>
