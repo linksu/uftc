@@ -8,6 +8,8 @@ import net.ambientia.uftc.domain.Workout;
 import org.hibernate.PropertyValueException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,17 +17,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class WorkoutDao extends DaoBase<Workout> {
 
-	private Session session = getCurrentSession();
-
+//	@Autowired
+//	private SessionFactory sessionFactory;
+	
 	@Override
 	// @Transactional(propagation = Propagation.NEVER)
 	public List<Workout> getAll() {
-		Query query = session.createQuery("FROM Workout");
+		Query query = getCurrentSession().createQuery("FROM Workout");
 		return query.list();
 	}
 
 	public List<Workout> getAllWorkoutsOfUser(User user) {
-		Query query = session
+		Query query = getCurrentSession()
 				.createQuery("FROM Workout WHERE userId = :userId");
 		query.setParameter("userId", user.getId());
 		List<Workout> workouts = query.list();
@@ -35,23 +38,23 @@ public class WorkoutDao extends DaoBase<Workout> {
 	@Override
 	public Integer add(Integer userId, Workout workout)
 			throws PropertyValueException {
-		User user = (User) session.get(User.class, userId);
+		User user = (User) getCurrentSession().get(User.class, userId);
 		workout.setUser(user);
-		Integer workoutId = (Integer) session.save(workout);
+		Integer workoutId = (Integer) getCurrentSession().save(workout);
 		user.getWorkouts().add(workout);
-		session.saveOrUpdate(user);
+		getCurrentSession().saveOrUpdate(user);
 		return workoutId;
 	}
 
 	public Workout getById(int id) {
-		Workout workout = (Workout) session.get(Workout.class, id);
+		Workout workout = (Workout) getCurrentSession().get(Workout.class, id);
 		return workout;
 	}
 
 	public void delete(Workout workout) {
 		User user = workout.getUser();
 		user.getWorkouts().remove(workout);
-		session.delete(workout);
+		getCurrentSession().delete(workout);
 	}
 
 	public Integer count() {

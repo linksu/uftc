@@ -8,6 +8,8 @@ import net.ambientia.uftc.domain.Uftc;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,24 +18,25 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ChallengeDao extends DaoBase<Challenge> {
 
-	private Session session = getCurrentSession();
-
+//	@Autowired
+//	private SessionFactory sessionFactory;
+	
 	@Override
 	@Transactional(propagation = Propagation.NEVER)
 	public List<Challenge> getAll() {
-		Query query = session.createQuery("FROM Challenge");
+		Query query = getCurrentSession().createQuery("FROM Challenge");
 		return query.list();
 	}
 
 	public Integer add(Integer parentId, Challenge challenge) {
-		challenge.setUftc((Uftc) session.get(Uftc.class, parentId));
-		return (Integer) session.save(challenge);
+		challenge.setUftc((Uftc) getCurrentSession().get(Uftc.class, parentId));
+		return (Integer) getCurrentSession().save(challenge);
 	}
 
 	public void delete(Challenge challenge) {
 		Uftc uftc = challenge.getUftc();
 		uftc.getChallenges().remove(challenge);
-		session.delete(challenge);
+		getCurrentSession().delete(challenge);
 	}
 
 	public List<ChallengeSportEvent> getChallengeSportEvents(Challenge challenge) {
@@ -41,7 +44,7 @@ public class ChallengeDao extends DaoBase<Challenge> {
 	}
 
 	public Challenge getById(int challengeId) {
-		Challenge challenge = (Challenge) session.get(Challenge.class,
+		Challenge challenge = (Challenge) getCurrentSession().get(Challenge.class,
 				challengeId);
 		return challenge;
 	}

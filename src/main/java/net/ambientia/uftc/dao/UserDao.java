@@ -9,6 +9,8 @@ import net.ambientia.uftc.domain.Workout;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,18 +18,19 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserDao extends DaoBase<User> {
 
-	private Session session = getCurrentSession();
-
+//	@Autowired
+//	private SessionFactory sessionFactory;
+		
 	@Override
 	public List<User> getAll() {
-		Query query = session.createQuery("FROM User");
+		Query query = getCurrentSession().createQuery("FROM User");
 		return query.list();
 	}
 
 	@Override
 	public Integer add(Integer parentId, User user) {
-		user.setUftc((Uftc) session.get(Uftc.class, parentId));
-		return (Integer) session.save(user);
+		user.setUftc((Uftc) getCurrentSession().get(Uftc.class, parentId));
+		return (Integer) getCurrentSession().save(user);
 	}
 
 	public void addWorkoutToList(User user, Workout workout) {
@@ -35,7 +38,7 @@ public class UserDao extends DaoBase<User> {
 	}
 
 	public User getById(int id) {
-		User user = (User) session.get(User.class, id);
+		User user = (User) getCurrentSession().get(User.class, id);
 		return user;
 	}
 
@@ -43,12 +46,12 @@ public class UserDao extends DaoBase<User> {
 	public void delete(User user) {
 		Uftc uftc = user.getUftc();
 		uftc.getUsers().remove(user);
-		session.delete(user);
+		getCurrentSession().delete(user);
 	}
 
 	public void update(User user) {
 		try {
-			session.update(user);
+			getCurrentSession().update(user);
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}

@@ -8,6 +8,8 @@ import net.ambientia.uftc.domain.Uftc;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,33 +18,34 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class SportEventDao extends DaoBase<SportEvent> {
 
-	private Session session = getCurrentSession();
+//	@Autowired
+//	private SessionFactory sessionFactory;
 
 	@Transactional(propagation = Propagation.NEVER)
 	public List<SportEvent> getAll() {
-		Query query = session.createQuery("FROM SportEvent");
+		Query query = getCurrentSession().createQuery("FROM SportEvent");
 		return query.list();
 	}
 
 	public SportEvent getById(int id) {
-		SportEvent sportEvent = (SportEvent) session.get(SportEvent.class, id);
+		SportEvent sportEvent = (SportEvent) getCurrentSession().get(SportEvent.class, id);
 		return sportEvent;
 	}
 
 	public Integer add(Integer parentId, SportEvent sportEvent) {
-		sportEvent.setUftc((Uftc) session.get(Uftc.class, parentId));
-		return (Integer) session.save(sportEvent);
+		sportEvent.setUftc((Uftc) getCurrentSession().get(Uftc.class, parentId));
+		return (Integer) getCurrentSession().save(sportEvent);
 	}
 
 	public void delete(SportEvent sportEvent) {
 		Uftc uftc = sportEvent.getUftc();
 		uftc.getSportEvents().remove(sportEvent);
-		session.delete(sportEvent);
+		getCurrentSession().delete(sportEvent);
 	}
 
 	public void update(SportEvent sportEvent) {
 		try {
-			session.update(sportEvent);
+			getCurrentSession().update(sportEvent);
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		}

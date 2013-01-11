@@ -8,6 +8,8 @@ import net.ambientia.uftc.domain.User;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,12 +18,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UftcDao extends DaoBase<Uftc> {
 
-	private Session session = getCurrentSession();
+//	@Autowired
+//	private SessionFactory sessionFactory;
 
 	@Override
 	@Transactional(propagation = Propagation.NEVER)
 	public List<Uftc> getAll() {
-		Query query = session.createQuery("FROM Uftc");
+		Query query = getCurrentSession().createQuery("FROM Uftc");
 		return query.list();
 	}
 
@@ -33,7 +36,7 @@ public class UftcDao extends DaoBase<Uftc> {
 
 	// @Override
 	// public void save(Uftc uftc){
-	// Session session = sessionFactory.getCurrentSession();
+	// Session session = getCurrentSession();
 	// session.saveOrUpdate(uftc);
 	// }
 
@@ -50,20 +53,20 @@ public class UftcDao extends DaoBase<Uftc> {
 
 	public Uftc getById(int id) {
 		Uftc uftc = new Uftc();
-		uftc = (Uftc) session.load(Uftc.class, id);
+		uftc = (Uftc) getCurrentSession().load(Uftc.class, id);
 		return uftc;
 	}
 
 	public void addChallenge(Integer uftcId, Challenge challenge) {
-		Uftc uftc = (Uftc) session.get(Uftc.class, uftcId);
+		Uftc uftc = (Uftc) getCurrentSession().get(Uftc.class, uftcId);
 		List<Challenge> challenges = uftc.getChallenges();
 		challenges.add(challenge);
 		uftc.setChallenges(challenges);
-		session.save(uftc);
+		getCurrentSession().save(uftc);
 	}
 
 	public void adduser(Integer uftcId, User user) {
-		Uftc uftc = (Uftc) session.get(Uftc.class, uftcId);
+		Uftc uftc = (Uftc) getCurrentSession().get(Uftc.class, uftcId);
 		List<User> users = uftc.getUsers();
 		users.add(user);
 		uftc.setUsers(users);

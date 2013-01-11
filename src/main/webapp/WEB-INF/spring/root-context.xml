@@ -33,7 +33,7 @@
 		destroy-method="close" p:driverClass="${jdbc.driverClassName}"
 		p:jdbcUrl="${jdbc.databaseurl}" p:user="${jdbc.username}" p:password="${jdbc.password}" />
 
-	<beans:bean id="uftcDao" class="net.ambientia.uftc.dao.UftcDao">
+	<!-- <beans:bean id="uftcDao" class="net.ambientia.uftc.dao.UftcDao">
 		<beans:property name="sessionFactory" ref="sessionFactory" />
 	</beans:bean>
 	
@@ -55,7 +55,7 @@
 	</beans:bean>
 	<beans:bean id="sportEventDao" class="net.ambientia.uftc.dao.SportEventDao">
 		<beans:property name="sessionFactory" ref="sessionFactory" />
-	</beans:bean>
+	</beans:bean> -->
 	
 	<beans:bean id="workoutService" class="net.ambientia.uftc.service.WorkoutService">
 		<beans:property name="sessionFactory" ref="sessionFactory" />
