@@ -97,20 +97,20 @@ public class ChallengeController {
 	public String updateChallenge(
 			@ModelAttribute("challengeInstance") Challenge challenge,
 			Model model) throws ParseException {
-		logger.debug("Received request to update user");
+		logger.debug("Received request to update challenge");
 		if (challengeService.entityIsLocked(challenge)) {
 			setupOptimisticLockErrorModel(model, challenge);
-			return "challenge/edit";
+			return "challenge/show";
 		}
 		Challenge editedChallenge = challengeService
 				.setNewPropertiesToExistingChallenge(challenge);
 		if (challengeService.isValid(editedChallenge)) {
 			challengeService.save(editedChallenge);
-			return "redirect:/challenge/info?challengeId="
+			return "redirect:/challenge/show?challengeId="
 					+ editedChallenge.getId();
 		} else {
 			setupErrorModel(model, challenge);
-			return "challenge/edit";
+			return "challenge/show";
 		}
 	}
 

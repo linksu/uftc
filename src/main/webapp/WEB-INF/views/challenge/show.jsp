@@ -72,7 +72,7 @@
 												text="Challenge title:" />
 										</h3>
 									</form:label></td>
-								<td><form:input path="title" /></td>
+								<td><form:input path="title" id="title"/></td>
 							</tr>
 							<tr>
 								<td><form:label path="startTime">

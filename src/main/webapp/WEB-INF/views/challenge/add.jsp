@@ -30,7 +30,7 @@
 
 				<div class="chartbox">
 
-					<c:url var="saveUrl" value="/challenge/list" />
+					<c:url var="saveUrl" value="/challenge/add" />
 					<c:set var="error" value="${errors}" />
 					<form:form modelAttribute="challengeInstance" method="POST"
 						action="${saveUrl}">
@@ -52,7 +52,7 @@
 												text="Challenge title:" />
 										</h3>
 									</form:label></td>
-								<td><form:input path="title" /></td>
+								<td><form:input path="title" id="title" /></td>
 							</tr>
 							<tr>
 								<td><form:label path="startTime">
