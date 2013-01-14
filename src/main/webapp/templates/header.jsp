@@ -18,7 +18,7 @@
 
 	<div id="register" class="clearfix">
 		<security:authorize access="isAnonymous()" var="isAnonymous">
-			<a href="/uftc/user/add"><h2>REKISTER&Ouml;IDY</h2></a>
+			<a href="/uftc/register"><h2>REKISTER&Ouml;IDY</h2></a>
 		</security:authorize>
 		<security:authorize access="isAuthenticated()" var="isAuthed">
 			<a href="<c:url value="/uftc/j_spring_security_logout" />">
