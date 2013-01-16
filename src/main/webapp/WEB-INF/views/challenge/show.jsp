@@ -95,7 +95,9 @@
 							</tr>
 
 						</table>
-
+						<form:input type="hidden" path="version" />
+						<form:input type="hidden" path="id" />
+						
 						<input type="submit" value="Save" />
 					</form:form>
 				</div>

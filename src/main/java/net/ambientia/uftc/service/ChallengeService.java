@@ -68,8 +68,8 @@ public class ChallengeService {
 		persistedChallenge.setStartTime(challenge.getStartTimeString());
 		persistedChallenge.setEndTime(challenge.getEndTimeString());
 		persistedChallenge.setUftc(challenge.getUftc());
-		persistedChallenge.setChallengeSportEvents(challenge
-				.getChallengeSportEvents());
+//		persistedChallenge.setChallengeSportEvents(challenge
+//				.getChallengeSportEvents());
 		return persistedChallenge;
 	}
 
