@@ -47,6 +47,25 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(AdminController.class);
 	
+	@RequestMapping(value = "/admin/userActivate", method = RequestMethod.GET)
+	public String changeUserEnabledStatus(@RequestParam("userId") int id) {
+		logger.debug("Received request to change user enabled status");
+
+		User user = userService.getById(id);
+
+		if (user.isEnabled()) {
+			user.setEnabled(false);
+		} else {
+			user.setEnabled(true);
+		}
+
+		userService.save(user);
+
+		return "redirect:/admin";
+
+	}
+	
+	
 	@RequestMapping(value = "/admin/userAdd", method = RequestMethod.GET)
 	public String getAdd(Model model) {
 		logger.debug("Received request to show add page");

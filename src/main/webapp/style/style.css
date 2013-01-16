@@ -19,6 +19,11 @@ body {
 #new_user{width:520px; float:left; left: 350px; position: relative;}
 #new_sportevent{width:300px; float:left;}
 #edit_user{width:300px; float:left;}
+table#userTable{
+	float: left;
+	width: 400px;
+	margin-bottom: 10px;
+}
 td p{
  font-size:13px;
 }

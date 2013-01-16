@@ -211,26 +211,31 @@
 
 				</div>
 			</div>
-			<div id="column2" style="background-color: rgb(40, 45, 51); padding-left: 10px;">
-				<div id="edit_user">
-					<div class="headerbox">
-						<h2 class="headertext">
+			<div id="column2" style="background-color: rgb(40, 45, 51); padding-left: 10px; width: 400px;">
+				<div id="edit_user" style="width: 400px;">
+					<div class="headerbox" style="width: 400px;">
+						<h2 class="headertext" style="width: 400px;">
 							<spring:message code="user.listAll" />
 						</h2>
 					</div>
 				</div>
-				<div id="user_list" style="margin-bottom: 10px;">
+				
+				<div class="chartbox" style="height: auto;">
+				<table id="userTable">
+				<tr><td>Nimi</td><td>Rooli</td><td>Aktivoi</td></tr>
 					<c:forEach items="${userList}" var="user">
-						<div>
-							<a style="border-bottom: 1px solid white; " href="/uftc/admin/userShow?userId=${user.getId()}" id="${user.getId()}"><c:out
-									value="${user.getFirstName()}" /> <c:out
-									value="${user.getLastName()}" /></a>
-						</div>
+							<tr><td><a style="border-bottom: 1px solid white; " href="/uftc/admin/userShow?userId=${user.getId()}" id="${user.getId()}">
+							<c:out value="${user.getFirstName()}" />
+							<c:out value="${user.getLastName()}" /></a></td>
+									<td>${user.getAuthority()}</td>
+									<td><a href="/uftc/admin/userActivate?userId=${user.getId()}"><c:choose><c:when test="${!user.isEnabled()}">&nbsp;Aktivoi tili</c:when><c:otherwise>Deaktivoi tili</c:otherwise></c:choose></a></td>
+									</tr>
 					</c:forEach>
+					</table>
+				<a class="nappi" style="float: left;" href="/uftc/admin/userAdd">Uusi k&auml;ytt&auml;j&auml;</a>
 				</div>
-				<a class="nappi" href="/uftc/admin/userAdd">Uusi k&auml;ytt&auml;j&auml;</a>
 			</div>
-		</div><!--End of content-->
+		<!--End of content-->
 		
 		
 		
