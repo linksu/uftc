@@ -65,16 +65,16 @@ public class Challenge {
 	@JoinColumn(name = "uftcId")
 	private Uftc uftc;
 	
-	  @ManyToMany(fetch=FetchType.EAGER)  
-	  @JoinTable(name = "user_challenge",    
-	    joinColumns = { @JoinColumn(name = "challengeId")},  
-	      inverseJoinColumns={@JoinColumn(name="userId")})  
-	  	private List<User> users;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_challenge", 
+		joinColumns = { @JoinColumn(name = "challengeId") }, 
+		inverseJoinColumns = { @JoinColumn(name = "userId") })
+	private List<User> users;
 
-	  @ManyToMany(fetch=FetchType.LAZY)
-	  @JoinTable(name = "challenge_non_approved_users",    
-	    joinColumns = { @JoinColumn(name = "challengeId")},  
-	      inverseJoinColumns={@JoinColumn(name="userId")})  
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "challenge_non_approved_users", 
+		joinColumns = { @JoinColumn(name = "challengeId") }, 
+		inverseJoinColumns = { @JoinColumn(name = "userId") })
 	private List<User> notApprovedUsers;
 
 	public enum FieldTypes {

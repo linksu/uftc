@@ -6,6 +6,7 @@ import net.ambientia.uftc.domain.Challenge;
 import net.ambientia.uftc.domain.ChallengeSportEvent;
 import net.ambientia.uftc.domain.Uftc;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -46,6 +47,8 @@ public class ChallengeDao extends DaoBase<Challenge> {
 	public Challenge getById(int challengeId) {
 		Challenge challenge = (Challenge) getCurrentSession().get(Challenge.class,
 				challengeId);
+		Hibernate.initialize(challenge.getUsers());
+		Hibernate.initialize(challenge.getChallengeSportEvents());
 		return challenge;
 	}
 
