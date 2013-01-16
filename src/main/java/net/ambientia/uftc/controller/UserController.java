@@ -57,6 +57,9 @@ public class UserController {
 		userService.setUserUftc(user, uftc);
 		if (userService.isValid(user)) {
 			//user.setAuthority("ROLE_USER");
+			if(user.getAuthority().equals("ROLE_CHALLENGER")) {
+				user.setEnabled(false);
+			}
 			userService.add(user);
 			return "redirect:/";
 		} else {
@@ -96,7 +99,7 @@ public class UserController {
 			return "user/edit";
 		}
 		User editedUser = userService.setNewPropertiesToExistingUser(user);
-		if (userService.isValid(editedUser)) {
+		if (!editedUser.getFirstName().isEmpty() && !editedUser.getLastName().isEmpty()) {
 			userService.save(editedUser);
 			return "redirect:/user/edit?userId=" + editedUser.getId();
 		} else {
