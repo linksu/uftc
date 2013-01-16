@@ -1,5 +1,6 @@
 package net.ambientia.uftc.domain;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 
 import org.hibernate.annotations.Cascade;
@@ -45,10 +47,10 @@ public class Challenge {
 	private String title;
 
 	@Column(name = "STARTTIME", nullable = false)
-	private Calendar startTime = Calendar.getInstance();
+	private Date startTime;
 
 	@Column(name = "ENDTIME", nullable = false)
-	private Calendar endTime = Calendar.getInstance();
+	private Date endTime;
 	
 	@Column(name = "TOTALPOINTS", nullable = true)
 	private Integer totalPoints;
@@ -76,6 +78,12 @@ public class Challenge {
 		joinColumns = { @JoinColumn(name = "challengeId") }, 
 		inverseJoinColumns = { @JoinColumn(name = "userId") })
 	private List<User> notApprovedUsers;
+	
+	@Transient
+	private String startTimeString;
+	
+	@Transient
+	private String endTimeString;
 
 	public enum FieldTypes {
 		title, starttime, endtime, challengesportevents, uftc
@@ -98,23 +106,47 @@ public class Challenge {
 	}
 
 	public Date getStartTime() {
-		return startTime.getTime();
+		return startTime;
 	}
 
-	public void setStartTime(String startTime) throws ParseException {
-
-		this.startTime.setTime(formatDate(startTime));
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
 	}
 
 	public Date getEndTime() {
-		return endTime.getTime();
+		return endTime;
 	}
 
-	public void setEndTime(String endTime) throws ParseException {
-		this.endTime.setTime(formatDate(endTime));
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
+	public String getStartTimeString(){
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		if(this.startTime == null) {
+			return simpleDateFormat.format(new Date());
+		}
+		else { return simpleDateFormat.format(this.startTime); }
 	}
 	
+	public void setStartTimeString(String startTimeString) throws ParseException {
+		this.startTimeString = startTimeString;
+		this.startTime = formatDate(startTimeString);
+	}
 
+	public String getEndTimeString(){
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		if(this.endTime == null) {
+			return simpleDateFormat.format(new Date());
+		}
+		else { return simpleDateFormat.format(this.endTime); }
+	}
+	
+	public void setEndTimeString(String endTimeString) throws ParseException {
+		this.endTimeString = endTimeString;
+		this.endTime = formatDate(endTimeString);
+	}
+	
 	public Uftc getUftc() {
 		return uftc;
 	}
@@ -141,7 +173,7 @@ public class Challenge {
 	
 	public boolean isActive(){
 		
-		if(endTime.getTimeInMillis()-startTime.getTimeInMillis() > 0)
+		if(endTime.after(startTime))
 			return true;
 		else
 			return false;
@@ -153,15 +185,6 @@ public class Challenge {
 		return simpleDateFormat.parse(date);
 	}
 	
-	public String getStartTimeString(){
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
-		return simpleDateFormat.format(startTime.getTime());
-	}
-	public String getEndTimeString(){
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
-		return simpleDateFormat.format(endTime.getTime());
-	}
-
 	public Integer getVersion() {
 		return version;
 	}

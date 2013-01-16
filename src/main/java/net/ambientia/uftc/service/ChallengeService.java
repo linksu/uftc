@@ -65,8 +65,8 @@ public class ChallengeService {
 			throws ParseException {
 		Challenge persistedChallenge = getById(challenge.getId());
 		persistedChallenge.setTitle(challenge.getTitle());
-		persistedChallenge.setStartTime(challenge.getStartTimeString());
-		persistedChallenge.setEndTime(challenge.getEndTimeString());
+		persistedChallenge.setStartTimeString(challenge.getStartTimeString());
+		persistedChallenge.setEndTimeString(challenge.getEndTimeString());
 		persistedChallenge.setUftc(challenge.getUftc());
 //		persistedChallenge.setChallengeSportEvents(challenge
 //				.getChallengeSportEvents());

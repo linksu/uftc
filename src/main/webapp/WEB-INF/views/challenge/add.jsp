@@ -52,25 +52,23 @@
 												text="Challenge title:" />
 										</h3>
 									</form:label></td>
-								<td><form:input path="title" id="title" /></td>
+								<td><form:input path="title" /></td>
 							</tr>
 							<tr>
-								<td><form:label path="startTime">
+								<td><form:label path="startTimeString">
 										<h3>
 											<spring:message code="challenge.startTime" text="StartTime:" />
 										</h3>
 									</form:label></td>
-								<td><form:input type="text" name="startTime" id="startTime"
-										path="startTime" value="" /></td>
+								<td><form:input type="text"	path="startTimeString" value="" /></td>
 							</tr>
 							<tr>
-								<td><form:label path="endTime">
+								<td><form:label path="endTimeString">
 										<h3>
 											<spring:message code="challenge.endTime" text="EndTime:" />
 										</h3>
 									</form:label></td>
-								<td><form:input type="text" name="endTime" id="endTime"
-										path="endTime" value="" /></td>
+								<td><form:input type="text" path="endTimeString" value="" /></td>
 
 							</tr>
 
