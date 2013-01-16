@@ -44,6 +44,26 @@
 										</c:if></td>
 								</tr>  --%>
 						<tr>
+						
+						<td><p>
+											<form:label path="authority">
+												<spring:message code="user.accountType"
+													text="Account type:" />
+											</form:label>
+										</p></td>
+									<td><form:select id="authority"
+											path="authority">
+												<form:option value="ROLE_CHALLENGER">
+													<spring:message text="Haastaja" />
+												</form:option>
+												<form:option value="ROLE_USER">
+													<spring:message text="Käyttäjä" />
+												</form:option>
+
+										</form:select>
+										</tr>
+										<tr>
+						
 							<td><p>
 									<form:label path="username">
 										<spring:message code="user.username" text="User name:" />

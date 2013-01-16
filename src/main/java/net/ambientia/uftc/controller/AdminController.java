@@ -81,6 +81,10 @@ public class AdminController {
 		userService.setUserUftc(user, uftc);
 		if (userService.isValid(user)) {
 			//user.setAuthority("ROLE_USER");
+			if(user.getAuthority().equals("ROLE_CHALLENGER"))
+			{
+				user.setEnabled(false);
+			}
 			userService.add(user);
 			return "redirect:/admin";
 		} else {
