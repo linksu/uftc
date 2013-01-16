@@ -90,8 +90,6 @@ public class UserService {
 		User persistedUser = getById(user.getId());
 		persistedUser.setFirstName(user.getFirstName());
 		persistedUser.setLastName(user.getLastName());
-		persistedUser.setUsername(user.getUsername());	
-		persistedUser.setUsername(user.getRetypePassword());	
 		return persistedUser;
 	}
 

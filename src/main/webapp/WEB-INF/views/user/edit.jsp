@@ -23,7 +23,7 @@
 								<br>
 							</c:forEach>
 						</tr>
-						<tr>
+						<!--  <tr>
 							<td><form:label path="username">
 									<spring:message code="user.username" text="User name:" />
 								</form:label></td>
@@ -31,6 +31,7 @@
 							<td><form:input class="teksti"
 									value="${userInstance.getUsername()}" path="username" /></td>
 						</tr>
+						-->
 						<tr>
 							<td><form:label path="firstName">
 									<spring:message code="user.firstName" text="First name:" />
