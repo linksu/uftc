@@ -114,7 +114,7 @@ function createSportEventList(){
 									<td><form:select path="challengeSportEventId">
 											<c:forEach items="${challengeSportEventsList}"
 												var="sportEvent">
-												<form:option value="${sportEvent}">
+												<form:option value="${sportEvent.id}">
 													<spring:message text="${sportEvent.title}" />
 												</form:option>
 											</c:forEach>

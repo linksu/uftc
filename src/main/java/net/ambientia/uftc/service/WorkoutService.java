@@ -38,7 +38,7 @@ public class WorkoutService {
 	public Workout getById(int id) {
 		Workout workout = workoutDao.getById(id);
 		Integer repetition = workout.getRepetition();
-		Integer pointFactor = challengeSportEventDao.getById(workout.getChallengeSportEventId().getId()).getPointFactor();
+		Integer pointFactor = challengeSportEventDao.getById(workout.getChallengeSportEvent().getId()).getPointFactor();
 		workout.setPoints(repetition*pointFactor);
 		return workout;
 	}
@@ -83,7 +83,7 @@ public class WorkoutService {
 		
 		for (Workout workout : workoutList) {
 			Integer repetition = workout.getRepetition();
-			Integer pointFactor = challengeSportEventDao.getById(workout.getChallengeSportEventId().getId()).getPointFactor();
+			Integer pointFactor = challengeSportEventDao.getById(workout.getChallengeSportEvent().getId()).getPointFactor();
 			workout.setPoints(repetition*pointFactor);
 			
 			listWithPoints.add(workout);

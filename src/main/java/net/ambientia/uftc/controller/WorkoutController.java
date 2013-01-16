@@ -78,6 +78,7 @@ public class WorkoutController {
 		String currentUser = principal.getName();
 		User user = userService.getUserByUsername(currentUser);
 		workout.setUser(user);
+		workout.setChallengeSportEvent(challengeSportEventsService.getById(workout.getChallengeSportEventId()));
 
 		if (workoutService.isValid(workout)) {
 			workoutService.add(user.getId(), workout);

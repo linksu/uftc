@@ -38,8 +38,11 @@ public class Workout {
 	private Integer version;
 	
 	@ManyToOne
-	@JoinColumn(name = "challengeSportEventId",nullable=false)
-	private ChallengeSportEvent challengeSportEventId;
+	@JoinColumn(name = "challengeSportEvent",nullable=false)
+	private ChallengeSportEvent challengeSportEvent;
+	
+	@Transient
+	private Integer challengeSportEventId;
 	
 	@Transient
 	private Integer points;
@@ -88,11 +91,19 @@ public class Workout {
 		return fieldTypeErrorList;
 	}
 
-	public ChallengeSportEvent getChallengeSportEventId() {
+	public ChallengeSportEvent getChallengeSportEvent() {
+		return challengeSportEvent;
+	}
+
+	public void setChallengeSportEvent(ChallengeSportEvent challengeSportEvent) {
+		this.challengeSportEvent = challengeSportEvent;
+	}
+
+	public Integer getChallengeSportEventId() {
 		return challengeSportEventId;
 	}
 
-	public void setChallengeSportEventId(ChallengeSportEvent challengeSportEventId) {
+	public void setChallengeSportEventId(Integer challengeSportEventId) {
 		this.challengeSportEventId = challengeSportEventId;
 	}
 
