@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import net.ambientia.uftc.domain.Challenge;
 import net.ambientia.uftc.domain.ChallengeSportEvent;
 import net.ambientia.uftc.domain.PointFactorType;
 import net.ambientia.uftc.domain.User;
 import net.ambientia.uftc.domain.Workout;
+import net.ambientia.uftc.service.ChallengeService;
 import net.ambientia.uftc.service.ChallengeSportEventService;
 import net.ambientia.uftc.service.UserService;
 import net.ambientia.uftc.service.WorkoutService;
@@ -16,6 +18,7 @@ import net.ambientia.uftc.service.WorkoutService;
 import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -34,26 +37,29 @@ public class WorkoutController {
 
 	@Resource(name = "challengeSportEventsService")
 	private ChallengeSportEventService challengeSportEventsService;
+	
+	@Autowired
+	private ChallengeService challengeService;
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(WorkoutController.class);
 
 	@RequestMapping(value = "/workout/add", method = RequestMethod.GET)
-	public String getAdd(@RequestParam("userId") Integer userId, Model model,
+	public String getAdd(@RequestParam("challengeId") Integer challengeId, Model model,
 			Principal principal) {
-		logger.debug("Received request to show add page");
+		logger.debug("Received request to show add new workout page");
 
 		String currentUser = principal.getName();
-		User user = userService.getById(userId);
-		if (user == null || !currentUser.equals(user.getUsername())) {
+		User user = userService.getUserByUsername(currentUser);
+		if (user == null || !currentUser.equals(user.getUsername()) || challengeId < 0) {
 			// Attempted to show wrong user data
 			return "redirect:/";
 		}
-
+				
 		model.addAttribute("workoutInstance", new Workout());
 		model.addAttribute("userInstance", user);
 		model.addAttribute("challengeSportEventsList",
-				getChallengeSportEvents());
+				challengeService.getById(challengeId).getChallengeSportEvents());
 		model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
 
 		return "workout/add";
@@ -66,17 +72,16 @@ public class WorkoutController {
 	}
 
 	@RequestMapping(value = "/workout/add", method = RequestMethod.POST)
-	public String add(@ModelAttribute("workoutInstance") Workout workout,
-			@RequestParam("userId") Integer userId, Model model) {
+	public String add(@ModelAttribute("workoutInstance") Workout workout, Principal principal, Model model) {
 		logger.debug("Received request to add new workout");
 
-		User user = userService.getById(userId);
+		String currentUser = principal.getName();
+		User user = userService.getUserByUsername(currentUser);
 		workout.setUser(user);
-//		workout.setName(challengeSportEventsService.getById(
-//				workout.getChallengeSportEventId()).getTitle());
+
 		if (workoutService.isValid(workout)) {
 			workoutService.add(user.getId(), workout);
-			return "redirect:/user/show?userId=" + userId;
+			return "redirect:/user/show?userId=" + user.getId();
 		} else {
 			setupErrorModel(model, workout);
 			return "workout/add";
@@ -108,8 +113,6 @@ public class WorkoutController {
 	public String update(@ModelAttribute("workoutInstance") Workout workout,
 			Model model) {
 		
-		
-
 		logger.debug("Received request to update workout");
 		if (workoutService.entityIsLocked(workout)) {
 			setupOptimisticLockErrorModel(model, workout);

@@ -68,7 +68,7 @@ function createSportEventList(){
 					</div>
 					<div class="chartbox">
 
-						<c:url var="saveUrl" value="/workout/add?userId=${userInstance.getId()}" />
+						<c:url var="saveUrl" value="/workout/add" />
 						<c:set var="error" value="${errors}" />
 						<form:form modelAttribute="workoutInstance" method="POST"
 							action="${editUrl}">
@@ -111,14 +111,12 @@ function createSportEventList(){
 													text="SportEvent: " />
 											</form:label>
 										</p></td>
-									<td><form:select id="challengeSportEventId"
-											path="challengeSportEventId">
+									<td><form:select path="challengeSportEventId">
 											<c:forEach items="${challengeSportEventsList}"
 												var="sportEvent">
-												<form:option value="${sportEvent.id }">
-													<spring:message text="${sportEvent.title }" />
+												<form:option value="${sportEvent}">
+													<spring:message text="${sportEvent.title}" />
 												</form:option>
-
 											</c:forEach>
 										</form:select>
 								<tr>
