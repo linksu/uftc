@@ -104,8 +104,8 @@ public class ChallengeServiceIntTest extends AbstractTransactionalJUnit4SpringCo
 	@Test
 	public void testChallengeIsActive() throws ParseException{
 		Challenge myChallenge = challengeService.getById(1);		
-		myChallenge.setStartTime("28.08.2012");
-		myChallenge.setEndTime("29.08.2012");
+		myChallenge.setStartTimeString("28.08.2012");
+		myChallenge.setEndTimeString("29.08.2012");
 		challengeService.save(myChallenge);
 		Assert.assertTrue(challengeService.getById(1).isActive());
 	}
@@ -113,8 +113,8 @@ public class ChallengeServiceIntTest extends AbstractTransactionalJUnit4SpringCo
 	@Test
 	public void testChallengeIsNotActive() throws ParseException{
 		Challenge myChallenge = challengeService.getById(1);		
-		myChallenge.setStartTime("28.08.2012");
-		myChallenge.setEndTime("28.08.2012");
+		myChallenge.setStartTimeString("28.08.2012");
+		myChallenge.setEndTimeString("28.08.2012");
 		challengeService.save(myChallenge);
 		Assert.assertFalse(challengeService.getById(1).isActive());
 	}

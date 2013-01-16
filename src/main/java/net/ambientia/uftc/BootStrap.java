@@ -1,6 +1,7 @@
 package net.ambientia.uftc;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import net.ambientia.uftc.domain.AdminUser;
@@ -182,6 +183,9 @@ public class BootStrap {
 	
 	private Challenge addChallenge(Session session, String challengeTitle) {
 		Challenge challenge = new Challenge();
+		challenge.setStartTime(new Date());
+		challenge.setEndTime(new Date());
+		
 		ChallengeService challengeService = new ChallengeService();
 		challenge.setTitle(challengeTitle);
 		challenge.setTotalPoints(500);

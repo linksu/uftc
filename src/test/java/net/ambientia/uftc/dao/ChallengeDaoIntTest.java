@@ -48,8 +48,8 @@ public class ChallengeDaoIntTest extends
 	@Before
 	public void before() throws ParseException {
 		challenge = new Challenge();
-		challenge.setStartTime("18.06.2012");
-		challenge.setEndTime("18.06.2012");
+		challenge.setStartTimeString("18.06.2012");
+		challenge.setEndTimeString("18.06.2012");
 		challenge.setTitle("Titteli");
 	}
 	

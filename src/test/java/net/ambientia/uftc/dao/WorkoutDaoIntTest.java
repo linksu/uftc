@@ -157,8 +157,8 @@ AbstractTransactionalJUnit4SpringContextTests {
 	@Test
 	public void createChallengeUserAndWorkoutThenDeleteChallenge_workoutCountShouldResultOne() throws ParseException {
 		challenge = new Challenge();
-		challenge.setStartTime("18.06.2012");
-		challenge.setEndTime("18.06.2012");
+		challenge.setStartTimeString("18.06.2012");
+		challenge.setEndTimeString("18.06.2012");
 		challenge.setTitle("Titteli");
 		user = new User();
 		user.setFirstName("Testi");
@@ -173,8 +173,8 @@ AbstractTransactionalJUnit4SpringContextTests {
 	@Test
 	public void createChallengeAndUserThenDeleteChallenge_userCountShouldResultOne() throws ParseException {
 		challenge = new Challenge();
-		challenge.setStartTime("18.06.2012");
-		challenge.setEndTime("18.06.2012");
+		challenge.setStartTimeString("18.06.2012");
+		challenge.setEndTimeString("18.06.2012");
 		challenge.setTitle("Titteli");
 		user = new User();
 		user.setFirstName("Testi");
