@@ -5,6 +5,7 @@ import java.util.List;
 import net.ambientia.uftc.domain.Challenge;
 import net.ambientia.uftc.domain.ChallengeSportEvent;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -50,6 +51,7 @@ public class ChallengeSportEventDao extends DaoBase<ChallengeSportEvent> {
 	public List<ChallengeSportEvent> getAllByChallengeId(Integer challengeId) {
 		Challenge challenge = (Challenge) getCurrentSession().get(
 				Challenge.class, challengeId);
+		Hibernate.initialize(challenge.getChallengeSportEvents());
 		return challenge.getChallengeSportEvents();
 	}
 }
