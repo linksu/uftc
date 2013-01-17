@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-@Repository("challengeSportEventsDao")
+@Repository
 @Transactional
 public class ChallengeSportEventDao extends DaoBase<ChallengeSportEvent> {
 
@@ -45,5 +45,11 @@ public class ChallengeSportEventDao extends DaoBase<ChallengeSportEvent> {
 		ChallengeSportEvent challengeSportEvent = (ChallengeSportEvent) getCurrentSession()
 				.get(ChallengeSportEvent.class, challengeSportEventId);
 		return challengeSportEvent;
+	}
+	
+	public List<ChallengeSportEvent> getAllByChallengeId(Integer challengeId) {
+		Challenge challenge = (Challenge) getCurrentSession().get(
+				Challenge.class, challengeId);
+		return challenge.getChallengeSportEvents();
 	}
 }

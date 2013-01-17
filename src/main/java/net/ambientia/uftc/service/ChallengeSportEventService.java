@@ -15,9 +15,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("challengeSportEventsService")
+@Service
 @Transactional
 public class ChallengeSportEventService {
+	
 	@Autowired
 	private ChallengeSportEventDao challengeSportEventDao;
 	
@@ -47,7 +48,11 @@ public class ChallengeSportEventService {
 		return challengeSportEventDao.getById(challengeSportEventId);
 		
 	}
-
+	
+	public List<ChallengeSportEvent> getAllByChallengeId(Integer challengeId) {
+		return challengeSportEventDao.getAllByChallengeId(challengeId);
+	}
+	
 	public ChallengeSportEvent setNewPropertiesToExistingChallenge(ChallengeSportEvent challengeSportEvent) throws ParseException {
 		ChallengeSportEvent persistedChallengeSportEvent = getById(challengeSportEvent.getId());
 		persistedChallengeSportEvent.setChallenge(challengeSportEvent.getChallenge());

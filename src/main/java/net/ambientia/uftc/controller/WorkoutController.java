@@ -35,8 +35,8 @@ public class WorkoutController {
 	@Resource(name = "userService")
 	private UserService userService;
 
-	@Resource(name = "challengeSportEventsService")
-	private ChallengeSportEventService challengeSportEventsService;
+	@Resource(name = "challengeSportEventService")
+	private ChallengeSportEventService challengeSportEventService;
 	
 	@Autowired
 	private ChallengeService challengeService;
@@ -66,7 +66,7 @@ public class WorkoutController {
 	}
 
 	private List<ChallengeSportEvent> getChallengeSportEvents() {
-		List<ChallengeSportEvent> challengeSportEvents = challengeSportEventsService
+		List<ChallengeSportEvent> challengeSportEvents = challengeSportEventService
 				.getAll();
 		return challengeSportEvents;
 	}
@@ -78,7 +78,7 @@ public class WorkoutController {
 		String currentUser = principal.getName();
 		User user = userService.getUserByUsername(currentUser);
 		workout.setUser(user);
-		workout.setChallengeSportEvent(challengeSportEventsService.getById(workout.getChallengeSportEventId()));
+		workout.setChallengeSportEvent(challengeSportEventService.getById(workout.getChallengeSportEventId()));
 
 		if (workoutService.isValid(workout)) {
 			workoutService.add(user.getId(), workout);
@@ -184,11 +184,11 @@ public class WorkoutController {
 	}
 
 	public ChallengeSportEventService getChallengeSportEventsService() {
-		return challengeSportEventsService;
+		return challengeSportEventService;
 	}
 
 	public void setChallengeSportEventsService(
 			ChallengeSportEventService challengeSportEventsService) {
-		this.challengeSportEventsService = challengeSportEventsService;
+		this.challengeSportEventService = challengeSportEventsService;
 	}
 }
