@@ -5,21 +5,12 @@
 			<div id="column1">				
 						<div class="headerbox">
 							<h2 class="headertext">
-								<spring:message code="sportEvent.create" />
+								<spring:message code="challengeSportEvent.challengeSport" text="Sports of the challenge" />
 							</h2>
 						</div>
 						<div class="chartbox">
-						<table>
-						<c:forEach items="${challengeSportEvents}" var="sportEvent">
-						<tr>
-						<td>${sportEvent.getId()}</td><td>${sportEvent.getTitle()}</td><td>${sportEvent.getPointFactorType()}</td>
-						<td>${sportEvent.getPointFactor()}</td>
-						</tr>
-						</c:forEach>
-						</table>
-						</div>
-						<%-- <c:url var="saveUrl" value="/sportEvent/add" />
-						<form:form modelAttribute="sportEventInstance" method="POST"
+												<c:url var="saveUrl" value="/challengeSportEvent/edit" />
+						<form:form modelAttribute="challengeSportEventInstance" method="POST"
 							action="${saveUrl}">
 							<table>
 								<tr>
@@ -70,11 +61,13 @@
 								</tr>
 
 							</table>
-
+							<form:hidden path="id"/>
+							<form:hidden path="version"/>
 							<input type="submit" class="kirjaudu"
 								value="<spring:message code="misc.save" text="Save"/>" />
 						</form:form>
-						--%>
+						</div>
+
 					</div>
 					<!-- NEW SPORTEVENT FORM DIV ENDS -->
 		<!--End of content-->
