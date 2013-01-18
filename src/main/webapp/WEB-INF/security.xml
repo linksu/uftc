@@ -24,6 +24,7 @@
     	<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
     	<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
     	<intercept-url pattern="/challenge/**" access="hasAnyRole('ROLE_USER', 'ROLE_CHALLENGER', 'ROLE_ADMIN')" />
+    	<intercept-url pattern="/challengeSportEvent/**" access="hasAnyRole('ROLE_CHALLENGER', 'ROLE_ADMIN')" />
         <intercept-url pattern="/**" access="permitAll" />
         <access-denied-handler error-page="/denied"/>
     </http>
