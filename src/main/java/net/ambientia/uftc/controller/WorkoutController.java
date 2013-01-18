@@ -103,7 +103,7 @@ public class WorkoutController {
 			Hibernate.initialize(workoutId);
 			model.addAttribute("workoutInstance", workout);
 			model.addAttribute("challengeSportEventsList",
-					getChallengeSportEvents());
+					challengeSportEventService.getAllByChallengeId(workout.getChallengeSportEvent().getChallenge().getId()));
 			model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
 			model.addAttribute("userInstance", user);
 			return "workout/edit";
