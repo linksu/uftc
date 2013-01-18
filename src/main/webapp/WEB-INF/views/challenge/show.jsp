@@ -39,6 +39,8 @@
 
 			</div>
 			<!--End of column1-->
+			
+			<c:if test="${userInstance.getAuthority() == 'ROLE_CHALLENGER' || userInstance.getAuthority() == 'ROLE_ADMIN' }">
 
 			<div id="column2">
 				<div class="headerbox">
@@ -104,6 +106,7 @@
 
 			</div>
 			<!--End if column2-->
+			</c:if>
 
 			<div id="column3">
 				<div class="headerbox">
