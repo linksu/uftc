@@ -116,6 +116,6 @@ public class Workout {
 	}
 	
 	public String getName() {
-		return "Nimi";
+		return this.challengeSportEvent.getTitle();
 	}
 }
