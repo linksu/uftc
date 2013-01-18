@@ -75,11 +75,6 @@
 						</div>
 					</c:forEach>
 				</div>
-				<div class="alanappi2">
-								<input type="submit"
-								value="Lis&auml;&auml; workout"
-								class="kirjaudu" onClick="window.location.href='/uftc/workout/add?userId=${userInstance.getId()}';" />
-				</div>
 			</div>
 			<!--End if column2-->
 
