@@ -119,16 +119,20 @@ public class ChallengeController {
 			Model model, Principal principal) {
 		logger.debug("Received request to list all challenges");
 
+		String username = principal.getName();
+		User currentUser = userService.getUserByUsername(username);
+		
 		Challenge challenge = challengeService.getById(challengeId);
 		List<User> challengeUsers = challengeService.getUsers(challenge);
-		List<User> allUsers = userService.getAll();
-		String username = principal.getName();
-
-		User currentUser = null;
-		for (User user : allUsers) {
-			if (user.getUsername().equals(username))
-				currentUser = user;
+		
+		if(currentUser.getId().equals(challenge.getOwner().getId())) {
+			model.addAttribute("challengeOwner", true);
 		}
+		
+		if(challengeService.challengeContainsUser(challenge, currentUser)) {
+			model.addAttribute("challengeParticipant", true);
+		}
+		
 
 		model.addAttribute("challengeInstance", challenge);
 		model.addAttribute("challengeUsers", challengeUsers);

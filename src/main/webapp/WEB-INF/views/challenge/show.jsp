@@ -98,6 +98,8 @@
 						
 						<input type="submit" value="Save" />
 					</form:form>
+					<c:if test="${challengeParticipant}"><a class="nappi" href="/uftc/workout/add?challengeId=${challengeInstance.getId()}">Lis‰‰ suoritus</a></c:if>
+					<c:if test="${challengeOwner}"><a class="nappi" href="/uftc/challengeSportEvent/show?challengeId=${challengeInstance.getId()}">Haasteen lajit</a></c:if>
 				</div>
 
 			</div>
