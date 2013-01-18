@@ -224,7 +224,7 @@
 				<table id="userTable">
 				<tr><td>Nimi</td><td>Rooli</td><td>Aktivoi</td></tr>
 					<c:forEach items="${userList}" var="user">
-							<tr><td><a style="border-bottom: 1px solid white; " href="/uftc/admin/userShow?userId=${user.getId()}" id="${user.getId()}">
+							<tr><td><a style="border-bottom: 1px; " href="/uftc/admin/userShow?userId=${user.getId()}" id="${user.getId()}">
 							<c:out value="${user.getFirstName()}" />
 							<c:out value="${user.getLastName()}" /></a></td>
 									<td>${user.getAuthority()}</td>
