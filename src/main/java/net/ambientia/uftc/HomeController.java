@@ -57,9 +57,8 @@ public class HomeController {
 				.getAuthentication();
 		String name = auth.getName();
 		User user = userService.getUserByUsername(name);
-		List<User> userList = userService.getAll();
 		model.addAttribute("challengeList", challengeList);
-		model.addAttribute("userInstance", user);
+		model.addAttribute("loggedInUser", user);
 
 		return "uftc/UFTC";
 	}

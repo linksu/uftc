@@ -10,6 +10,7 @@ import net.ambientia.uftc.domain.PointFactorType;
 import net.ambientia.uftc.domain.User;
 import net.ambientia.uftc.service.ChallengeService;
 import net.ambientia.uftc.service.ChallengeSportEventService;
+import net.ambientia.uftc.service.UserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,28 +31,36 @@ public class ChallengeSportEventsController {
 	@Autowired
 	private ChallengeService challengeService;
 	
+	@Autowired
+	private UserService userService;
+	
 	private static final Logger logger = LoggerFactory
 			.getLogger(ChallengeSportEventsController.class);
 
 	
 	@RequestMapping(value = "/challengeSportEvent/show", method = RequestMethod.GET)
-	public String show(@RequestParam("challengeId") int challengeId, Model model) {
+	public String show(@RequestParam("challengeId") int challengeId, Model model, Principal principal) {
 		logger.debug("Received request to show list challenge's sportevents page");
+		
+		User currentUser = userService.getUserByUsername(principal.getName());
 		
 		List<ChallengeSportEvent> events = challengeSportEventService.getAllByChallengeId(challengeId);
 		
 		model.addAttribute("challengeSportEvents", events);
 		model.addAttribute("challengeId", challengeId);
+		model.addAttribute("loggedInUser", currentUser);
 		return "challengeSportEvent/show";
 	}
 	
 	@RequestMapping(value = "/challengeSportEvent/add", method = RequestMethod.GET)
-	public String showAddNew(@RequestParam("challengeId") int challengeId, Model model) {
+	public String showAddNew(@RequestParam("challengeId") int challengeId, Model model, Principal principal) {
 		logger.debug("Received request to show list challenge's sportevents page");
+		User currentUser = userService.getUserByUsername(principal.getName());
 				
 		model.addAttribute("challengeSportEventInstance", new ChallengeSportEvent());
 		model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
 		model.addAttribute("challengeId", challengeId);
+		model.addAttribute("loggedInUser", currentUser);
 		
 		return "challengeSportEvent/add";
 	}
@@ -82,14 +91,16 @@ public class ChallengeSportEventsController {
 	}
 	
 	@RequestMapping(value = "/challengeSportEvent/edit", method = RequestMethod.GET)
-	public String edit(@RequestParam("id") int challengeSportEventId, Model model) {
+	public String edit(@RequestParam("id") int challengeSportEventId, Model model, Principal principal) {
 		logger.debug("Received request to show list challenge's sportevents page");
 		
+		User currentUser = userService.getUserByUsername(principal.getName());
 		ChallengeSportEvent challengeSportEvent = challengeSportEventService.getById(challengeSportEventId);
 		
 		
 		model.addAttribute("challengeSportEventInstance", challengeSportEvent);
 		model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
+		model.addAttribute("loggedInUser", currentUser);
 		
 		return "challengeSportEvent/edit";
 	}

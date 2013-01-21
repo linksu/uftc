@@ -67,9 +67,13 @@ public class AdminController {
 	
 	
 	@RequestMapping(value = "/admin/userAdd", method = RequestMethod.GET)
-	public String getAdd(Model model) {
+	public String getAdd(Model model, Principal principal) {
+		
+		User currentUser = userService.getUserByUsername(principal.getName());
+		
 		logger.debug("Received request to show add page");
 		model.addAttribute("userInstance", new User());
+		model.addAttribute("loggedInUser", currentUser);
 		return "admin/userAdd";
 	}
 
@@ -97,10 +101,13 @@ public class AdminController {
 	public String getUserInfo(@RequestParam("userId") int id, Model model, Principal principal) {
 		logger.debug("Received request to show add page");
 		
+		User currentUser = userService.getUserByUsername(principal.getName());
+		
 		User user = userService.getById(id);
 
 		List<Workout> workouts = workoutService.getAllByUser(user);
 		model.addAttribute("userInstance", user);
+		model.addAttribute("loggedInUser", currentUser);
 		model.addAttribute("workouts",workouts);
 
 		return "user/show";
@@ -118,7 +125,7 @@ public class AdminController {
 
 		model.addAttribute("sportEventInstance", new SportEvent());
 		model.addAttribute("sportEventList", sportEventList);
-		model.addAttribute("userInstance", user);
+		model.addAttribute("loggedInUser", user);
 		model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
 		model.addAttribute("userList", userList);
 		return "admin/admin";

@@ -44,9 +44,11 @@ public class UserController {
 			.getLogger(UserController.class);
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String getAdd(Model model) {
+	public String getAdd(Model model, Principal principal) {
+		User currentUser = userService.getUserByUsername(principal.getName());
 		logger.debug("Received request to show register page");
 		model.addAttribute("userInstance", new User());
+		model.addAttribute("loggedInUser", currentUser);
 		return "uftc/register";
 	}
 	
@@ -69,24 +71,27 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/list", method = RequestMethod.GET)
-	public String getUsers(Model model) {
+	public String getUsers(Model model, Principal principal) {
 		logger.debug("Received request to show all users");
-
+		User currentUser = userService.getUserByUsername(principal.getName());
+		
 		List<User> users = userService.getAll();
 
 		model.addAttribute("users", users);
+		model.addAttribute("loggedInUser", currentUser);
 		return "user/list";
 	}
 
 	@RequestMapping(value = "/user/edit", method = RequestMethod.GET)
-	public String edit(@RequestParam("userId") int userId, Model model) {
-
+	public String edit(@RequestParam("userId") int userId, Model model, Principal principal) {
+		
+		User currentUser = userService.getUserByUsername(principal.getName());
 		User user = userService.getById(userId);
 		Hibernate.initialize(user);
 		// Hibernate.initialize(user.getWorkouts());
 		// List<Workout> workoutList = userService.getWorkouts(user);
 		List<Workout> workoutList = workoutService.getAllByUser(user);
-		model.addAttribute("userInstance", user);
+		model.addAttribute("loggedInUser", currentUser);
 		model.addAttribute("workoutList", workoutList);
 		return "user/edit";
 	}
@@ -139,15 +144,15 @@ public class UserController {
 	public String getInfo(@RequestParam("userId") int id, Model model, Principal principal) {
 		logger.debug("Received request to show add page");
 		
-		String currentUser = principal.getName();	
-		User user = userService.getById(id);
-		if(user == null || !currentUser.equals(user.getUsername()))
+		User currentUser = userService.getUserByUsername(principal.getName());
+		
+		if(currentUser == null || !currentUser.equals(currentUser.getUsername()))
 		{
 			// Attempted to show wrong user data
 			return "redirect:/";			
 		}
-		List<Workout> workouts = workoutService.getAllByUser(user);
-		model.addAttribute("userInstance", user);
+		List<Workout> workouts = workoutService.getAllByUser(currentUser);
+		model.addAttribute("loggedInUser", currentUser);
 		model.addAttribute("workouts",workouts);
 
 		return "user/show";

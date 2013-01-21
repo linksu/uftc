@@ -49,15 +49,14 @@ public class WorkoutController {
 			Principal principal) {
 		logger.debug("Received request to show add new workout page");
 
-		String currentUser = principal.getName();
-		User user = userService.getUserByUsername(currentUser);
-		if (user == null || !currentUser.equals(user.getUsername()) || challengeId < 0) {
+		User currentUser = userService.getUserByUsername(principal.getName());
+		if (currentUser == null || !currentUser.equals(currentUser.getUsername()) || challengeId < 0) {
 			// Attempted to show wrong user data
 			return "redirect:/";
 		}
 				
 		model.addAttribute("workoutInstance", new Workout());
-		model.addAttribute("userInstance", user);
+		model.addAttribute("loggedInUser", currentUser);
 		model.addAttribute("challengeSportEventsList",
 				challengeService.getById(challengeId).getChallengeSportEvents());
 		model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
@@ -75,14 +74,13 @@ public class WorkoutController {
 	public String add(@ModelAttribute("workoutInstance") Workout workout, Principal principal, Model model) {
 		logger.debug("Received request to add new workout");
 
-		String currentUser = principal.getName();
-		User user = userService.getUserByUsername(currentUser);
-		workout.setUser(user);
+		User currentUser = userService.getUserByUsername(principal.getName());
+		workout.setUser(currentUser);
 		workout.setChallengeSportEvent(challengeSportEventService.getById(workout.getChallengeSportEventId()));
 
 		if (workoutService.isValid(workout)) {
-			workoutService.add(user.getId(), workout);
-			return "redirect:/user/show?userId=" + user.getId();
+			workoutService.add(currentUser.getId(), workout);
+			return "redirect:/user/show?userId=" + currentUser.getId();
 		} else {
 			setupErrorModel(model, workout);
 			return "workout/add";
@@ -93,9 +91,9 @@ public class WorkoutController {
 	public String getEdit(@RequestParam("workoutId") int workoutId,
 			Model model, Principal principal) {
 
-		String currentUser = principal.getName();
-		User user = workoutService.getById(workoutId).getUser();
-		if (user == null || !currentUser.equals(user.getUsername())) {
+		User currentUser = userService.getUserByUsername(principal.getName());
+		
+		if (currentUser == null || !currentUser.equals(currentUser.getUsername())) {
 			// Attempted to show wrong user data
 			return "redirect:/";
 		} else {
@@ -105,7 +103,7 @@ public class WorkoutController {
 			model.addAttribute("challengeSportEventsList",
 					challengeSportEventService.getAllByChallengeId(workout.getChallengeSportEvent().getChallenge().getId()));
 			model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
-			model.addAttribute("userInstance", user);
+			model.addAttribute("loggedInUser", currentUser);
 			return "workout/edit";
 		}
 	}
@@ -132,26 +130,6 @@ public class WorkoutController {
 			setupErrorModel(model, workout);
 			return "workout/edit";
 		}
-	}
-
-	@RequestMapping(value = "/workout/list", method = RequestMethod.GET)
-	public String getWorkouts(Model model) {
-		logger.debug("Received request to show all workouts");
-
-		List<Workout> workouts = workoutService.getAll();
-
-		model.addAttribute("workouts", workouts);
-		return "workout/list";
-	}
-
-	@RequestMapping(value = "/workout/info", method = RequestMethod.GET)
-	public String getInfo(@RequestParam("workoutId") int id, Model model) {
-		logger.debug("Received request to show add page");
-		Workout workout = workoutService.getById(id);
-
-		model.addAttribute("workoutInstance", workout);
-
-		return "workout/info";
 	}
 
 	public void setWorkoutService(WorkoutService workoutService) {

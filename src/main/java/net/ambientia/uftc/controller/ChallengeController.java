@@ -33,32 +33,30 @@ public class ChallengeController {
 	@Autowired
 	private UftcService uftcService;
 
-	private Challenge challenge;
-
 	private static final Logger logger = LoggerFactory
 			.getLogger(ChallengeController.class);
 
 	@RequestMapping(value = "/challenge/list", method = RequestMethod.GET)
 	public String showChallengeList(Model model, Principal principal) {
 		logger.debug("Received request to show challenge list page");
-		String currentUser = principal.getName();	
-		User user = userService.getUserByUsername(currentUser);
+		
+		User currentUser = userService.getUserByUsername(principal.getName());
 
 		List<Challenge> challenges = challengeService.getAll();
 		model.addAttribute("challenges", challenges);
-		model.addAttribute("userChallenges", user.getChallenges());
-		model.addAttribute("userInstance", user);
+		model.addAttribute("userChallenges", currentUser.getChallenges());
+		model.addAttribute("loggedInUser", currentUser);
 		return "challenge/list";
 	}
 	
 	@RequestMapping(value = "/challenge/add", method = RequestMethod.GET)
 	public String showChallengeAdd(Model model, Principal principal) {
 		logger.debug("Received request to show challenge add page");
-		String currentUser = principal.getName();	
-		User user = userService.getUserByUsername(currentUser);
+		
+		User currentUser = userService.getUserByUsername(principal.getName());
 
 		model.addAttribute("challengeInstance", new Challenge());
-		model.addAttribute("userInstance", user);
+		model.addAttribute("loggedInUser", currentUser);
 		return "challenge/add";
 	}
 
@@ -67,9 +65,8 @@ public class ChallengeController {
 			Model model, Principal principal) {
 		logger.debug("Received request to add new challenge");
 		
-		String currentUser = principal.getName();	
-		User user = userService.getUserByUsername(currentUser);
-		challenge.setOwner(user);
+		User currentUser = userService.getUserByUsername(principal.getName());
+		challenge.setOwner(currentUser);
 		if (challengeService.isValid(challenge)) {
 			challengeService.add(challenge);
 			return "redirect:/challenge/list";
@@ -81,16 +78,6 @@ public class ChallengeController {
 			return "challenge/add";
 
 		}
-	}
-
-	@RequestMapping(value = "/challenge/edit", method = RequestMethod.GET)
-	public String edit(@RequestParam("challengeId") int challengeId, Model model) {
-
-		challenge = challengeService.getById(challengeId);
-		Hibernate.initialize(challenge);
-		model.addAttribute("challengeInstance", challenge);
-
-		return "challenge/edit";
 	}
 
 	@RequestMapping(value = "/challenge/update", method = RequestMethod.POST)
@@ -119,8 +106,7 @@ public class ChallengeController {
 			Model model, Principal principal) {
 		logger.debug("Received request to list all challenges");
 
-		String username = principal.getName();
-		User currentUser = userService.getUserByUsername(username);
+		User currentUser = userService.getUserByUsername(principal.getName());
 		
 		Challenge challenge = challengeService.getById(challengeId);
 		List<User> challengeUsers = challengeService.getUsers(challenge);
@@ -142,7 +128,7 @@ public class ChallengeController {
 		model.addAttribute("challengeInstance", challenge);
 		model.addAttribute("challengeUsers", challengeUsers);
 		model.addAttribute("notApprovedUsers", notApprovedUsers);
-		model.addAttribute("userInstance", currentUser);
+		model.addAttribute("loggedInUser", currentUser);
 		
 		return "challenge/show";
 	}
@@ -150,13 +136,12 @@ public class ChallengeController {
 	@RequestMapping(value = "/challenge/join", method = RequestMethod.GET)
 	public String askToJoinToChallenge(@RequestParam("challengeId") int challengeId, Model model,
 			Principal principal) {
-		String currentUser = principal.getName();	
-		User user = userService.getUserByUsername(currentUser);
+		User currentUser = userService.getUserByUsername(principal.getName());
 		Challenge challenge = challengeService.getById(challengeId);
 
-		if (user.getUsername().equals(principal.getName())
-				&& challengeService.challengeContainsUser(challenge, user) == false) {
-			challenge.getNotApprovedUsers().add(user);
+		if (currentUser.getUsername().equals(principal.getName())
+				&& challengeService.challengeContainsUser(challenge, currentUser) == false) {
+			challenge.getNotApprovedUsers().add(currentUser);
 			challengeService.save(challenge);
 		}
 
@@ -168,14 +153,13 @@ public class ChallengeController {
 	public String acceptUserToChallenge(@RequestParam("challengeId") int challengeId, 
 			@RequestParam("userId") int userId, Model model,
 			Principal principal) {
-		String currentUser = principal.getName();	
-		User user = userService.getById(userId);
+		User currentUser = userService.getUserByUsername(principal.getName());
 		Challenge challenge = challengeService.getById(challengeId);
 
 //		if (user.getUsername().equals(principal.getName())
 //				&& challengeService.challengeContainsUser(challenge, user) == false) {
-		challengeService.removeChallengeAwaitingUser(challenge, user);
-			challenge.getUsers().add(user);
+		challengeService.removeChallengeAwaitingUser(challenge, currentUser);
+			challenge.getUsers().add(currentUser);
 			
 			challengeService.save(challenge);
 //		}
@@ -196,13 +180,4 @@ public class ChallengeController {
 		model.addAttribute("errors",
 				challengeService.getValidationErrorList(editedChallenge));
 	}
-
-	public Challenge getChallenge() {
-		return challenge;
-	}
-
-	public void setChallenge(Challenge challenge) {
-		this.challenge = challenge;
-	}
-
 }

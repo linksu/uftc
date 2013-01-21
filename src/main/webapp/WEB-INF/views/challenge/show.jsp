@@ -58,7 +58,7 @@
 			</div>
 			<!--End of column1-->
 			
-			<c:if test="${userInstance.getAuthority() == 'ROLE_CHALLENGER' || userInstance.getAuthority() == 'ROLE_ADMIN' }">
+			<c:if test="${loggedInUser.getAuthority() == 'ROLE_CHALLENGER' || loggedInUser.getAuthority() == 'ROLE_ADMIN' }">
 
 			<div id="column2">
 				<div class="headerbox">

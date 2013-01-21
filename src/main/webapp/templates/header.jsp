@@ -54,7 +54,7 @@
 		<div id="login">
 			<div class="headerbox">
 				<h2 class="headertext">
-					<a href="/uftc/user/edit?userId=${userInstance.getId()}">${userInstance.getUsername()}</a>
+					<a href="/uftc/user/edit?userId=${loggedInUser.getId()}">${loggedInUser.getUsername()}</a>
 				</h2>
 			</div>
 		</div>
@@ -69,7 +69,7 @@
 		<li><a href="/uftc">ETUSIVU</a></li>
 
 		<security:authorize access="isAuthenticated()" var="isAuthed">
-			<li><a href="/uftc/user/show?userId=${userInstance.getId()}">OMA
+			<li><a href="/uftc/user/show?userId=${loggedInUser.getId()}">OMA
 					SIVU</a></li>
 
 		</security:authorize>

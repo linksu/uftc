@@ -12,7 +12,7 @@
 			<div class="footertext">
 				<p>Ultimate functional training challenge 2012</p>
 			</div>
-			<c:if test="${userInstance.getAuthority() == 'ROLE_ADMIN'}">
+			<c:if test="${loggedInUser.getAuthority() == 'ROLE_ADMIN'}">
 			<div class="admin">
 				<a href="/uftc/admin">ADMIN</a>
 			</div>

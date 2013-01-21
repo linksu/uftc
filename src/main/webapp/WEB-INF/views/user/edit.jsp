@@ -54,11 +54,6 @@
 								</tr>
 							</c:forEach>
 						</tr>
-						<tr>
-							<td><a
-								href="/uftc/workout/add?userId=${userInstance.getId()}">Lis‰‰
-									workout</a></td>
-						</tr>
 					</table>
 
 					<form:input type="hidden" value="${userInstance.getId()}" path="id" />
