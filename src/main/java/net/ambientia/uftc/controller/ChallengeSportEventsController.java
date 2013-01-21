@@ -1,11 +1,14 @@
 package net.ambientia.uftc.controller;
 
+import java.security.Principal;
 import java.text.ParseException;
 import java.util.List;
 
 import net.ambientia.uftc.domain.Challenge;
 import net.ambientia.uftc.domain.ChallengeSportEvent;
 import net.ambientia.uftc.domain.PointFactorType;
+import net.ambientia.uftc.domain.User;
+import net.ambientia.uftc.service.ChallengeService;
 import net.ambientia.uftc.service.ChallengeSportEventService;
 
 import org.slf4j.Logger;
@@ -24,6 +27,9 @@ public class ChallengeSportEventsController {
 	@Autowired
 	private ChallengeSportEventService challengeSportEventService;
 	
+	@Autowired
+	private ChallengeService challengeService;
+	
 	private static final Logger logger = LoggerFactory
 			.getLogger(ChallengeSportEventsController.class);
 
@@ -35,8 +41,44 @@ public class ChallengeSportEventsController {
 		List<ChallengeSportEvent> events = challengeSportEventService.getAllByChallengeId(challengeId);
 		
 		model.addAttribute("challengeSportEvents", events);
-		
+		model.addAttribute("challengeId", challengeId);
 		return "challengeSportEvent/show";
+	}
+	
+	@RequestMapping(value = "/challengeSportEvent/add", method = RequestMethod.GET)
+	public String showAddNew(@RequestParam("challengeId") int challengeId, Model model) {
+		logger.debug("Received request to show list challenge's sportevents page");
+				
+		model.addAttribute("challengeSportEventInstance", new ChallengeSportEvent());
+		model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
+		model.addAttribute("challengeId", challengeId);
+		
+		return "challengeSportEvent/add";
+	}
+	
+	@RequestMapping(value = "/challengeSportEvent/add", method = RequestMethod.POST)
+	public String addSport(@ModelAttribute("challengeSportEventInstance") ChallengeSportEvent challengeSportEvent, 
+			@RequestParam("challengeId") int challengeId,
+			Model model, Principal principal) {
+		logger.debug("Received request to add new challenge");
+		
+		String currentUser = principal.getName();	
+		
+		
+		challengeSportEventService.add(challengeId, challengeSportEvent);
+		
+//		if (challengeService.isValid(challenge)) {
+//			challengeService.add(challenge);
+//			return "redirect:/challenge/list";
+//
+//		} else {
+//			model.addAttribute("challengeInstance", challenge);
+//			model.addAttribute("errors",
+//					challengeService.getValidationErrorList(challenge));
+//			return "challenge/add";
+//
+//		}
+		return "redirect:/challengeSportEvent/show?challengeId=" + challengeId;
 	}
 	
 	@RequestMapping(value = "/challengeSportEvent/edit", method = RequestMethod.GET)

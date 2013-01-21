@@ -24,6 +24,11 @@ table#userTable{
 	width: 400px;
 	margin-bottom: 10px;
 }
+table#sportTable{
+	float: left;
+	width: 400px;
+	margin-bottom: 10px;
+}
 td p{
  font-size:13px;
 }
