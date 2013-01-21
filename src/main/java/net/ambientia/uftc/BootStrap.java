@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import net.ambientia.uftc.domain.AdminUser;
 import net.ambientia.uftc.domain.Challenge;
 import net.ambientia.uftc.domain.ChallengeSportEvent;
-import net.ambientia.uftc.domain.ChallengerUser;
 import net.ambientia.uftc.domain.PointFactorType;
 import net.ambientia.uftc.domain.SportEvent;
 import net.ambientia.uftc.domain.Uftc;
@@ -133,8 +131,8 @@ public class BootStrap {
 		return user;
 	}
 	
-	private ChallengerUser addChallenger(Session session, String userName) {
-		User user = new ChallengerUser();
+	private User addChallenger(Session session, String userName) {
+		User user = new User();
 		user.setUsername(userName);
 		user.setPassword(userName);
 		
@@ -144,6 +142,7 @@ public class BootStrap {
 		//user.getAuthorities().add(auth);
 		//session.save(auth);
 		
+		user.setAuthority("ROLE_CHALLENGER");
 		user.setFirstName(userName);
 		user.setLastName("tlast");
 		user.setEnabled(true);
@@ -154,11 +153,11 @@ public class BootStrap {
 		session.save(user);
 		uftc.getUsers().add(user);
 		
-		return (ChallengerUser) user;
+		return user;
 	}
 	
-	private AdminUser addAdmin(Session session, String userName) {
-		User user = new AdminUser();
+	private User addAdmin(Session session, String userName) {
+		User user = new User();
 		user.setUsername(userName);
 		user.setPassword(userName);
 		
@@ -168,6 +167,7 @@ public class BootStrap {
 		//user.getAuthorities().add(auth);
 		//session.save(auth);
 		
+		user.setAuthority("ROLE_ADMIN");
 		user.setFirstName(userName);
 		user.setLastName("tlast");
 		user.setEnabled(true);
@@ -178,7 +178,7 @@ public class BootStrap {
 		session.save(user);
 		uftc.getUsers().add(user);
 		
-		return (AdminUser) user;
+		return user;
 	}
 	
 	private Challenge addChallenge(Session session, String challengeTitle) {
