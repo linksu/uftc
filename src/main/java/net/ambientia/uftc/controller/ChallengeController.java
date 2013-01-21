@@ -124,6 +124,7 @@ public class ChallengeController {
 		
 		Challenge challenge = challengeService.getById(challengeId);
 		List<User> challengeUsers = challengeService.getUsers(challenge);
+		List<User> notApprovedUsers = challengeService.getUsersWaitingForApproval(challenge);
 		
 		if(currentUser.getId().equals(challenge.getOwner().getId())) {
 			model.addAttribute("challengeOwner", true);
@@ -133,15 +134,21 @@ public class ChallengeController {
 			model.addAttribute("challengeParticipant", true);
 		}
 		
+		if (challengeService.challengeContainsAwaitingUser(challenge, currentUser)) {
+			model.addAttribute("awaitingParticipant", true);
+		}
+		
 
 		model.addAttribute("challengeInstance", challenge);
 		model.addAttribute("challengeUsers", challengeUsers);
+		model.addAttribute("notApprovedUsers", notApprovedUsers);
 		model.addAttribute("userInstance", currentUser);
+		
 		return "challenge/show";
 	}
 
 	@RequestMapping(value = "/challenge/join", method = RequestMethod.GET)
-	public String addUserToChallenge(@RequestParam("challengeId") int challengeId, Model model,
+	public String askToJoinToChallenge(@RequestParam("challengeId") int challengeId, Model model,
 			Principal principal) {
 		String currentUser = principal.getName();	
 		User user = userService.getUserByUsername(currentUser);
@@ -149,9 +156,29 @@ public class ChallengeController {
 
 		if (user.getUsername().equals(principal.getName())
 				&& challengeService.challengeContainsUser(challenge, user) == false) {
-			challenge.getUsers().add(user);
+			challenge.getNotApprovedUsers().add(user);
 			challengeService.save(challenge);
 		}
+
+		return "redirect:/challenge/show?challengeId=" + challengeId;
+
+	}
+	
+	@RequestMapping(value = "/challenge/accept", method = RequestMethod.GET)
+	public String acceptUserToChallenge(@RequestParam("challengeId") int challengeId, 
+			@RequestParam("userId") int userId, Model model,
+			Principal principal) {
+		String currentUser = principal.getName();	
+		User user = userService.getById(userId);
+		Challenge challenge = challengeService.getById(challengeId);
+
+//		if (user.getUsername().equals(principal.getName())
+//				&& challengeService.challengeContainsUser(challenge, user) == false) {
+		challengeService.removeChallengeAwaitingUser(challenge, user);
+			challenge.getUsers().add(user);
+			
+			challengeService.save(challenge);
+//		}
 
 		return "redirect:/challenge/show?challengeId=" + challengeId;
 

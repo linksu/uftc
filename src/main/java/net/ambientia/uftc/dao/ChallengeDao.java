@@ -48,6 +48,7 @@ public class ChallengeDao extends DaoBase<Challenge> {
 		Challenge challenge = (Challenge) getCurrentSession().get(Challenge.class,
 				challengeId);
 		Hibernate.initialize(challenge.getUsers());
+		Hibernate.initialize(challenge.getNotApprovedUsers());
 		Hibernate.initialize(challenge.getChallengeSportEvents());
 		return challenge;
 	}

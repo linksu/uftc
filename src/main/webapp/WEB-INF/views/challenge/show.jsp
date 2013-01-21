@@ -32,8 +32,26 @@
 
 
 						</c:forEach>
+						<c:if test="${challengeOwner}">
+						<c:forEach items="${notApprovedUsers}" var="cUser">
+							<div class="rivi">
+								<div class="riviteksti">
+									<div class="nimi">
+										<p>${cUser.getFirstName()} ${cUser.getLastName()}</p>
+									</div>
+									<div class="yht">
+										<a href="/uftc/challenge/accept?challengeId=${challengeInstance.getId()}&userId=${cUser.getId()}">Hyv‰ksy</a>
+									</div>
+								</div>
+							</div>
+
+
+						</c:forEach>
+						</c:if>
 					</div>
-					<a class="nappi" href="/uftc/challenge/join?challengeId=${challengeInstance.getId()}">Liity</a>
+					<c:if test="${challengeParticipant}"><a class="nappi" href="/uftc/workout/add?challengeId=${challengeInstance.getId()}">Lis‰‰ suoritus</a></c:if>
+					<c:if test="${!challengeParticipant && !awaitingParticipant}"><a class="nappi" href="/uftc/challenge/join?challengeId=${challengeInstance.getId()}">Liity</a></c:if>
+					<c:if test="${awaitingParticipant}"><a class="nappi" style="background-color: grey;" href="#">Odottaa</a></c:if>
 				</div>
 
 
@@ -100,7 +118,6 @@
 						
 						<input type="submit" value="Save" />
 					</form:form>
-					<c:if test="${challengeParticipant}"><a class="nappi" href="/uftc/workout/add?challengeId=${challengeInstance.getId()}">Lis‰‰ suoritus</a></c:if>
 					<c:if test="${challengeOwner}"><a class="nappi" href="/uftc/challengeSportEvent/show?challengeId=${challengeInstance.getId()}">Haasteen lajit</a></c:if>
 				</div>
 
