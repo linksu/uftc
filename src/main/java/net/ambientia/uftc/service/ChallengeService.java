@@ -134,5 +134,15 @@ public class ChallengeService {
 		}
 		return false;
 	}
+	
+	public boolean removeChallengeAwaitingUser(Challenge challenge, User user) {
+		List<User> userList = challenge.getNotApprovedUsers();
+		for (User myUser : userList) {
+			if (Integer.valueOf(myUser.getId())== Integer.valueOf(user.getId()))
+				return userList.remove(myUser);
+		}
+		return false;
+	}
+
 
 }
