@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
+import net.ambientia.uftc.dao.ChallengeDao;
 import net.ambientia.uftc.dao.ChallengeSportEventDao;
 import net.ambientia.uftc.dao.UserDao;
 import net.ambientia.uftc.dao.WorkoutDao;
+import net.ambientia.uftc.domain.Challenge;
 import net.ambientia.uftc.domain.User;
 import net.ambientia.uftc.domain.Workout;
 import net.ambientia.uftc.domain.Workout.FieldTypes;
@@ -29,6 +31,9 @@ public class WorkoutService {
 	@Autowired
 	private ChallengeSportEventDao challengeSportEventDao;
 	
+	@Autowired
+	private ChallengeDao challengeDao;
+	
 	private SessionFactory sessionFactory;
 
 	public List<Workout> getAll() {
@@ -44,6 +49,9 @@ public class WorkoutService {
 	}
 
 	public void add(Integer userId,Workout workout) {
+		Challenge challenge = challengeDao.getById(workout.getChallengeSportEvent().getChallenge().getId());
+		challenge.setTotalPoints(challenge.getTotalPoints()+workout.getRepetition()*challengeSportEventDao.getById(workout.getChallengeSportEvent().getId()).getPointFactor());
+		challengeDao.save(challenge);
 		workoutDao.add(userId, workout);
 	}
 	

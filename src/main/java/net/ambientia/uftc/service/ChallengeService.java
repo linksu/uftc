@@ -49,6 +49,7 @@ public class ChallengeService {
 	public void add(Challenge challenge) {
 		Uftc uftc = uftcDao.getById(1);
 		challenge.setUftc(uftc);
+		challenge.setTotalPoints(0);
 		addDefaultSportEvents(challenge);
 		challengeDao.add(1, challenge);
 	}
