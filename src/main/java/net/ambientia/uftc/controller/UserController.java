@@ -146,7 +146,7 @@ public class UserController {
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
 		
-		if(currentUser == null || !currentUser.equals(currentUser.getUsername()))
+		if(currentUser == null || !principal.getName().equals(currentUser.getUsername()))
 		{
 			// Attempted to show wrong user data
 			return "redirect:/";			
