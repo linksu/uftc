@@ -153,10 +153,9 @@ public class UserController {
 			// Attempted to show wrong user data
 			return "redirect:/";			
 		}
-		List<Workout> workouts = workoutService.getAllByUser(currentUser);
+		
 		model.addAttribute("loggedInUser", currentUser);
 		model.addAttribute("user", user);
-		model.addAttribute("workouts",workouts);
 
 		return "user/show";
 	}
