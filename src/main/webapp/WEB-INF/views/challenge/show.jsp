@@ -4,9 +4,72 @@
 		<div id="login"></div>
 
 		<div id="content">
-			<div id="column1">
+		
+		<div id="column1">
+		<div class="headerbox">
+		<h2 class="headertext">${challenge.getTitle()}</h2>
+		</div>
+		<div class="chartbox">
+					
+					<table>
+					<tr>
+							<td>
+									<p><spring:message code="challenge.challengeOwner" text="Challenge owner: " /></p>
+								</td>
+
+							<td><p>${challenge.getOwner().getUsername()}</p></td>
+						</tr>
+						<tr>
+							<td>
+									<p><spring:message code="challenge.totalPoints" text="Total points: " /></p>
+								</td>
+							<td><p>${challenge.getTotalPoints()}</p></td>
+						</tr>
+						<tr>
+							<td>
+									<p><spring:message code="challenge.startTime" text="Start time: " /></p>
+								</td>
+							<td><p>${challenge.getStartTimeString()}</p></td>
+						</tr>
+						<tr>
+							<td>
+							<p><spring:message code="challenge.endTime" text="End time: " /></p>
+									</td>
+									<td><p>${challenge.getEndTimeString()}</p></td>
+						</tr>
+					</table>
+		
+			<c:if test="${challengeOwner}"><a class="nappi" href="/uftc/challenge/edit?challengeId=${challenge.getId()}">Muokkaa</a></c:if>
+			<c:if test="${challengeParticipant}"><a class="nappi" href="/uftc/workout/add?challengeId=${challenge.getId()}">Lis‰‰ suoritus</a></c:if>
+		
+		</div>
+		</div>
+		
+					<c:if test="${challengeParticipant}">
+		<div id="column2">
+		<div class="headerbox">
+		<h2 class="headertext">Omat suoritukset</h2>
+		</div>
+		<div class="chartbox">
+		<c:forEach items="${workouts}" var="workout">
+						<div class="top5_content_box">
+							<div class="group">
+								<a href="/uftc/workout/edit?workoutId=${workout.getId()}"><c:out
+										value="${workout.getName()}" /></a>
+							</div>
+							<div class="points">
+								<h5>${workout.getPoints()}</h5>
+							</div>
+						</div>
+					</c:forEach>
+		</div>
+		</div>
+		
+		</c:if>
+		
+			<div id="column3">
 				<div class="headerbox">
-					<h2 class="headertext">K‰ytt‰j‰t</h2>
+					<h2 class="headertext">Haasteen k‰ytt‰j‰t</h2>
 				</div>
 				<div class="chartbox">
 
@@ -40,7 +103,7 @@
 										<p>${cUser.getFirstName()} ${cUser.getLastName()}</p>
 									</div>
 									<div class="yht">
-										<a href="/uftc/challenge/accept?challengeId=${challengeInstance.getId()}&userId=${cUser.getId()}">Hyv‰ksy</a>
+										<a href="/uftc/challenge/accept?challengeId=${challenge.getId()}&userId=${cUser.getId()}">Hyv‰ksy</a>
 									</div>
 								</div>
 							</div>
@@ -49,16 +112,15 @@
 						</c:forEach>
 						</c:if>
 					</div>
-					<c:if test="${challengeParticipant}"><a class="nappi" href="/uftc/workout/add?challengeId=${challengeInstance.getId()}">Lis‰‰ suoritus</a></c:if>
-					<c:if test="${!challengeParticipant && !awaitingParticipant}"><a class="nappi" href="/uftc/challenge/join?challengeId=${challengeInstance.getId()}">Liity</a></c:if>
+					<c:if test="${!challengeParticipant && !awaitingParticipant}"><a class="nappi" href="/uftc/challenge/join?challengeId=${challenge.getId()}">Liity</a></c:if>
 					<c:if test="${awaitingParticipant}"><a class="nappi" style="background-color: grey;" href="#">Odottaa</a></c:if>
 				</div>
 
 
 			</div>
-			<!--End of column1-->
+			<!--End of column3-->
 			
-			<c:if test="${loggedInUser.getAuthority() == 'ROLE_CHALLENGER' || loggedInUser.getAuthority() == 'ROLE_ADMIN' }">
+			<%--<c:if test="${loggedInUser.getAuthority() == 'ROLE_CHALLENGER' || loggedInUser.getAuthority() == 'ROLE_ADMIN' }">
 
 			<div id="column2">
 				<div class="headerbox">
@@ -185,6 +247,7 @@
 				</div>
 			</div>
 			<!--End of column3-->
+			</c:if> --%>
 
 		</div>
 		<!--End of content-->

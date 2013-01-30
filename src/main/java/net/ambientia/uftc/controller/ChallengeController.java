@@ -6,9 +6,11 @@ import java.util.List;
 
 import net.ambientia.uftc.domain.Challenge;
 import net.ambientia.uftc.domain.User;
+import net.ambientia.uftc.domain.Workout;
 import net.ambientia.uftc.service.ChallengeService;
 import net.ambientia.uftc.service.UftcService;
 import net.ambientia.uftc.service.UserService;
+import net.ambientia.uftc.service.WorkoutService;
 
 import org.hibernate.Hibernate;
 import org.slf4j.Logger;
@@ -32,6 +34,9 @@ public class ChallengeController {
 
 	@Autowired
 	private UftcService uftcService;
+	
+	@Autowired
+	private WorkoutService workoutService;
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(ChallengeController.class);
@@ -142,10 +147,13 @@ public class ChallengeController {
 			model.addAttribute("awaitingParticipant", true);
 		}
 		
+		List<Workout> workouts = workoutService.getAllByUser(currentUser);
+		
 		model.addAttribute("challenge", challenge);
 		model.addAttribute("challengeUsers", challengeUsers);
 		model.addAttribute("notApprovedUsers", notApprovedUsers);
 		model.addAttribute("loggedInUser", currentUser);
+		model.addAttribute("workouts",workouts);
 		
 		return "challenge/show";
 	}
