@@ -79,6 +79,24 @@ public class ChallengeController {
 
 		}
 	}
+	
+	@RequestMapping(value = "/challenge/edit", method = RequestMethod.GET)
+			public String showChallengeEdit(@RequestParam("challengeId") int challengeId,
+					Model model, Principal principal) {
+		
+		Challenge challenge = challengeService.getById(challengeId);
+		User currentUser = userService.getUserByUsername(principal.getName());
+		
+		if (!currentUser.getId().equals(challenge.getOwner().getId())) {
+			// Attempted to show wrong challenge data
+						return "redirect:/";	
+		}
+		
+		model.addAttribute("challengeInstance", challenge);
+		model.addAttribute("loggedInUser", currentUser);
+		
+		return "challenge/edit";
+	}
 
 	@RequestMapping(value = "/challenge/update", method = RequestMethod.POST)
 	public String updateChallenge(
@@ -87,17 +105,17 @@ public class ChallengeController {
 		logger.debug("Received request to update challenge");
 		if (challengeService.entityIsLocked(challenge)) {
 			setupOptimisticLockErrorModel(model, challenge);
-			return "challenge/show";
+			return "challenge/edit";
 		}
 		Challenge editedChallenge = challengeService
 				.setNewPropertiesToExistingChallenge(challenge);
-		if (challengeService.isValid(editedChallenge)) {
+		if (!challengeService.isValid(editedChallenge)) {
 			challengeService.save(editedChallenge);
 			return "redirect:/challenge/show?challengeId="
 					+ editedChallenge.getId();
 		} else {
 			setupErrorModel(model, challenge);
-			return "challenge/show";
+			return "challenge/edit";
 		}
 	}
 
@@ -124,8 +142,7 @@ public class ChallengeController {
 			model.addAttribute("awaitingParticipant", true);
 		}
 		
-
-		model.addAttribute("challengeInstance", challenge);
+		model.addAttribute("challenge", challenge);
 		model.addAttribute("challengeUsers", challengeUsers);
 		model.addAttribute("notApprovedUsers", notApprovedUsers);
 		model.addAttribute("loggedInUser", currentUser);
