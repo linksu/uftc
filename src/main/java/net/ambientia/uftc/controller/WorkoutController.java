@@ -126,7 +126,7 @@ public class WorkoutController {
 						
 			workout.setUser(user);
 			workoutService.edit(editedWorkout);
-			return "redirect:/user/show?userId=" + user.getId();
+			return "redirect:/challenge/show?challengeId=" + editedWorkout.getChallengeSportEvent().getChallenge().getId();
 		} else {
 			setupErrorModel(model, workout);
 			return "workout/edit";
