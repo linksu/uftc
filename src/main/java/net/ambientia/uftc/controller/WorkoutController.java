@@ -80,7 +80,7 @@ public class WorkoutController {
 
 		if (workoutService.isValid(workout)) {
 			workoutService.add(currentUser.getId(), workout);
-			return "redirect:/user/show?userId=" + currentUser.getId();
+			return "redirect:/challenge/show?challengeId=" + workout.getChallengeSportEvent().getChallenge().getId();
 		} else {
 			setupErrorModel(model, workout);
 			return "workout/add";
