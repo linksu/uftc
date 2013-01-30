@@ -60,7 +60,7 @@
 													<spring:message text="Käyttäjä" />
 												</form:option>
 
-										</form:select>
+										</form:select></td>
 										
 						<tr>
 							<td><p>

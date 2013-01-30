@@ -45,10 +45,10 @@ public class UserController {
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String getAdd(Model model, Principal principal) {
-		User currentUser = userService.getUserByUsername(principal.getName());
+		//User currentUser = userService.getUserByUsername(principal.getName());
 		logger.debug("Received request to show register page");
 		model.addAttribute("userInstance", new User());
-		model.addAttribute("loggedInUser", currentUser);
+		//model.addAttribute("loggedInUser", currentUser);
 		return "uftc/register";
 	}
 	
