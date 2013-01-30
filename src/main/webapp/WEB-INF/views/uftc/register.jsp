@@ -54,10 +54,10 @@
 									<td><form:select id="authority"
 											path="authority">
 												<form:option value="ROLE_CHALLENGER">
-													<spring:message text="Haastaja" />
+													<spring:message code="user.ROLE_CHALLENGER" text="Challenger" />
 												</form:option>
 												<form:option value="ROLE_USER">
-													<spring:message text="Käyttäjä" />
+													<spring:message code="user.ROLE_USER" text="User" />
 												</form:option>
 
 										</form:select></td>
