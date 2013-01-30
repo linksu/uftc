@@ -140,7 +140,7 @@ public class ChallengeController {
 		Challenge challenge = challengeService.getById(challengeId);
 
 		if (currentUser.getUsername().equals(principal.getName())
-				&& challengeService.challengeContainsUser(challenge, currentUser) == false) {
+				&& !challengeService.challengeContainsUser(challenge, currentUser) && !challengeService.challengeContainsAwaitingUser(challenge, currentUser)) {
 			challenge.getNotApprovedUsers().add(currentUser);
 			challengeService.save(challenge);
 		}
@@ -155,14 +155,17 @@ public class ChallengeController {
 			Principal principal) {
 		User currentUser = userService.getUserByUsername(principal.getName());
 		Challenge challenge = challengeService.getById(challengeId);
+		User acceptedUser = userService.getById(userId);
 
-//		if (user.getUsername().equals(principal.getName())
-//				&& challengeService.challengeContainsUser(challenge, user) == false) {
-		challengeService.removeChallengeAwaitingUser(challenge, currentUser);
-			challenge.getUsers().add(currentUser);
+		if (currentUser.getId().equals(challenge.getOwner().getId())
+				&& !challengeService.challengeContainsUser(challenge, acceptedUser)
+				&& challengeService.challengeContainsAwaitingUser(challenge, acceptedUser)) {
 			
+			challengeService.removeChallengeAwaitingUser(challenge, acceptedUser);
+			challenge.getUsers().add(acceptedUser);
+
 			challengeService.save(challenge);
-//		}
+		}
 
 		return "redirect:/challenge/show?challengeId=" + challengeId;
 
