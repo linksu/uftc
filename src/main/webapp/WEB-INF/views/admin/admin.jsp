@@ -227,7 +227,7 @@
 							<tr><td><a style="border-bottom: 1px; " href="/uftc/admin/userShow?userId=${user.getId()}" id="${user.getId()}">
 							<c:out value="${user.getFirstName()}" />
 							<c:out value="${user.getLastName()}" /></a></td>
-									<td>${user.getAuthority()}</td>
+									<td><p><spring:message code="user.${user.getAuthority()}" text="Unknown" /></p></td>
 									<td><a href="/uftc/admin/userActivate?userId=${user.getId()}"><c:choose><c:when test="${!user.isEnabled()}">&nbsp;Aktivoi tili</c:when><c:otherwise>Deaktivoi tili</c:otherwise></c:choose></a></td>
 									</tr>
 					</c:forEach>
