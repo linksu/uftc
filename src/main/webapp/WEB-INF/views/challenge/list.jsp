@@ -175,7 +175,7 @@
 								<p>Janne teki 20 punnerrusta</p>
 							</div>
 							<div class="like">
-								<a href="#"><img src="uftc/pics/like.jpeg"
+								<a href="#"><img src="/uftc/pics/like.jpeg"
 									style="width: 15%;"></a>
 							</div>
 						</div>
