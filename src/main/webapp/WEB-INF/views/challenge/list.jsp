@@ -29,7 +29,7 @@
 		<div id="content">
 			<div id="column1">
 				<div class="headerbox">
-					<h2 class="headertext">Haasteet</h2>
+					<h2 class="headertext">Kaikki haasteet</h2>
 				</div>
 				<div class="chartbox">
 					<div class="challenge">
@@ -57,7 +57,7 @@
 										<p><a href="/uftc/challenge/show?challengeId=${challenge.getId()}">${challenge.getTitle()}</a></p>
 									</div>
 									<div class="yht">
-										<p>1</p>
+										<p>${challenge.getTotalPoints()}</p>
 									</div>
 								</div>
 							</div>
@@ -109,7 +109,7 @@
 										<p><a href="/uftc/challenge/show?challengeId=${challenge.getId()}">${challenge.getTitle()}</a></p>
 									</div>
 									<div class="yht">
-										<p>1</p>
+										<p>${challenge.getTotalPoints()}</p>
 									</div>
 								</div>
 							</div>
