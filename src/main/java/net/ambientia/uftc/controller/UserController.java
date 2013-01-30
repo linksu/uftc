@@ -92,6 +92,7 @@ public class UserController {
 		// List<Workout> workoutList = userService.getWorkouts(user);
 		List<Workout> workoutList = workoutService.getAllByUser(user);
 		model.addAttribute("loggedInUser", currentUser);
+		model.addAttribute("userInstance", user);
 		model.addAttribute("workoutList", workoutList);
 		return "user/edit";
 	}
@@ -141,10 +142,11 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/show", method = RequestMethod.GET)
-	public String getInfo(@RequestParam("userId") int id, Model model, Principal principal) {
+	public String getInfo(@RequestParam("userId") int userId, Model model, Principal principal) {
 		logger.debug("Received request to show add page");
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
+		User user = userService.getById(userId);
 		
 		if(currentUser == null || !principal.getName().equals(currentUser.getUsername()))
 		{
@@ -153,6 +155,7 @@ public class UserController {
 		}
 		List<Workout> workouts = workoutService.getAllByUser(currentUser);
 		model.addAttribute("loggedInUser", currentUser);
+		model.addAttribute("user", user);
 		model.addAttribute("workouts",workouts);
 
 		return "user/show";
