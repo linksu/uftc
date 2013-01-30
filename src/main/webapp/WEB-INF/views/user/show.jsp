@@ -36,6 +36,8 @@
 						</tr>
 					</table>
 					
+					<c:if test="${loggedInUser.getId() == user.getId()}"><a class="nappi" href="/uftc/user/edit?userId=${loggedInUser.getId()}">Muokkaa</a></c:if>
+					
 						<%-- <div class="upper-header">
 							<h3 class="left">Pisteet t&auml;n&auml;&auml;n</h3>
 							<h3 class="right">Yhteens&auml;</h3>
