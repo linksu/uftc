@@ -7,6 +7,14 @@ body {
 	background:#7d8592;
 	background-repeat:repeat;
 }
+
+td a {color:#ff713f;}
+
+div.yht a{color:#ff713f;}
+
+
+td {color:white;}
+
 #wrapper{
 	margin:0 auto;
 	width:1000px;
@@ -63,6 +71,7 @@ td .teksti{
 	float:right;
 	clear:right;
 	}
+	
 .forget{
 	top: 5px;
 	left: 275px;

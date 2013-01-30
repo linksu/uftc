@@ -6,6 +6,7 @@
 				<div class="headerbox">
 					<h2 class="headertext">Tiedot</h2>
 				</div>
+				<div class="chartbox">
 				<c:url var="editUrl"
 					value="/user/edit?userId=${userInstance.getId()}" />
 				<form:form modelAttribute="userInstance" method="POST"
@@ -33,16 +34,16 @@
 						</tr>
 						-->
 						<tr>
-							<td><form:label path="firstName">
+							<td><p><form:label path="firstName">
 									<spring:message code="user.firstName" text="First name:" />
-								</form:label></td>
+								</form:label></p></td>
 							<td><form:input class="teksti"
 									value="${userInstance.getFirstName()}" path="firstName" /></td>
 						</tr>
 						<tr>
-							<td><form:label path="lastName">
+							<td><p><form:label path="lastName">
 									<spring:message code="user.lastName" text="Last name:" />
-								</form:label></td>
+								</form:label></p></td>
 							<td><form:input class="teksti"
 									value="${userInstance.getLastName()}" path="lastName" /></td>
 						</tr>
@@ -61,10 +62,10 @@
 						path="version" />
 					<input type="submit" value="Save" />
 				</form:form>
-
+			</div>
 			</div>
 			<!--End of column1-->
-
+			<%--
 			<div id="column2">
 				<div class="headerbox">
 					<h2 class="headertext">OMA TULOS</h2>
@@ -75,6 +76,7 @@
 				</div>
 
 			</div>
+			--%>
 			<!--End if column2-->
 
 			<div id="column3">
@@ -82,6 +84,7 @@
 					<h2 class="headertext">TAPAHTUMAT</h2>
 					<img class="headerlogo" src="/uftc/pics/runner.jpg">
 				</div>
+				<div class="chartbox">
 				<div class="tapahtumat">
 					<div class="single">
 						<div class="date">
@@ -134,7 +137,7 @@
 
 				</div>
 
-
+			</div>
 			</div>
 			<!--End of column3-->
 
