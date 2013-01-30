@@ -51,12 +51,17 @@ public class WorkoutService {
 	public void add(Integer userId,Workout workout) {
 		Challenge challenge = challengeDao.getById(workout.getChallengeSportEvent().getChallenge().getId());
 		challenge.setTotalPoints(challenge.getTotalPoints()+workout.getRepetition()*challengeSportEventDao.getById(workout.getChallengeSportEvent().getId()).getPointFactor());
-		challengeDao.save(challenge);
+		workout.getChallengeSportEvent().setChallenge(challenge);
 		workoutDao.add(userId, workout);
 	}
 	
 	public void edit(Workout workout) {
-
+		Challenge challenge = workout.getChallengeSportEvent().getChallenge();
+		
+		challenge.setTotalPoints(challenge.getTotalPoints()+workout.getPoints());
+		
+		challengeDao.save(challenge);
+		
 		workoutDao.save(workout);			
 	}
 
@@ -98,6 +103,17 @@ public class WorkoutService {
 		}
 		return listWithPoints;
 	}
+	
+	public Integer calculatePointsDifference(int ChallengeSportEventId, int oldRepetition, int newRepetition) {
+	
+		int pointFactor = challengeSportEventDao.getById(ChallengeSportEventId).getPointFactor();
+		
+		int oldPoints = oldRepetition*pointFactor;
+		int newPoints = newRepetition*pointFactor;
+		int pointsDiffer = newPoints - oldPoints;
+		
+		return pointsDiffer;
+	}
 
 
 
@@ -105,7 +121,9 @@ public class WorkoutService {
 		Workout persistedWorkout = getById(workout.getId());
 		//persistedWorkout.setName(workout.getName());
 		persistedWorkout.setChallengeSportEventId(workout.getChallengeSportEventId());
+		int pointsDifference = calculatePointsDifference(persistedWorkout.getChallengeSportEventId(), persistedWorkout.getRepetition(), workout.getRepetition());
 		persistedWorkout.setRepetition(workout.getRepetition());
+		persistedWorkout.setPoints(pointsDifference);
 		return persistedWorkout;
 	}	
 

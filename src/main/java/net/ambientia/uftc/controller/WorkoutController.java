@@ -123,8 +123,9 @@ public class WorkoutController {
 				.setNewPropertiesToExistingWorkout(workout);
 		if (workoutService.isValid(editedWorkout)) {
 			User user = workoutService.getById(workout.getId()).getUser();
+						
 			workout.setUser(user);
-			workoutService.save(editedWorkout);
+			workoutService.edit(editedWorkout);
 			return "redirect:/user/show?userId=" + user.getId();
 		} else {
 			setupErrorModel(model, workout);
