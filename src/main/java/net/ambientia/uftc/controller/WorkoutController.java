@@ -50,7 +50,7 @@ public class WorkoutController {
 		logger.debug("Received request to show add new workout page");
 
 		User currentUser = userService.getUserByUsername(principal.getName());
-		if (currentUser == null || !currentUser.equals(currentUser.getUsername()) || challengeId < 0) {
+		if (currentUser == null || !principal.getName().equals(currentUser.getUsername()) || challengeId < 0) {
 			// Attempted to show wrong user data
 			return "redirect:/";
 		}
@@ -93,7 +93,7 @@ public class WorkoutController {
 
 		User currentUser = userService.getUserByUsername(principal.getName());
 		
-		if (currentUser == null || !currentUser.equals(currentUser.getUsername())) {
+		if (currentUser == null || !principal.getName().equals(currentUser.getUsername())) {
 			// Attempted to show wrong user data
 			return "redirect:/";
 		} else {
