@@ -2,6 +2,7 @@ package net.ambientia.uftc.dao;
 
 import java.util.List;
 
+import net.ambientia.uftc.domain.Challenge;
 import net.ambientia.uftc.domain.User;
 import net.ambientia.uftc.domain.Workout;
 
@@ -31,6 +32,17 @@ public class WorkoutDao extends DaoBase<Workout> {
 		Query query = getCurrentSession()
 				.createQuery("FROM Workout WHERE userId = :userId");
 		query.setParameter("userId", user.getId());
+		List<Workout> workouts = query.list();
+		return workouts;
+	}
+	
+	public List<Workout> getAllWorkoutsOfUserByUserAndChallenge(User user, Challenge challenge) {
+		Query query = getCurrentSession()
+				.createSQLQuery(
+						"SELECT * FROM Workout where ChallengeSportEvent IN (SELECT id FROM ChallengeSportEvent WHERE challengeId = :challengeId) AND userId = :userId")
+				.addEntity(Workout.class);
+		query.setParameter("userId", user.getId());
+		query.setParameter("challengeId", challenge.getId());
 		List<Workout> workouts = query.list();
 		return workouts;
 	}

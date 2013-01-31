@@ -130,6 +130,10 @@ public class WorkoutService {
 	public List<Workout> getAllByUser(User user){
 		return countPointsToWorkoutList(workoutDao.getAllWorkoutsOfUser(user));
 	}
+	
+	public List<Workout> getAllByUserAndChallenge(User user, Challenge challenge){
+		return countPointsToWorkoutList(workoutDao.getAllWorkoutsOfUserByUserAndChallenge(user, challenge));
+	}
 
 	public boolean entityIsLocked(Workout workout) {
 		
