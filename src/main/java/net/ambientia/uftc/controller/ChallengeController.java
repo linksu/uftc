@@ -141,19 +141,21 @@ public class ChallengeController {
 		
 		if(challengeService.challengeContainsUser(challenge, currentUser)) {
 			model.addAttribute("challengeParticipant", true);
+			List<Workout> workouts = workoutService.getAllByUserAndChallenge(currentUser, challenge);
+			model.addAttribute("workouts",workouts);
 		}
 		
 		if (challengeService.challengeContainsAwaitingUser(challenge, currentUser)) {
 			model.addAttribute("awaitingParticipant", true);
 		}
 		
-		List<Workout> workouts = workoutService.getAllByUser(currentUser);
+		
 		
 		model.addAttribute("challenge", challenge);
 		model.addAttribute("challengeUsers", challengeUsers);
 		model.addAttribute("notApprovedUsers", notApprovedUsers);
 		model.addAttribute("loggedInUser", currentUser);
-		model.addAttribute("workouts",workouts);
+		
 		
 		return "challenge/show";
 	}
