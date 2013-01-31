@@ -61,7 +61,7 @@
 						
 						<div class="headerbox">
 							<h2 class="headertext">
-								<spring:message code="sportEvent.create" />
+								<spring:message code="sportEvent.create" text="Create new sport event" />
 							</h2>
 						</div>
 						<c:url var="saveUrl" value="/sportEvent/add" />
@@ -79,7 +79,7 @@
 									<td><p>
 											<form:label path="title">
 												<spring:message code="sportEvent.title"
-													text="SportEvent title:" />
+													text="Sport event title:" />
 											</form:label>
 										</p></td>
 									<td><form:input path="title" class="teksti" /></td>
@@ -196,7 +196,7 @@
 
 					<div class="headerbox">
 						<h2 class="headertext">
-							<spring:message code="admin.sportevent.listing" />
+							<spring:message code="sportEvent.allDefaultSportEvents" text="All default sport events" />
 						</h2>
 					</div>
 					<div class="top5_content">
