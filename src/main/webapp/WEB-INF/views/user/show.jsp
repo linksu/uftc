@@ -110,12 +110,14 @@
 				</div>
 			</div>
 			<!--End if column2-->
-
+			--%>
+			
 			<div id="column3">
 				<div class="headerbox">
 					<h2 class="headertext">TAPAHTUMAT</h2>
+					</div>
 					<img class="headerlogo" src="/uftc/pics/runner.jpg">
-				</div>
+					<div class="chartbox">
 				<div class="tapahtumat">
 					<div class="single">
 						<div class="date">
@@ -165,17 +167,16 @@
 								style="width: 15%;"></a>
 						</div> 
 					</div>
+					</div>
 
 				</div>
 
-
+			</div>
 			</div>
 			
 			
 			<!--End of column3-->
-
-		</div>
-		--%>
+		<%-- </div> --%>
 		<!--End of content-->
 
 		<%@ include file="/templates/footer.jsp"%>

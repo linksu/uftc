@@ -123,67 +123,6 @@
 			</div>
 			<!--End if column2-->
 
-			<div id="column3">
-				<div class="headerbox">
-					<h2 class="headertext">TAPAHTUMAT</h2>
-					<img class="headerlogo" src="/uftc/pics/runner.jpg">
-				</div>
-				<div class="chartbox">
-
-					<div class="tapahtumat">
-						<div class="single">
-							<div class="date">
-								<p>23.7.2012</p>
-							</div>
-							<div class="action">
-								<p>Janne teki 20 punnerrusta</p>
-							</div>
-							<div class="like">
-								<a href="#"><img src="/uftc/pics/like.jpeg"
-									style="width: 15%;"></a>
-							</div>
-						</div>
-						<div class="single">
-							<div class="date">
-								<p>23.7.2012</p>
-							</div>
-							<div class="action">
-								<p>Janne teki 20 punnerrusta</p>
-							</div>
-							<div class="like">
-								<a href="#"><img src="/uftc/pics/like.jpeg"
-									style="width: 15%;"></a>
-							</div>
-						</div>
-						<div class="single">
-							<div class="date">
-								<p>23.7.2012</p>
-							</div>
-							<div class="action">
-								<p>Janne teki 20 punnerrusta</p>
-							</div>
-							<div class="like">
-								<a href="#"><img src="/uftc/pics/like.jpeg"
-									style="width: 15%;"></a>
-							</div>
-						</div>
-						<div class="single">
-							<div class="date">
-								<p>23.7.2012</p>
-							</div>
-							<div class="action">
-								<p>Janne teki 20 punnerrusta</p>
-							</div>
-							<div class="like">
-								<a href="#"><img src="/uftc/pics/like.jpeg"
-									style="width: 15%;"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--End of column3-->
-
 		</div>
 		<!--End of content-->
 
