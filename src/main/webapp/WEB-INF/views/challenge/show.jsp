@@ -51,17 +51,33 @@
 		<h2 class="headertext">Omat suoritukset</h2>
 		</div>
 		<div class="chartbox">
+		<table id="workoutTable">
 		<c:forEach items="${workouts}" var="workout">
-						<div class="top5_content_box">
-							<div class="group">
+							<tr><td>
 								<a href="/uftc/workout/edit?workoutId=${workout.getId()}"><c:out
 										value="${workout.getName()}" /></a>
-							</div>
-							<div class="points">
-								<h5>${workout.getPoints()}</h5>
-							</div>
-						</div>
+							</td>
+							<td>
+							${workout.getRepetition()} 
+							</td>
+							<td class="oikea">
+							${workout.getPoints()}
+							</td>
+							</tr>
+							<tr>
+							<td style="border-bottom: thin solid white;">
+							${workout.getTime()}
+							</td>
+							<td style="border-bottom: thin solid white;">
+							<spring:message code="sportEvent.pointFactorType.${workout.getChallengeSportEvent().getPointFactorType()}"
+														text="${workout.getChallengeSportEvent().getPointFactorType()}" />
+							</td>
+							<td class="oikea" style="border-bottom: thin solid white;">
+							Pistettä
+							</td>
+							</tr>
 					</c:forEach>
+					</table>
 		</div>
 		</div>
 		
@@ -88,7 +104,7 @@
 										<p>${cUser.getFirstName()} ${cUser.getLastName()}</p>
 									</div>
 									<div class="yht">
-										<p>1</p>
+										<p>${usersWithPoints.get(cUser.getId())}</p>
 									</div>
 								</div>
 							</div>
@@ -119,135 +135,6 @@
 
 			</div>
 			<!--End of column3-->
-			
-			<%--<c:if test="${loggedInUser.getAuthority() == 'ROLE_CHALLENGER' || loggedInUser.getAuthority() == 'ROLE_ADMIN' }">
-
-			<div id="column2">
-				<div class="headerbox">
-					<h2 class="headertext">Muokkaa haastetta</h2>
-					<img class="headerlogo" src="/uftc/pics/star.jpg">
-				</div>
-
-
-
-				<div class="chartbox">
-
-					<c:url var="saveUrl" value="/challenge/update" />
-					<c:set var="error" value="${errors}" />
-					<form:form modelAttribute="challengeInstance" method="POST"
-						action="${saveUrl}">
-
-						<br />
-						<table>
-							<tr>
-
-								<c:forEach items="${errors}" var="a">
-									<c:out value="${a.toString()}" />
-									<br>
-								</c:forEach>
-
-
-
-								<td><form:label path="title">
-										<h3>
-											<spring:message code="challenge.title"
-												text="Challenge title:" />
-										</h3>
-									</form:label></td>
-								<td><form:input path="title" id="title"/></td>
-							</tr>
-							<tr>
-								<td><form:label path="startTimeString">
-										<h3>
-											<spring:message code="challenge.startTime" text="StartTime:" />
-										</h3>
-									</form:label></td>
-								<td><form:input type="text"	path="startTimeString" value="" /></td>
-							</tr>
-							<tr>
-								<td><form:label path="endTimeString">
-										<h3>
-											<spring:message code="challenge.endTime" text="EndTime:" />
-										</h3>
-									</form:label></td>
-								<td><form:input type="text" path="endTimeString" value="" /></td>
-
-							</tr>
-
-						</table>
-						<form:input type="hidden" path="version" />
-						<form:input type="hidden" path="id" />
-						
-						<input type="submit" value="Save" />
-					</form:form>
-					<c:if test="${challengeOwner}"><a class="nappi" href="/uftc/challengeSportEvent/show?challengeId=${challengeInstance.getId()}">Haasteen lajit</a></c:if>
-				</div>
-
-			</div>
-			<!--End if column2-->
-			</c:if>
-
-			<div id="column3">
-				<div class="headerbox">
-					<h2 class="headertext">TAPAHTUMAT</h2>
-					<img class="headerlogo" src="/uftc/pics/runner.jpg">
-				</div>
-				<div class="chartbox">
-
-					<div class="tapahtumat">
-						<div class="single">
-							<div class="date">
-								<p>23.7.2012</p>
-							</div>
-							<div class="action">
-								<p>Janne teki 20 punnerrusta</p>
-							</div>
-							<div class="like">
-								<a href="#"><img src="/uftc/pics/like.jpeg"
-									style="width: 15%;"></a>
-							</div>
-						</div>
-						<div class="single">
-							<div class="date">
-								<p>23.7.2012</p>
-							</div>
-							<div class="action">
-								<p>Janne teki 20 punnerrusta</p>
-							</div>
-							<div class="like">
-								<a href="#"><img src="/uftc/pics/like.jpeg"
-									style="width: 15%;"></a>
-							</div>
-						</div>
-						<div class="single">
-							<div class="date">
-								<p>23.7.2012</p>
-							</div>
-							<div class="action">
-								<p>Janne teki 20 punnerrusta</p>
-							</div>
-							<div class="like">
-								<a href="#"><img src="/uftc/pics/like.jpeg"
-									style="width: 15%;"></a>
-							</div>
-						</div>
-						<div class="single">
-							<div class="date">
-								<p>23.7.2012</p>
-							</div>
-							<div class="action">
-								<p>Janne teki 20 punnerrusta</p>
-							</div>
-							<div class="like">
-								<a href="#"><img src="/uftc/pics/like.jpeg"
-									style="width: 15%;"></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--End of column3-->
-			</c:if> --%>
 
 		</div>
 		<!--End of content-->

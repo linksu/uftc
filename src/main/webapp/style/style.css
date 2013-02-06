@@ -37,6 +37,18 @@ table#sportTable{
 	width: 400px;
 	margin-bottom: 10px;
 }
+
+table#workoutTable{
+	float: left;
+	width: 320px;
+	margin-bottom: 10px;
+}
+
+td.oikea{
+text-align: right;	
+	
+}
+
 td p{
  font-size:13px;
 }
