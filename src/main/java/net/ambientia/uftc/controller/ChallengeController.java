@@ -150,7 +150,7 @@ public class ChallengeController {
 		}
 		
 		
-		
+		model.addAttribute("usersWithPoints", workoutService.calculateUsersTotalPoints(challengeUsers, challenge));
 		model.addAttribute("challenge", challenge);
 		model.addAttribute("challengeUsers", challengeUsers);
 		model.addAttribute("notApprovedUsers", notApprovedUsers);

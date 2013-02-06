@@ -2,7 +2,9 @@ package net.ambientia.uftc.service;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.ambientia.uftc.dao.ChallengeDao;
 import net.ambientia.uftc.dao.ChallengeSportEventDao;
@@ -138,6 +140,23 @@ public class WorkoutService {
 	public boolean entityIsLocked(Workout workout) {
 		
 		return workoutDao.entityIsLocked(workout);
+	}
+	
+	public Map<Integer, Integer> calculateUsersTotalPoints(List<User> userList, Challenge challenge) {
+		Map<Integer, Integer> listWithPointsByUser = new HashMap<Integer, Integer>();
+		
+		for (User user : userList) {
+			int usersPoints = 0;
+			List<Workout> workouts = getAllByUserAndChallenge(user, challenge);
+			
+			for (Workout workout : workouts) {
+				usersPoints += workout.getPoints();
+			}
+			
+			listWithPointsByUser.put(user.getId(), usersPoints);
+		}
+		
+		return listWithPointsByUser;
 	}
 
 
