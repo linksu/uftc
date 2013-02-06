@@ -54,7 +54,7 @@
 		<div id="login">
 			<div class="headerbox">
 				<h2 class="headertext">
-					<a href="/uftc/user/edit?userId=${loggedInUser.getId()}">${loggedInUser.getUsername()}</a>
+					<a href="/uftc/user/show?userId=${loggedInUser.getId()}">${loggedInUser.getUsername()}</a>
 				</h2>
 			</div>
 		</div>
