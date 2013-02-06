@@ -105,12 +105,10 @@ public class AdminController {
 		
 		User user = userService.getById(id);
 
-		List<Workout> workouts = workoutService.getAllByUser(user);
-		model.addAttribute("userInstance", user);
+		model.addAttribute("user", user);
 		model.addAttribute("loggedInUser", currentUser);
-		model.addAttribute("workouts",workouts);
 
-		return "user/show";
+		return "admin/userShow";
 	}
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
