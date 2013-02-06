@@ -48,13 +48,6 @@
 									value="${userInstance.getLastName()}" path="lastName" /></td>
 						</tr>
 						
-						<tr>
-							<c:forEach items="${workoutList}" var="workout">
-								<tr>
-									<td><a href="/uftc/workout/edit?workoutId=${workout.getId()}"><c:out value="${workout.getName()}" /></a></td>
-								</tr>
-							</c:forEach>
-						</tr>
 					</table>
 
 					<form:input type="hidden" value="${userInstance.getId()}" path="id" />
