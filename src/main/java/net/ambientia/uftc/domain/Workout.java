@@ -1,5 +1,7 @@
 package net.ambientia.uftc.domain;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.EnumSet;
 
 import javax.persistence.Column;
@@ -40,6 +42,9 @@ public class Workout {
 	@ManyToOne
 	@JoinColumn(name = "challengeSportEvent",nullable=false)
 	private ChallengeSportEvent challengeSportEvent;
+	
+	@Column(name = "time", nullable = false)
+	private Date time;
 	
 	@Transient
 	private Integer challengeSportEventId;
@@ -117,5 +122,14 @@ public class Workout {
 	
 	public String getName() {
 		return this.challengeSportEvent.getTitle();
+	}
+
+	public String getTime() {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM.yyyy");
+		return simpleDateFormat.format(this.time);
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
 	}
 }

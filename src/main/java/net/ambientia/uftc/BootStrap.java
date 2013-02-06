@@ -84,6 +84,7 @@ public class BootStrap {
 		workout.setRepetition(2);
 		workout.setUser(user);
 //		workout.setName("Juoksu");
+		workout.setTime(new Date());
 		workout.setChallengeSportEvent(sportEvent);
 		
 		session.save(workout);

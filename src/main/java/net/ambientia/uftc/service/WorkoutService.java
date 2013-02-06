@@ -1,6 +1,7 @@
 package net.ambientia.uftc.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
@@ -51,6 +52,7 @@ public class WorkoutService {
 	}
 
 	public void add(Integer userId,Workout workout) {
+		workout.setTime(new Date());
 		Challenge challenge = challengeDao.getById(workout.getChallengeSportEvent().getChallenge().getId());
 		challenge.setTotalPoints(challenge.getTotalPoints()+workout.getRepetition()*challengeSportEventDao.getById(workout.getChallengeSportEvent().getId()).getPointFactor());
 		workout.getChallengeSportEvent().setChallenge(challenge);
