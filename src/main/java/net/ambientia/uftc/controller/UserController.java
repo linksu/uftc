@@ -70,18 +70,6 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping(value = "/user/list", method = RequestMethod.GET)
-	public String getUsers(Model model, Principal principal) {
-		logger.debug("Received request to show all users");
-		User currentUser = userService.getUserByUsername(principal.getName());
-		
-		List<User> users = userService.getAll();
-
-		model.addAttribute("users", users);
-		model.addAttribute("loggedInUser", currentUser);
-		return "user/list";
-	}
-
 	@RequestMapping(value = "/user/edit", method = RequestMethod.GET)
 	public String edit(@RequestParam("userId") int userId, Model model, Principal principal) {
 		
