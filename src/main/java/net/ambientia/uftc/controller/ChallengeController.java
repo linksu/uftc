@@ -46,8 +46,8 @@ public class ChallengeController {
 		logger.debug("Received request to show challenge list page");
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
-
 		List<Challenge> challenges = challengeService.getAll();
+		
 		model.addAttribute("challenges", challenges);
 		model.addAttribute("userChallenges", currentUser.getChallenges());
 		model.addAttribute("loggedInUser", currentUser);
@@ -59,9 +59,15 @@ public class ChallengeController {
 		logger.debug("Received request to show challenge add page");
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
+		
+		if(!currentUser.getAuthority().equals("ROLE_CHALLENGER")) {
+			// No rights
+			return "redirect:/challenge/list";
+		}
 
 		model.addAttribute("challengeInstance", new Challenge());
 		model.addAttribute("loggedInUser", currentUser);
+		
 		return "challenge/add";
 	}
 
@@ -71,7 +77,14 @@ public class ChallengeController {
 		logger.debug("Received request to add new challenge");
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
+		
+		if(!currentUser.getAuthority().equals("ROLE_CHALLENGER")) {
+			// No rights
+			return "redirect:/challenge/list";
+		}
+		
 		challenge.setOwner(currentUser);
+		
 		if (challengeService.isValid(challenge)) {
 			challengeService.add(challenge);
 			return "redirect:/challenge/list";
@@ -88,13 +101,14 @@ public class ChallengeController {
 	@RequestMapping(value = "/challenge/edit", method = RequestMethod.GET)
 			public String showChallengeEdit(@RequestParam("challengeId") int challengeId,
 					Model model, Principal principal) {
+		logger.debug("Received request to show challenge edit page");
 		
 		Challenge challenge = challengeService.getById(challengeId);
 		User currentUser = userService.getUserByUsername(principal.getName());
 		
 		if (!currentUser.getId().equals(challenge.getOwner().getId())) {
 			// Attempted to show wrong challenge data
-						return "redirect:/";	
+			return "redirect:/challenge/show?challengeId=" + challengeId;
 		}
 		
 		model.addAttribute("challengeInstance", challenge);
@@ -106,14 +120,24 @@ public class ChallengeController {
 	@RequestMapping(value = "/challenge/update", method = RequestMethod.POST)
 	public String updateChallenge(
 			@ModelAttribute("challengeInstance") Challenge challenge,
-			Model model) throws ParseException {
+			Model model, Principal principal) throws ParseException {
 		logger.debug("Received request to update challenge");
+		
+		User currentUser = userService.getUserByUsername(principal.getName());
+		
+		if(!currentUser.getId().equals(challenge.getOwner().getId())) {
+			// Attempted to edit wrong challenge data
+			return "redirect:/challenge/show?challengeId=" + challenge.getId();
+		}
+		
 		if (challengeService.entityIsLocked(challenge)) {
 			setupOptimisticLockErrorModel(model, challenge);
 			return "challenge/edit";
 		}
+				
 		Challenge editedChallenge = challengeService
 				.setNewPropertiesToExistingChallenge(challenge);
+		
 		if (!challengeService.isValid(editedChallenge)) {
 			challengeService.save(editedChallenge);
 			return "redirect:/challenge/show?challengeId="
@@ -127,7 +151,7 @@ public class ChallengeController {
 	@RequestMapping(value = "/challenge/show", method = RequestMethod.GET)
 	public String showChallenge(@RequestParam("challengeId") int challengeId,
 			Model model, Principal principal) {
-		logger.debug("Received request to list all challenges");
+		logger.debug("Received request to show challenge info page");
 
 		User currentUser = userService.getUserByUsername(principal.getName());
 		
@@ -156,13 +180,14 @@ public class ChallengeController {
 		model.addAttribute("notApprovedUsers", notApprovedUsers);
 		model.addAttribute("loggedInUser", currentUser);
 		
-		
 		return "challenge/show";
 	}
 
 	@RequestMapping(value = "/challenge/join", method = RequestMethod.GET)
 	public String askToJoinToChallenge(@RequestParam("challengeId") int challengeId, Model model,
 			Principal principal) {
+		logger.debug("Received request to join challenge");
+		
 		User currentUser = userService.getUserByUsername(principal.getName());
 		Challenge challenge = challengeService.getById(challengeId);
 
@@ -173,13 +198,14 @@ public class ChallengeController {
 		}
 
 		return "redirect:/challenge/show?challengeId=" + challengeId;
-
 	}
 	
 	@RequestMapping(value = "/challenge/accept", method = RequestMethod.GET)
 	public String acceptUserToChallenge(@RequestParam("challengeId") int challengeId, 
 			@RequestParam("userId") int userId, Model model,
 			Principal principal) {
+		logger.debug("Received request to accept user to challenge");
+		
 		User currentUser = userService.getUserByUsername(principal.getName());
 		Challenge challenge = challengeService.getById(challengeId);
 		User acceptedUser = userService.getById(userId);
@@ -195,7 +221,6 @@ public class ChallengeController {
 		}
 
 		return "redirect:/challenge/show?challengeId=" + challengeId;
-
 	}
 
 	public void setupOptimisticLockErrorModel(Model model, Challenge challenge) {
