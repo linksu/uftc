@@ -48,9 +48,17 @@ public class AdminController {
 			.getLogger(AdminController.class);
 	
 	@RequestMapping(value = "/admin/userActivate", method = RequestMethod.GET)
-	public String changeUserEnabledStatus(@RequestParam("userId") int id) {
+	public String changeUserEnabledStatus(@RequestParam("userId") int id, Principal principal) {
 		logger.debug("Received request to change user enabled status");
 
+		User currentUser = userService.getUserByUsername(principal.getName());
+		
+		if(!currentUser.getAuthority().equals("ROLE_ADMIN") || currentUser.getId().equals(id))
+		{
+			// Not an admin or trying to act on own account
+			return "redirect:/admin";
+		}
+		
 		User user = userService.getById(id);
 
 		if (user.isEnabled()) {
@@ -62,16 +70,21 @@ public class AdminController {
 		userService.save(user);
 
 		return "redirect:/admin";
-
 	}
 	
 	
 	@RequestMapping(value = "/admin/userAdd", method = RequestMethod.GET)
 	public String getAdd(Model model, Principal principal) {
+		logger.debug("Received request to show add user page");
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
 		
-		logger.debug("Received request to show add page");
+		if(!currentUser.getAuthority().equals("ROLE_ADMIN"))
+		{
+			// Not an admin
+			return "redirect:/";
+		}
+		
 		model.addAttribute("userInstance", new User());
 		model.addAttribute("loggedInUser", currentUser);
 		return "admin/userAdd";
@@ -79,12 +92,21 @@ public class AdminController {
 
 	
 	@RequestMapping(value = "/admin/userAdd", method = RequestMethod.POST)
-	public String add(@ModelAttribute("userInstance") User user, Model model) {
+	public String add(@ModelAttribute("userInstance") User user, Model model, Principal principal) {
 		logger.debug("Received request to add new user");
+		
+		User currentUser = userService.getUserByUsername(principal.getName());
+		
+		if(!currentUser.getAuthority().equals("ROLE_ADMIN"))
+		{
+			// Not an admin
+			return "redirect:/";
+		}		
+		
 		Uftc uftc = uftcService.getById(1);
 		userService.setUserUftc(user, uftc);
+		
 		if (userService.isValid(user)) {
-			//user.setAuthority("ROLE_USER");
 			if(user.getAuthority().equals("ROLE_CHALLENGER"))
 			{
 				user.setEnabled(false);
@@ -99,9 +121,15 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/userShow", method = RequestMethod.GET)
 	public String getUserInfo(@RequestParam("userId") int id, Model model, Principal principal) {
-		logger.debug("Received request to show add page");
+		logger.debug("Received request to show user page");
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
+		
+		if(!currentUser.getAuthority().equals("ROLE_ADMIN"))
+		{
+			// Not an admin
+			return "redirect:/";
+		}
 		
 		User user = userService.getById(id);
 
@@ -112,59 +140,30 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String admin(Locale locale, Model model) {
-
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
-		String name = auth.getName();
-		User user = userService.getUserByUsername(name);
+	public String admin(Locale locale, Model model, Principal principal) {
+		logger.debug("Received request to show admin page");
+		
+		
+		User currentUser = userService.getUserByUsername(principal.getName());
+		
+		if(!currentUser.getAuthority().equals("ROLE_ADMIN"))
+		{
+			// Not an admin
+			return "redirect:/";
+		}
+		
 		List<SportEvent> sportEventList = sportEventService.getAll();
 		List<User> userList = userService.getAll();
 
 		model.addAttribute("sportEventInstance", new SportEvent());
 		model.addAttribute("sportEventList", sportEventList);
-		model.addAttribute("loggedInUser", user);
+		model.addAttribute("loggedInUser", currentUser);
 		model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
 		model.addAttribute("userList", userList);
+		
 		return "admin/admin";
 	}
 
-	/**@RequestMapping(value = "/admin/userlist", method = RequestMethod.GET)
-	public String getUsers(
-			@RequestParam(value = "from", defaultValue = "0") int from,
-			@RequestParam(value = "to", defaultValue = "0") int to,
-			@RequestParam(value = "count", defaultValue = "3") int count,
-			@RequestParam(value = "r", defaultValue = "false") boolean reversed,
-			Model model) {
-		logger.debug("Received request to show all users");
-		List<User> users = userService.getAll();
-		List<User> trimmedUserList;
-		count = clamp(count,0,users.size());
-		if(!reversed){
-			from = clamp(from, 0, users.size());
-			to = from + count;
-			to = clamp(to, from, users.size());
-			trimmedUserList = users.subList(from, to);
-			from = from + count;
-		} else {
-			from = clamp(from - count, 0, users.size());
-			to = from - count;
-			to = clamp(to, from - count, users.size());
-			trimmedUserList = users.subList(to, from);
-			from = from - count;
-		}
-		
-		from = clamp(from, 0, users.size());
-		
-		
-		
-		model.addAttribute("from", from);
-		model.addAttribute("to", to);
-		model.addAttribute("count", count);
-		model.addAttribute("userList", trimmedUserList);
-		return "uftc/userlist";
-	}**/
-	
 	protected void setupErrorModel(Model model, User editedUser) {
 
 		EnumSet<FieldTypes> errorsList = userService.getValidationErrorList(editedUser);
