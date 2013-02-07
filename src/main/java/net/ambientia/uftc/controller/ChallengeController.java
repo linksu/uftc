@@ -124,11 +124,14 @@ public class ChallengeController {
 		logger.debug("Received request to update challenge");
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
+		Challenge oldChallenge = challengeService.getById(challenge.getId());
 		
-		if(!currentUser.getId().equals(challenge.getOwner().getId())) {
+		if(!currentUser.getId().equals(oldChallenge.getOwner().getId())) {
 			// Attempted to edit wrong challenge data
 			return "redirect:/challenge/show?challengeId=" + challenge.getId();
 		}
+		
+		oldChallenge = null;
 		
 		if (challengeService.entityIsLocked(challenge)) {
 			setupOptimisticLockErrorModel(model, challenge);
