@@ -101,7 +101,7 @@
 							<div class="rivi">
 								<div class="riviteksti">
 									<div class="nimi">
-										<p>${cUser.getFirstName()} ${cUser.getLastName()}</p>
+										<p><a href="/uftc/challenge/userWorkout?challengeId=${challenge.getId()}&userId=${cUser.getId()}">${cUser.getFirstName()} ${cUser.getLastName()}</a></p>
 									</div>
 									<div class="yht">
 										<p>${usersWithPoints.get(cUser.getId())}</p>

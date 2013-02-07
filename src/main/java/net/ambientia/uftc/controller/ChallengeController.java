@@ -185,6 +185,29 @@ public class ChallengeController {
 		
 		return "challenge/show";
 	}
+	
+	@RequestMapping (value = "/challenge/userWorkout", method = RequestMethod.GET)
+	public String showUserWorkout(@RequestParam("challengeId") int challengeId, @RequestParam("userId") int id,
+			Model model, Principal principal){
+		logger.debug("Received request to show user workout page");
+		
+		User user = userService.getById(id);
+		User currentUser = userService.getUserByUsername(principal.getName());
+		Challenge challenge = challengeService.getById(challengeId);
+		
+		if(challengeService.challengeContainsUser(challenge, currentUser)) {
+			model.addAttribute("user", user);
+			List<Workout> workouts = workoutService.getAllByUserAndChallenge(user, challenge);
+			model.addAttribute("workouts",workouts);
+		}else{
+			return "redirect:/challenge/show?challengeId=" + challengeId;
+		}
+		
+		model.addAttribute("loggedInUser", currentUser);
+
+		return "challenge/userWorkout";
+	}
+	
 
 	@RequestMapping(value = "/challenge/join", method = RequestMethod.GET)
 	public String askToJoinToChallenge(@RequestParam("challengeId") int challengeId, Model model,
