@@ -216,9 +216,12 @@ public class ChallengeController {
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
 		Challenge challenge = challengeService.getById(challengeId);
+		
+		if(currentUser.getAuthority().equals(User.ADMIN)) {
+			return "redirect:/denied";
+		}
 
-		if (currentUser.getUsername().equals(principal.getName())
-				&& !challengeService.challengeContainsUser(challenge, currentUser) && !challengeService.challengeContainsAwaitingUser(challenge, currentUser)) {
+		if (!challengeService.challengeContainsUser(challenge, currentUser) && !challengeService.challengeContainsAwaitingUser(challenge, currentUser)) {
 			challenge.getNotApprovedUsers().add(currentUser);
 			challengeService.save(challenge);
 		}
