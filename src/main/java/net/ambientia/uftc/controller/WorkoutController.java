@@ -29,13 +29,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class WorkoutController {
 
-	@Resource(name = "workoutService")
+	@Autowired
 	private WorkoutService workoutService;
 
-	@Resource(name = "userService")
+	@Autowired
 	private UserService userService;
 
-	@Resource(name = "challengeSportEventService")
+	@Autowired
 	private ChallengeSportEventService challengeSportEventService;
 	
 	@Autowired
@@ -50,24 +50,20 @@ public class WorkoutController {
 		logger.debug("Received request to show add new workout page");
 
 		User currentUser = userService.getUserByUsername(principal.getName());
-		if (currentUser == null || !principal.getName().equals(currentUser.getUsername()) || challengeId < 0) {
+		Challenge challenge = challengeService.getById(challengeId);
+		
+		if (!challengeService.challengeContainsUser(challenge, currentUser) || challengeId < 0) {
 			// Attempted to show wrong user data
-			return "redirect:/";
+			return "redirect:/denied";
 		}
 				
 		model.addAttribute("workoutInstance", new Workout());
 		model.addAttribute("loggedInUser", currentUser);
 		model.addAttribute("challengeSportEventsList",
-				challengeService.getById(challengeId).getChallengeSportEvents());
+				challenge.getChallengeSportEvents());
 		model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
 
 		return "workout/add";
-	}
-
-	private List<ChallengeSportEvent> getChallengeSportEvents() {
-		List<ChallengeSportEvent> challengeSportEvents = challengeSportEventService
-				.getAll();
-		return challengeSportEvents;
 	}
 
 	@RequestMapping(value = "/workout/add", method = RequestMethod.POST)
@@ -75,8 +71,17 @@ public class WorkoutController {
 		logger.debug("Received request to add new workout");
 
 		User currentUser = userService.getUserByUsername(principal.getName());
+		ChallengeSportEvent challengeSportEvent = challengeSportEventService.getById(workout.getChallengeSportEventId());
+		Challenge challenge = challengeSportEvent.getChallenge();
+		
+		if (!challengeService.challengeContainsUser(challenge, currentUser) 
+				|| challenge.getId() < 0) {
+			// Attempted to show wrong user data
+			return "redirect:/denied";
+		}
+		
 		workout.setUser(currentUser);
-		workout.setChallengeSportEvent(challengeSportEventService.getById(workout.getChallengeSportEventId()));
+		workout.setChallengeSportEvent(challengeSportEvent);
 
 		if (workoutService.isValid(workout)) {
 			workoutService.add(currentUser.getId(), workout);
@@ -90,41 +95,51 @@ public class WorkoutController {
 	@RequestMapping(value = "/workout/edit", method = RequestMethod.GET)
 	public String getEdit(@RequestParam("workoutId") int workoutId,
 			Model model, Principal principal) {
-
-		User currentUser = userService.getUserByUsername(principal.getName());
+		logger.debug("Received request to update workout page");
 		
-		if (currentUser == null || !principal.getName().equals(currentUser.getUsername())) {
-			// Attempted to show wrong user data
-			return "redirect:/";
-		} else {
-			Workout workout = workoutService.getById(workoutId);
-			Hibernate.initialize(workoutId);
-			model.addAttribute("workoutInstance", workout);
-			model.addAttribute("challengeSportEventsList",
-					challengeSportEventService.getAllByChallengeId(workout.getChallengeSportEvent().getChallenge().getId()));
-			model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
-			model.addAttribute("loggedInUser", currentUser);
-			return "workout/edit";
+		User currentUser = userService.getUserByUsername(principal.getName());
+		Workout workout = workoutService.getById(workoutId);
+		Challenge challenge = workout.getChallengeSportEvent().getChallenge();
+		
+		if (!currentUser.getId().equals(workout.getUser().getId()) || !challengeService.challengeContainsUser(challenge, currentUser)) {
+			// Attempted to edit wrong user data
+			return "redirect:/denied";
 		}
+			
+		model.addAttribute("workoutInstance", workout);
+		model.addAttribute("challengeSportEventsList",
+				challengeSportEventService.getAllByChallengeId(workout.getChallengeSportEvent().getChallenge().getId()));
+		model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
+		model.addAttribute("loggedInUser", currentUser);
+
+		return "workout/edit";
 	}
 
 	@RequestMapping(value = "/workout/edit", method = RequestMethod.POST)
 	public String update(@ModelAttribute("workoutInstance") Workout workout,
-			Model model) {
-		
+			Model model, Principal principal) {
 		logger.debug("Received request to update workout");
+		
+		User currentUser = userService.getUserByUsername(principal.getName());
+		Workout oldWorkout = workoutService.getById(workout.getId());
+		Challenge challenge = oldWorkout.getChallengeSportEvent().getChallenge();
+	
+		if(!currentUser.getId().equals(oldWorkout.getUser().getId()) || !challengeService.challengeContainsUser(challenge, currentUser)) {
+			// Attempted to edit wrong challenge data
+			return "redirect:/denied";
+		}
+		
+		oldWorkout = null;
+		
 		if (workoutService.entityIsLocked(workout)) {
 			setupOptimisticLockErrorModel(model, workout);
 			return "workout/edit";
 		}
-//		workout.setName(challengeSportEventsService.getById(
-//				workout.getChallengeSportEventId()).getTitle());
+
 		Workout editedWorkout = workoutService
 				.setNewPropertiesToExistingWorkout(workout);
 		if (workoutService.isValid(editedWorkout)) {
-			User user = workoutService.getById(workout.getId()).getUser();
-						
-			workout.setUser(user);
+			workout.setUser(currentUser);
 			workoutService.edit(editedWorkout);
 			return "redirect:/challenge/show?challengeId=" + editedWorkout.getChallengeSportEvent().getChallenge().getId();
 		} else {
