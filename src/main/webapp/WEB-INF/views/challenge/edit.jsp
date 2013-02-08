@@ -1,7 +1,20 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ include file="/templates/header.jsp"%>
 
-		<div id="login"></div>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+	<script src="https://raw.github.com/phstc/jquery-dateFormat/master/jquery.dateFormat-1.0.js"></script>
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('#startTimeString').datepicker({ dateFormat: 'dd.mm.yy',defaultDate:'1' });
+		
+		$('#endTimeString').datepicker({ dateFormat: 'dd.mm.yy' });
+		
+	});
+</script>
 
 		<div id="content">
 			

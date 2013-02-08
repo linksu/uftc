@@ -9,11 +9,11 @@
 	
 	<script type="text/javascript">
 	$(document).ready(function() {
-		$('#startTime').datepicker({ dateFormat: 'dd.mm.yy',defaultDate:'1' });
-		$('#startTime').val($.format.date(new Date(),'dd.MM.yyyy'));
+		$('#startTimeString').datepicker({ dateFormat: 'dd.mm.yy',defaultDate:'1' });
+		$('#startTimeString').val($.format.date(new Date(),'dd.MM.yyyy'));
 		
-		$('#endTime').datepicker({ dateFormat: 'dd.mm.yy' });
-		$('#endTime').val($.format.date(new Date(),'dd.MM.yyyy'));
+		$('#endTimeString').datepicker({ dateFormat: 'dd.mm.yy' });
+		$('#endTimeString').val($.format.date(new Date(),'dd.MM.yyyy'));
 		
 	});
 </script>
