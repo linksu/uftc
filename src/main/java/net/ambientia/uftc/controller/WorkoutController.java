@@ -72,7 +72,7 @@ public class WorkoutController {
 
 		User currentUser = userService.getUserByUsername(principal.getName());
 		ChallengeSportEvent challengeSportEvent = challengeSportEventService.getById(workout.getChallengeSportEventId());
-		Challenge challenge = challengeSportEvent.getChallenge();
+		Challenge challenge = challengeService.getById(challengeSportEvent.getChallenge().getId());
 		
 		if (!challengeService.challengeContainsUser(challenge, currentUser) 
 				|| challenge.getId() < 0) {
@@ -99,7 +99,7 @@ public class WorkoutController {
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
 		Workout workout = workoutService.getById(workoutId);
-		Challenge challenge = workout.getChallengeSportEvent().getChallenge();
+		Challenge challenge = challengeService.getById(workout.getChallengeSportEvent().getChallenge().getId());
 		
 		if (!currentUser.getId().equals(workout.getUser().getId()) || !challengeService.challengeContainsUser(challenge, currentUser)) {
 			// Attempted to edit wrong user data
@@ -122,7 +122,7 @@ public class WorkoutController {
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
 		Workout oldWorkout = workoutService.getById(workout.getId());
-		Challenge challenge = oldWorkout.getChallengeSportEvent().getChallenge();
+		Challenge challenge = challengeService.getById(oldWorkout.getChallengeSportEvent().getChallenge().getId());
 	
 		if(!currentUser.getId().equals(oldWorkout.getUser().getId()) || !challengeService.challengeContainsUser(challenge, currentUser)) {
 			// Attempted to edit wrong challenge data
