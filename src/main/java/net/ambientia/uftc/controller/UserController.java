@@ -18,6 +18,7 @@ import net.ambientia.uftc.service.WorkoutService;
 import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,16 +29,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class UserController {
 
-	@Resource(name = "userService")
+	@Autowired
 	private UserService userService;
 
-	@Resource(name = "uftcService")
+	@Autowired
 	private UftcService uftcService;
 
-	@Resource(name = "workoutService")
+	@Autowired
 	private WorkoutService workoutService;
 	
-	@Resource(name = "challengeSportEventService")
+	@Autowired
 	private ChallengeSportEventService challengeSportEventService;
 
 	private static final Logger logger = LoggerFactory
