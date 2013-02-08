@@ -12,6 +12,7 @@ import net.ambientia.uftc.dao.ChallengeSportEventDao;
 import net.ambientia.uftc.dao.UserDao;
 import net.ambientia.uftc.dao.WorkoutDao;
 import net.ambientia.uftc.domain.Challenge;
+import net.ambientia.uftc.domain.ChallengeSportEvent;
 import net.ambientia.uftc.domain.User;
 import net.ambientia.uftc.domain.Workout;
 import net.ambientia.uftc.domain.Workout.FieldTypes;
@@ -108,12 +109,13 @@ public class WorkoutService {
 		return listWithPoints;
 	}
 	
-	public Integer calculatePointsDifference(int ChallengeSportEventId, int oldRepetition, int newRepetition) {
-	
-		int pointFactor = challengeSportEventDao.getById(ChallengeSportEventId).getPointFactor();
+	public Integer calculatePointsDifference(ChallengeSportEvent oldChallengeSportEvent, int oldRepetition, 
+			ChallengeSportEvent newChallengeSportEvent, int newRepetition) {
+		int oldPointFactor = oldChallengeSportEvent.getPointFactor();
+		int newPointFactor = newChallengeSportEvent.getPointFactor();
 		
-		int oldPoints = oldRepetition*pointFactor;
-		int newPoints = newRepetition*pointFactor;
+		int oldPoints = oldRepetition*oldPointFactor;
+		int newPoints = newRepetition*newPointFactor;
 		int pointsDiffer = newPoints - oldPoints;
 		
 		return pointsDiffer;
@@ -123,11 +125,16 @@ public class WorkoutService {
 
 	public Workout setNewPropertiesToExistingWorkout(Workout workout) {
 		Workout persistedWorkout = getById(workout.getId());
-		//persistedWorkout.setName(workout.getName());
-		persistedWorkout.setChallengeSportEventId(workout.getChallengeSportEventId());
-		int pointsDifference = calculatePointsDifference(persistedWorkout.getChallengeSportEventId(), persistedWorkout.getRepetition(), workout.getRepetition());
+		
+		workout.setChallengeSportEvent(challengeSportEventDao.getById(workout.getChallengeSportEventId()));
+		
+		int pointsDifference = calculatePointsDifference(persistedWorkout.getChallengeSportEvent(), persistedWorkout.getRepetition(), 
+				workout.getChallengeSportEvent(), workout.getRepetition());
+		
+		persistedWorkout.setChallengeSportEvent(workout.getChallengeSportEvent());
 		persistedWorkout.setRepetition(workout.getRepetition());
 		persistedWorkout.setPoints(pointsDifference);
+		
 		return persistedWorkout;
 	}	
 
