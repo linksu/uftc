@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.stub;
 
+import java.security.Principal;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -194,6 +195,7 @@ public class WorkoutControllerTest {
 		Workout persistentWorkout = mock(Workout.class);
 		editedWorkout.setId(1);
 		Model model = mock(Model.class);
+		Principal principal = mock(Principal.class);
 		
 		controller.setUserService(mock(UserService.class));
 		
@@ -203,7 +205,7 @@ public class WorkoutControllerTest {
 		when(workoutService.getById(Mockito.anyInt())).thenReturn(persistentWorkout);
 		when (workoutService.entityIsLocked(Mockito.any(Workout.class))).thenReturn(true);
 		
-		Assert.assertEquals("workout/edit",controller.update(editedWorkout, model));
+		Assert.assertEquals("workout/edit",controller.update(editedWorkout, model, principal));
 			
 	}
 	
@@ -213,15 +215,16 @@ public class WorkoutControllerTest {
 		Workout editedWorkout = mock(Workout.class);
 		Workout persistentWorkout = mock(Workout.class);
 		Model model = mock(Model.class);
+		Principal principal = mock(Principal.class);
 		
 		when(workoutService.entityIsLocked(Mockito.any(Workout.class))).thenReturn(false);
 		when(workoutService.getById(Mockito.anyInt())).thenReturn(persistentWorkout);
 		when(workoutService.isValid(Mockito.any(Workout.class))).thenReturn(false);
 		when(editedWorkout.getId()).thenReturn(1);
 		when(workoutService.setNewPropertiesToExistingWorkout(editedWorkout)).thenReturn(editedWorkout);
-		controller.update(editedWorkout, model);
+		controller.update(editedWorkout, model, principal);
 
-		Assert.assertEquals("workout/edit",controller.update(editedWorkout, model));
+		Assert.assertEquals("workout/edit",controller.update(editedWorkout, model, principal));
 			
 	}
 	
@@ -231,13 +234,14 @@ public class WorkoutControllerTest {
 		Workout editedWorkout = mock(Workout.class);
 		Workout persistentWorkout = mock(Workout.class);
 		Model model = mock(Model.class);
+		Principal principal = mock(Principal.class);
 		
 		when(workoutService.entityIsLocked(Mockito.any(Workout.class))).thenReturn(false);
 		when(workoutService.getById(Mockito.anyInt())).thenReturn(persistentWorkout);
 		when(workoutService.isValid(Mockito.any(Workout.class))).thenReturn(true);
 		when(editedWorkout.getId()).thenReturn(1);
 		when(workoutService.setNewPropertiesToExistingWorkout(editedWorkout)).thenReturn(editedWorkout);
-		controller.update(editedWorkout, model);
+		controller.update(editedWorkout, model, principal);
 
 		verify(workoutService, times(1)).save(Mockito.any(Workout.class));
 		
