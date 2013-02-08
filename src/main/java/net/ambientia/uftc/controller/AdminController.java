@@ -53,9 +53,9 @@ public class AdminController {
 
 		User currentUser = userService.getUserByUsername(principal.getName());
 		
-		if(!currentUser.getAuthority().equals("ROLE_ADMIN") || currentUser.getId().equals(id))
+		if(currentUser.getId().equals(id))
 		{
-			// Not an admin or trying to act on own account
+			// Trying to act on own account
 			return "redirect:/admin";
 		}
 		
@@ -79,12 +79,6 @@ public class AdminController {
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
 		
-		if(!currentUser.getAuthority().equals("ROLE_ADMIN"))
-		{
-			// Not an admin
-			return "redirect:/";
-		}
-		
 		model.addAttribute("userInstance", new User());
 		model.addAttribute("loggedInUser", currentUser);
 		return "admin/userAdd";
@@ -92,17 +86,9 @@ public class AdminController {
 
 	
 	@RequestMapping(value = "/admin/userAdd", method = RequestMethod.POST)
-	public String add(@ModelAttribute("userInstance") User user, Model model, Principal principal) {
+	public String add(@ModelAttribute("userInstance") User user, Model model) {
 		logger.debug("Received request to add new user");
-		
-		User currentUser = userService.getUserByUsername(principal.getName());
-		
-		if(!currentUser.getAuthority().equals("ROLE_ADMIN"))
-		{
-			// Not an admin
-			return "redirect:/";
-		}		
-		
+
 		Uftc uftc = uftcService.getById(1);
 		userService.setUserUftc(user, uftc);
 		
@@ -124,13 +110,6 @@ public class AdminController {
 		logger.debug("Received request to show user page");
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
-		
-		if(!currentUser.getAuthority().equals("ROLE_ADMIN"))
-		{
-			// Not an admin
-			return "redirect:/";
-		}
-		
 		User user = userService.getById(id);
 
 		model.addAttribute("user", user);
@@ -143,14 +122,7 @@ public class AdminController {
 	public String admin(Locale locale, Model model, Principal principal) {
 		logger.debug("Received request to show admin page");
 		
-		
 		User currentUser = userService.getUserByUsername(principal.getName());
-		
-		if(!currentUser.getAuthority().equals("ROLE_ADMIN"))
-		{
-			// Not an admin
-			return "redirect:/";
-		}
 		
 		List<SportEvent> sportEventList = sportEventService.getAll();
 		List<User> userList = userService.getAll();
