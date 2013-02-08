@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.stub;
 
+import java.security.Principal;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -197,6 +198,7 @@ public class UserControllerTest {
 		User persistentUser = mock(User.class);
 		editedUser.setId(1);
 		Model model = mock(Model.class);
+		Principal principal = mock(Principal.class);
 		
 		controller.setUftcService(mock(UftcService.class));
 		
@@ -206,7 +208,7 @@ public class UserControllerTest {
 		when(userService.getById(Mockito.anyInt())).thenReturn(persistentUser);
 		when (userService.entityIsLocked(Mockito.any(User.class))).thenReturn(true);
 		
-		Assert.assertEquals("user/edit",controller.update(editedUser, model));
+		Assert.assertEquals("user/edit",controller.update(editedUser, model, principal));
 			
 	}
 	
@@ -216,15 +218,16 @@ public class UserControllerTest {
 		User editedUser = mock(User.class);
 		User persistentUser = mock(User.class);
 		Model model = mock(Model.class);
+		Principal principal = mock(Principal.class);
 		
 		when(userService.entityIsLocked(Mockito.any(User.class))).thenReturn(false);
 		when(userService.getById(Mockito.anyInt())).thenReturn(persistentUser);
 		when(userService.isValid(Mockito.any(User.class))).thenReturn(false);
 		when(editedUser.getId()).thenReturn(1);
 		when(userService.setNewPropertiesToExistingUser(editedUser)).thenReturn(editedUser);
-		controller.update(editedUser, model);
+		controller.update(editedUser, model, principal);
 
-		Assert.assertEquals("user/edit",controller.update(editedUser, model));
+		Assert.assertEquals("user/edit",controller.update(editedUser, model, principal));
 			
 	}
 	
@@ -234,13 +237,14 @@ public class UserControllerTest {
 		User editedUser = mock(User.class);
 		User persistentUser = mock(User.class);
 		Model model = mock(Model.class);
+		Principal principal = mock(Principal.class);
 		
 		when(userService.entityIsLocked(Mockito.any(User.class))).thenReturn(false);
 		when(userService.getById(Mockito.anyInt())).thenReturn(persistentUser);
 		when(userService.isValid(Mockito.any(User.class))).thenReturn(true);
 		when(editedUser.getId()).thenReturn(1);
 		when(userService.setNewPropertiesToExistingUser(editedUser)).thenReturn(editedUser);
-		controller.update(editedUser, model);
+		controller.update(editedUser, model, principal);
 
 		verify(userService, times(1)).save(Mockito.any(User.class));
 		
