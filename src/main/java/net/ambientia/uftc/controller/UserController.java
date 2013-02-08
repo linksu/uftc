@@ -44,7 +44,7 @@ public class UserController {
 			.getLogger(UserController.class);
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String getAdd(Model model, Principal principal) {
+	public String getRegisterUser(Model model, Principal principal) {
 		//User currentUser = userService.getUserByUsername(principal.getName());
 		logger.debug("Received request to show register page");
 		model.addAttribute("userInstance", new User());
@@ -53,7 +53,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String add(@ModelAttribute("userInstance") User user, Model model) {
+	public String registerUser(@ModelAttribute("userInstance") User user, Model model) {
 		logger.debug("Received request to add new user");
 		Uftc uftc = uftcService.getById(1);
 		userService.setUserUftc(user, uftc);
@@ -75,19 +75,26 @@ public class UserController {
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
 		User user = userService.getById(userId);
-		Hibernate.initialize(user);
-		// Hibernate.initialize(user.getWorkouts());
-		// List<Workout> workoutList = userService.getWorkouts(user);
-		List<Workout> workoutList = workoutService.getAllByUser(user);
+
+		if(!currentUser.getId().equals(user.getId())){
+			return "redirect:/denied";
+		}
+		
 		model.addAttribute("loggedInUser", currentUser);
 		model.addAttribute("userInstance", user);
-		model.addAttribute("workoutList", workoutList);
 		return "user/edit";
 	}
 
 	@RequestMapping(value = "/user/edit", method = RequestMethod.POST)
-	public String update(@ModelAttribute("userInstance") User user, Model model) {
+	public String update(@ModelAttribute("userInstance") User user, Model model, Principal principal) {
 		logger.debug("Received request to update user");
+		
+		User currentUser = userService.getUserByUsername(principal.getName());
+		
+		if(!currentUser.getId().equals(user.getId())){
+			return "redirect:/denied";
+		}
+		
 		if(userService.entityIsLocked(user)){
 			setupOptimisticLockErrorModel(model, user);
 			return "user/edit";
@@ -122,13 +129,6 @@ public class UserController {
 		model.addAttribute("errors", userService.getValidationErrorList(user));
 	}
 
-	private boolean isEntityIsLocked(User editedUser) {
-		User persistentUser = userService.getById(editedUser.getId());
-		if (persistentUser.getVersion() > editedUser.getVersion())
-			return true;
-		return false;
-	}
-
 	@RequestMapping(value = "/user/show", method = RequestMethod.GET)
 	public String getInfo(@RequestParam("userId") int userId, Model model, Principal principal) {
 		logger.debug("Received request to show add page");
@@ -136,10 +136,10 @@ public class UserController {
 		User currentUser = userService.getUserByUsername(principal.getName());
 		User user = userService.getById(userId);
 		
-		if(currentUser == null || !principal.getName().equals(currentUser.getUsername()))
+		if(!currentUser.getId().equals(user.getId()))
 		{
 			// Attempted to show wrong user data
-			return "redirect:/";			
+			return "redirect:/denied";			
 		}
 		
 		model.addAttribute("loggedInUser", currentUser);
