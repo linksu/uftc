@@ -128,7 +128,7 @@
 						</c:forEach>
 						</c:if>
 					</div>
-					<c:if test="${!challengeParticipant && !awaitingParticipant && !loggedInUser.getAuthority() == 'ROLE_ADMIN'}"><a class="nappi" href="/uftc/challenge/join?challengeId=${challenge.getId()}">Liity</a></c:if>
+					<c:if test="${!challengeParticipant && !awaitingParticipant || !loggedInUser.getAuthority() == 'ROLE_ADMIN'}"><a class="nappi" href="/uftc/challenge/join?challengeId=${challenge.getId()}">Liity</a></c:if>
 					<c:if test="${awaitingParticipant}"><a class="nappi" style="background-color: grey;" href="#">Odottaa</a></c:if>
 				</div>
 
