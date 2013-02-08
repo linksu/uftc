@@ -55,16 +55,12 @@ public class ChallengeSportEventService {
 	
 	public ChallengeSportEvent setNewPropertiesToExistingChallenge(ChallengeSportEvent challengeSportEvent) throws ParseException {
 		ChallengeSportEvent persistedChallengeSportEvent = getById(challengeSportEvent.getId());
-//		persistedChallengeSportEvent.setChallenge(challengeSportEvent.getChallenge());
 		persistedChallengeSportEvent.setPointFactor(challengeSportEvent.getPointFactor());
 		persistedChallengeSportEvent.setPointFactorType(challengeSportEvent.getPointFactorType());
 		persistedChallengeSportEvent.setTitle(challengeSportEvent.getTitle());
 		
 		return persistedChallengeSportEvent;
 	}
-	
-	
-	
 	
 	public void setChallengeSportEventDao(
 			ChallengeSportEventDao challengeSportEventDao) {
