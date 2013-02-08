@@ -105,7 +105,9 @@ public class WorkoutController {
 			// Attempted to edit wrong user data
 			return "redirect:/denied";
 		}
-			
+		
+		workout.setChallengeSportEventId(workout.getChallengeSportEvent().getId());
+		
 		model.addAttribute("workoutInstance", workout);
 		model.addAttribute("challengeSportEventsList",
 				challengeSportEventService.getAllByChallengeId(workout.getChallengeSportEvent().getChallenge().getId()));
