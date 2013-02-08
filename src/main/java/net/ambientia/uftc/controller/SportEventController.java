@@ -33,10 +33,10 @@ public class SportEventController {
 	@Autowired
 	private UserService userService;
 
-	@Resource(name = "sportEventService")
+	@Autowired
 	private SportEventService sportEventService;
 
-	@Resource(name = "uftcService")
+	@Autowired
 	private UftcService uftcService;
 
 	private static final Logger logger = LoggerFactory
