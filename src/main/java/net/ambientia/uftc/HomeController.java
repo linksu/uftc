@@ -1,5 +1,6 @@
 package net.ambientia.uftc;
 
+import java.security.Principal;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -64,8 +65,14 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/denied", method = RequestMethod.GET)
-	public String denied(Locale locale, Model model) {
-
+	public String denied(Locale locale, Model model, Principal principal) {
+		
+		if(principal != null)
+		{
+			User currentUser = userService.getUserByUsername(principal.getName());
+			model.addAttribute("loggedInUser", currentUser);
+		}
+		
 		return "uftc/denied";
 	}
 	public int clamp(int i, int low, int high){
