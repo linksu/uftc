@@ -194,6 +194,7 @@ public class ChallengeController {
 		}
 		
 		model.addAttribute("loggedInUser", currentUser);
+		model.addAttribute("challengeInstance", challenge);
 
 		return "challenge/userWorkout";
 	}

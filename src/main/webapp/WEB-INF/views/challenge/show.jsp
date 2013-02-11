@@ -40,8 +40,10 @@
 					</table>
 		
 			<c:if test="${challengeOwner}"><a class="nappi" href="/uftc/challenge/edit?challengeId=${challenge.getId()}">Muokkaa</a></c:if>
-			<c:if test="${challengeParticipant}"><a class="nappi" href="/uftc/workout/add?challengeId=${challenge.getId()}">Lis‰‰ suoritus</a></c:if>
-		
+			<br>
+			<c:if test="${challengeParticipant}"><a class="nappi" style="float:left;" href="/uftc/workout/add?challengeId=${challenge.getId()}">Lis‰‰ suoritus</a></c:if>
+			<a class="nappi" style="float:right;" href="/uftc/challenge/list">Takaisin</a>
+			
 		</div>
 		</div>
 		

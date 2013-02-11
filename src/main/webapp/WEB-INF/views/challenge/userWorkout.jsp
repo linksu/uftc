@@ -37,6 +37,7 @@
 							</tr>
 					</c:forEach>
 					</table>
+					<a class="nappi" style="float:right;" href="/uftc/challenge/show?challengeId=${challengeInstance.getId()}">Takaisin</a>
 		</div>
 		</div>
 

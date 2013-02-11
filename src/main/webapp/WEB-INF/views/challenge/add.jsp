@@ -75,7 +75,9 @@
 						</table>
 
 						<input class="kirjaudu" type="submit" value="Save" />
+						<a class="nappi" style="float:right;" href="/uftc/challenge/list">Takaisin</a>
 					</form:form>
+					
 				</div>
 
 			</div>

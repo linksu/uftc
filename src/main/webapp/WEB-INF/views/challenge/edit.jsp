@@ -76,9 +76,13 @@
 						<form:input type="hidden" path="version" />
 						<form:input type="hidden" path="id" />
 						
-						<input type="submit" value="Save" />
+						<input class="nappi" type="submit" value="Save" />
+						<br>
+						
+					<a class="nappi" style="float:left;" href="/uftc/challengeSportEvent/show?challengeId=${challengeInstance.getId()}">Haasteen lajit</a>
+					<a class="nappi" style="float:right;" href="/uftc/challenge/show?challengeId=${challengeInstance.getId()}">Takaisin</a>
 					</form:form>
-					<a class="nappi" href="/uftc/challengeSportEvent/show?challengeId=${challengeInstance.getId()}">Haasteen lajit</a>
+					
 				</div>
 
 			</div>

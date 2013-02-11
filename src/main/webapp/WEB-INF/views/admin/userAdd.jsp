@@ -141,6 +141,7 @@
 					<input type="submit"
 						value="<spring:message code="misc.save" text="Save"/>"
 						class="kirjaudu" />
+						<a class="nappi" style="float:right;" href="/uftc/admin">Takaisin</a>
 				</form:form>
 
 			</div>

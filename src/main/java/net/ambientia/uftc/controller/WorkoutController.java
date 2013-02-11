@@ -58,6 +58,7 @@ public class WorkoutController {
 		}
 				
 		model.addAttribute("workoutInstance", new Workout());
+		model.addAttribute("challengeInstance", challenge);
 		model.addAttribute("loggedInUser", currentUser);
 		model.addAttribute("challengeSportEventsList",
 				challenge.getChallengeSportEvents());
@@ -109,6 +110,7 @@ public class WorkoutController {
 		workout.setChallengeSportEventId(workout.getChallengeSportEvent().getId());
 		
 		model.addAttribute("workoutInstance", workout);
+		model.addAttribute("challengeInstance", challenge);
 		model.addAttribute("challengeSportEventsList",
 				challengeSportEventService.getAllByChallengeId(workout.getChallengeSportEvent().getChallenge().getId()));
 		model.addAttribute("pointFactorTypeEnum", PointFactorType.values());

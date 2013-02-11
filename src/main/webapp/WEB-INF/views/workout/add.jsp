@@ -59,7 +59,6 @@ function createSportEventList(){
 		
 		<div id="content">
 			<div id="column1">
-				<div id="new_user">
 					<div class="headerbox">
 						<h2 class="headertext">
 							<spring:message code="workout.create" text="Create new workout" />
@@ -138,6 +137,8 @@ function createSportEventList(){
 							<input type="submit"
 								value="<spring:message code="misc.save" text="Save"/>"
 								class="kirjaudu" />
+								
+								<a class="nappi" style="float:right;" href="/uftc/challenge/show?challengeId=${challengeInstance.getId()}">Takaisin</a>
 						</form:form>
 
 					</div>
@@ -147,6 +148,5 @@ function createSportEventList(){
 			</div>
 			<!--End of column-->
 
-		</div>
 		<!--End of content-->
 		<%@ include file="/templates/footer.jsp"%>
