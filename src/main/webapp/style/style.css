@@ -28,7 +28,6 @@ td {color:white;}
 	height:190px;
 	
 	}
-#new_user{width:520px; float:left; left: 350px; position: relative;}
 #new_sportevent{width:300px; float:left;}
 #edit_user{width:300px; float:left;}
 table#userTable{
@@ -284,7 +283,6 @@ a{text-decoration:none; color:white;}
 	width: 100px;
 	border-radius: 3px;
 	background-color:#ff713f;
-	height: 25px;
 	color:white;
 	border:1px solid black;
 }
