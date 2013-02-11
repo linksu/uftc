@@ -59,11 +59,6 @@ public class ChallengeController {
 		logger.debug("Received request to show challenge add page");
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
-		
-		if(!currentUser.getAuthority().equals("ROLE_CHALLENGER")) {
-			// No rights
-			return "redirect:/challenge/list";
-		}
 
 		model.addAttribute("challengeInstance", new Challenge());
 		model.addAttribute("loggedInUser", currentUser);
@@ -77,11 +72,6 @@ public class ChallengeController {
 		logger.debug("Received request to add new challenge");
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
-		
-		if(!currentUser.getAuthority().equals("ROLE_CHALLENGER")) {
-			// No rights
-			return "redirect:/challenge/list";
-		}
 		
 		challenge.setOwner(currentUser);
 		
