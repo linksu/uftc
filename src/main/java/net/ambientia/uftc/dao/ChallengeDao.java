@@ -8,14 +8,11 @@ import net.ambientia.uftc.domain.Uftc;
 
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-@Repository("challengeDao")
+@Repository
 @Transactional
 public class ChallengeDao extends DaoBase<Challenge> {
 
