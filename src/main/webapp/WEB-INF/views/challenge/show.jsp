@@ -11,7 +11,7 @@
 		</div>
 		<div class="chartbox">
 					
-					<table>
+					<table class="challengeTable">
 					<tr>
 							<td>
 									<p><spring:message code="challenge.challengeOwner" text="Challenge owner: " /></p>
@@ -40,7 +40,6 @@
 					</table>
 		
 			<c:if test="${challengeOwner}"><a class="nappi" href="/uftc/challenge/edit?challengeId=${challenge.getId()}">Muokkaa</a></c:if>
-			<br>
 			<c:if test="${challengeParticipant}"><a class="nappi" style="float:left;" href="/uftc/workout/add?challengeId=${challenge.getId()}">Lis‰‰ suoritus</a></c:if>
 			<a class="nappi" style="float:right;" href="/uftc/challenge/list">Takaisin</a>
 			
@@ -92,39 +91,37 @@
 				<div class="chartbox">
 
 					<div class="challenge">
-						<c:forEach items="${challengeUsers}" var="cUser">
-						<table id="challengeUsers">
+						<table class="challengeTable">
 						<tr>
-							<td><h3 class="left">K‰ytt‰j‰n nimi</h3></td>
-							<td><h3 class="right">K‰ytt‰j‰n pisteet</h3></td>
+							<td><h3>K‰ytt‰j‰n nimi</h3></td>
+							<td class="oikea"><h3>K‰ytt‰j‰n pisteet</h3></td>
 						</tr>
+						<c:forEach items="${challengeUsers}" var="cUser">
 						<tr>
 							<td><a href="/uftc/challenge/userWorkout?challengeId=${challenge.getId()}&userId=${cUser.getId()}">${cUser.getFirstName()}
 								${cUser.getLastName()}</a></td>
 
-						<td>${usersWithPoints.get(cUser.getId())}</td>
+						<td class="oikea">${usersWithPoints.get(cUser.getId())}</td>
 						</tr>
-						</table>
-
 						</c:forEach>
-						<c:if test="${challengeOwner}">
+						</table>
+						<c:if test="${challengeOwner && notApprovedUsers.size() > 0}">
+						<p>&nbsp;</p>
+						<table class="challengeTable">
+						<tr>
+						<td><h3>Hyv‰ksytt‰v‰t</h3></td>
+						<td class="oikea"><h3>Toiminto</h3></td>
+						</tr>
 						<c:forEach items="${notApprovedUsers}" var="cUser">
-							<div class="rivi">
-								<div class="riviteksti">
-									<div class="nimi">
-										<p>${cUser.getFirstName()} ${cUser.getLastName()}</p>
-									</div>
-									<div class="yht">
-										<a href="/uftc/challenge/accept?challengeId=${challenge.getId()}&userId=${cUser.getId()}">Hyv‰ksy</a>
-									</div>
-								</div>
-							</div>
+						<tr>
+										<td>${cUser.getFirstName()} ${cUser.getLastName()}</td>
+										<td class="oikea"><a href="/uftc/challenge/accept?challengeId=${challenge.getId()}&userId=${cUser.getId()}">Hyv‰ksy</a></td>
 							
 
-
+						</tr>
 						</c:forEach>
+						</table>
 						</c:if>
-						
 					</div>
 					<c:if test="${!challengeParticipant && !awaitingParticipant || !loggedInUser.getAuthority() == 'ROLE_ADMIN'}"><a class="nappi" href="/uftc/challenge/join?challengeId=${challenge.getId()}">Liity</a></c:if>
 					<c:if test="${awaitingParticipant}"><a class="nappi" style="background-color: grey;" href="#">Odottaa</a></c:if>
