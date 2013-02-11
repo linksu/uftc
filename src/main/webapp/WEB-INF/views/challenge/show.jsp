@@ -92,25 +92,19 @@
 				<div class="chartbox">
 
 					<div class="challenge">
-
-
-						<div class="upper-header">
-							<h3 class="left">Käyttäjän nimi</h3>
-							<h3 class="right">Käyttäjän pisteet</h3>
-						</div>
-
 						<c:forEach items="${challengeUsers}" var="cUser">
-							<div class="rivi">
-								<div class="riviteksti">
-									<div class="nimi">
-										<p><a href="/uftc/challenge/userWorkout?challengeId=${challenge.getId()}&userId=${cUser.getId()}">${cUser.getFirstName()} ${cUser.getLastName()}</a></p>
-									</div>
-									<div class="yht">
-										<p>${usersWithPoints.get(cUser.getId())}</p>
-									</div>
-								</div>
-							</div>
+						<table id="challengeUsers">
+						<tr>
+							<td><h3 class="left">Käyttäjän nimi</h3></td>
+							<td><h3 class="right">Käyttäjän pisteet</h3></td>
+						</tr>
+						<tr>
+							<td><a href="/uftc/challenge/userWorkout?challengeId=${challenge.getId()}&userId=${cUser.getId()}">${cUser.getFirstName()}
+								${cUser.getLastName()}</a></td>
 
+						<td>${usersWithPoints.get(cUser.getId())}</td>
+						</tr>
+						</table>
 
 						</c:forEach>
 						<c:if test="${challengeOwner}">
@@ -125,10 +119,12 @@
 									</div>
 								</div>
 							</div>
+							
 
 
 						</c:forEach>
 						</c:if>
+						
 					</div>
 					<c:if test="${!challengeParticipant && !awaitingParticipant || !loggedInUser.getAuthority() == 'ROLE_ADMIN'}"><a class="nappi" href="/uftc/challenge/join?challengeId=${challenge.getId()}">Liity</a></c:if>
 					<c:if test="${awaitingParticipant}"><a class="nappi" style="background-color: grey;" href="#">Odottaa</a></c:if>
