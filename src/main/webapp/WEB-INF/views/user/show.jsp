@@ -35,84 +35,13 @@
 									<td><p><spring:message code="user.${user.getAuthority()}" text="Unknown" /></p></td>
 						</tr>
 					</table>
-					
 					<c:if test="${loggedInUser.getId() == user.getId()}"><a class="nappi" href="/uftc/user/edit?userId=${loggedInUser.getId()}">Muokkaa</a></c:if>
-					
-						<%-- <div class="upper-header">
-							<h3 class="left">Pisteet t&auml;n&auml;&auml;n</h3>
-							<h3 class="right">Yhteens&auml;</h3>
-						</div>
-						<div class="rivi_selected">
-							<div class="riviteksti">
-								<div class="nimi">
-									<p>1.Janne</p>
-								</div>
-								<div class="pisteet">
-									<p>13</p>
-								</div>
-								<div class="yht">
-									<p>183</p>
-								</div>
-							</div>
-						</div>
-						<div class="rivi">
-							<div class="riviteksti">
-								<div class="nimi">
-									<p>2.Niilo</p>
-								</div>
-								<div class="pisteet">
-									<p>10</p>
-								</div>
-								<div class="yht">
-									<p>173</p>
-								</div>
-							</div>
-						</div>
-						<div class="rivi">
-							<div class="riviteksti">
-								<div class="nimi">
-									<p>3.Mauno</p>
-								</div>
-								<div class="pisteet">
-									<p>8</p>
-								</div>
-								<div class="yht">
-									<p>171</p>
-								</div> 
-							</div> --%>
-						</div>
-
-
 					</div>
-				</div>
-			</div>
-			<!--End of column1-->
+					</div>
+					</div>
+					
 			
-			<%--
-
 			<div id="column2">
-				<div class="headerbox">
-					<h2 class="headertext"></h2>
-					<img class="headerlogo" src="/pics/star.jpg">
-				</div>
-				<div class="chartbox">
-					<c:forEach items="${workouts}" var="workout">
-						<div class="top5_content_box">
-							<div class="group">
-								<a href="/uftc/workout/edit?workoutId=${workout.getId()}"><c:out
-										value="${workout.getName()}" /></a>
-							</div>
-							<div class="points">
-								<h5>${workout.getPoints()}</h5>
-							</div>
-						</div>
-					</c:forEach>
-				</div>
-			</div>
-			<!--End if column2-->
-			--%>
-			
-			<div id="column3">
 				<div class="headerbox">
 					<h2 class="headertext">TAPAHTUMAT</h2>
 					</div>
@@ -175,8 +104,7 @@
 			</div>
 			
 			
-			<!--End of column3-->
-		<%-- </div> --%>
+			<!--End of column2-->
 		<!--End of content-->
 
 		<%@ include file="/templates/footer.jsp"%>
