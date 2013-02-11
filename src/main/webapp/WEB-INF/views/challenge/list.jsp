@@ -33,37 +33,19 @@
 				</div>
 				<div class="chartbox">
 					<div class="challenge">
-						<div class="upper-header">
-							<h3 class="left">Haasteen nimi</h3>
-							<h3 class="right">Yhteispisteet</h3>
-						</div>
-
-
-						<!-- 								<div class="rivi_selected">
-							<div class="riviteksti">
-								<div class="nimi">
-									<p>1.UFTC</p>
-								</div>
-								<div class="yht">
-									<p>30</p>
-								</div>
-							</div>
-						</div>
-						 -->
+						<table class="challengeTable">
+						<tr>
+							<td><h3>Haasteen nimi</h3></td>
+							<td class="oikea"><h3>Yhteispisteet</h3></td>
+						</tr>
 						<c:forEach items="${challenges}" var="challenge">
-							<div class="rivi">
-								<div class="riviteksti">
-									<div class="nimi">
-										<p><a href="/uftc/challenge/show?challengeId=${challenge.getId()}">${challenge.getTitle()}</a></p>
-									</div>
-									<div class="yht">
-										<p>${challenge.getTotalPoints()}</p>
-									</div>
-								</div>
-							</div>
+						<tr>
 
-
+										<td><a href="/uftc/challenge/show?challengeId=${challenge.getId()}">${challenge.getTitle()}</a></td>
+										<td class="oikea">${challenge.getTotalPoints()}</td>
+						</tr>				
 						</c:forEach>
+						</table>
 
 					</div>
 					
@@ -85,37 +67,20 @@
 
 				<div class="chartbox">
 					<div class="challenge">
-						<div class="upper-header">
-							<h3 class="left">Haasteen nimi</h3>
-							<h3 class="right">Yhteispisteet</h3>
-						</div>
-
-
-						<!-- 								<div class="rivi_selected">
-							<div class="riviteksti">
-								<div class="nimi">
-									<p>1.UFTC</p>
-								</div>
-								<div class="yht">
-									<p>30</p>
-								</div>
-							</div>
-						</div>
-						 -->
+					<table class="challengeTable">
+					<tr>
+							<td><h3>Haasteen nimi</h3></td>
+							<td class="oikea"><h3>Yhteispisteet</h3></td>
+					</tr>
 						<c:forEach items="${userChallenges}" var="challenge">
-							<div class="rivi">
-								<div class="riviteksti">
-									<div class="nimi">
-										<p><a href="/uftc/challenge/show?challengeId=${challenge.getId()}">${challenge.getTitle()}</a></p>
-									</div>
-									<div class="yht">
-										<p>${challenge.getTotalPoints()}</p>
-									</div>
-								</div>
-							</div>
+						<tr>
+										<td><a href="/uftc/challenge/show?challengeId=${challenge.getId()}">${challenge.getTitle()}</a></td>
+										<td class="oikea">${challenge.getTotalPoints()}</td>
+						</tr>
 
 
 						</c:forEach>
+						</table>
 
 					</div>
 				</div>
