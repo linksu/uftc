@@ -8,6 +8,10 @@ body {
 	background-repeat:repeat;
 }
 
+img {
+	border: none;
+}
+
 td a {color:#ff713f;}
 
 div.yht a{color:#ff713f;}
