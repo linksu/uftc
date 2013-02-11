@@ -41,10 +41,8 @@ public class UserController {
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String getRegisterUser(Model model, Principal principal) {
-		//User currentUser = userService.getUserByUsername(principal.getName());
 		logger.debug("Received request to show register page");
 		model.addAttribute("userInstance", new User());
-		//model.addAttribute("loggedInUser", currentUser);
 		return "uftc/register";
 	}
 	
@@ -71,7 +69,7 @@ public class UserController {
 		User currentUser = userService.getUserByUsername(principal.getName());
 		User user = userService.getById(userId);
 
-		if(!currentUser.getId().equals(user.getId())){
+		if(!currentUser.getId().equals(user.getId()) && !currentUser.getAuthority().equals(User.ADMIN)){
 			return "redirect:/denied";
 		}
 		
@@ -86,7 +84,7 @@ public class UserController {
 		
 		User currentUser = userService.getUserByUsername(principal.getName());
 		
-		if(!currentUser.getId().equals(user.getId())){
+		if(!currentUser.getId().equals(user.getId()) && !currentUser.getAuthority().equals(User.ADMIN)){
 			return "redirect:/denied";
 		}
 		
@@ -97,7 +95,12 @@ public class UserController {
 		User editedUser = userService.setNewPropertiesToExistingUser(user);
 		if (!editedUser.getFirstName().isEmpty() && !editedUser.getLastName().isEmpty()) {
 			userService.save(editedUser);
-			return "redirect:/user/edit?userId=" + editedUser.getId();
+			
+			if (currentUser.getAuthority().equals(User.ADMIN))
+				return "redirect:/admin/userShow?userId=" + editedUser.getId();
+			else
+				return "redirect:/user/show?userId=" + editedUser.getId();
+			
 		} else {
 			setupErrorModel(model, user);
 			return "user/edit";
@@ -131,7 +134,7 @@ public class UserController {
 		User currentUser = userService.getUserByUsername(principal.getName());
 		User user = userService.getById(userId);
 		
-		if(!currentUser.getId().equals(user.getId()))
+		if(!currentUser.getId().equals(user.getId()) && !currentUser.getAuthority().equals(User.ADMIN))
 		{
 			// Attempted to show wrong user data
 			return "redirect:/denied";			
