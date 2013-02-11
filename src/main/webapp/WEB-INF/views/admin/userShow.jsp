@@ -43,7 +43,7 @@
 						
 					</table>
 					
-					<a class="nappi" style="float:left;" href="/uftc/user/edit?userId=${loggedInUser.getId()}">Muokkaa</a>
+					<a class="nappi" style="float:left;" href="/uftc/user/edit?userId=${user.getId()}">Muokkaa</a>
 					<a class="nappi" style="float:right;" href="/uftc/admin">Takaisin</a>
 					
 
