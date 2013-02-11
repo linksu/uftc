@@ -93,7 +93,7 @@ public class AdminController {
 		userService.setUserUftc(user, uftc);
 		
 		if (userService.isValid(user)) {
-			if(user.getAuthority().equals("ROLE_CHALLENGER"))
+			if(user.getAuthority().equals(User.CHALLENGER))
 			{
 				user.setEnabled(false);
 			}

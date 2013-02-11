@@ -59,8 +59,7 @@ public class UserController {
 		Uftc uftc = uftcService.getById(1);
 		userService.setUserUftc(user, uftc);
 		if (userService.isValid(user)) {
-			//user.setAuthority("ROLE_USER");
-			if(user.getAuthority().equals("ROLE_CHALLENGER")) {
+			if(user.getAuthority().equals(User.CHALLENGER)) {
 				user.setEnabled(false);
 			}
 			userService.add(user);
