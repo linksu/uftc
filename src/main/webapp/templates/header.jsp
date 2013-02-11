@@ -18,11 +18,11 @@
 
 	<div id="register" class="clearfix">
 		<security:authorize access="isAnonymous()" var="isAnonymous">
-			<a href="/uftc/register"><h2>REKISTER&Ouml;IDY</h2></a>
+			<a href="/uftc/register"><h2><spring:message code="login.register" /></h2></a>
 		</security:authorize>
 		<security:authorize access="isAuthenticated()" var="isAuthed">
 			<a href="<c:url value="/uftc/j_spring_security_logout" />">
-				<h2>KIRJAUDU ULOS</h2>
+				<h2><spring:message code="login.logout" /></h2>
 			</a>
 		</security:authorize>
 	</div>
@@ -37,14 +37,13 @@
 			</c:if>
 			<form name='f' action="<c:url value='j_spring_security_check' />"
 				method='POST'>
-				<input type="text" class="teksti" name="j_username" value="Tunnus"
+				<input type="text" class="teksti" name="j_username" placeholder="<spring:message code="login.username" />"
 					maxlength="15" size="15" onfocus="this.value=''" />
-					<input name="j_password" type="text"
-					value="Salasana" class="teksti"
-					onfocus="this.type='password'; this.value=''" /> <input
-					type="submit" name="submitform" class="kirjaudu" value="Kirjaudu" />
+					<input name="j_password" type="password"
+					placeholder="<spring:message code="login.password" />" class="teksti"  />
+					<input type="submit" name="submitform" class="kirjaudu" value="<spring:message code="login.login" />" />
 				<p class="forget">
-					<a href="#">Unohditko salasanan?</a>
+					<a href="#"><spring:message code="login.forgotPassword" /></a>
 				</p>
 			</form>
 		</div>
@@ -66,14 +65,13 @@
 
 <div id="navi">
 	<ul>
-		<li><a href="/uftc">ETUSIVU</a></li>
+		<li><a href="/uftc"><spring:message code="header.frontPage" /></a></li>
 
 		<security:authorize access="isAuthenticated()" var="isAuthed">
-			<li><a href="/uftc/user/show?userId=${loggedInUser.getId()}">OMA
-					SIVU</a></li>
+			<li><a href="/uftc/user/show?userId=${loggedInUser.getId()}"><spring:message code="header.ownPage" /></a></li>
 
 		</security:authorize>
-		<li><a href="/uftc/challenge/list">HAASTEET</a></li>
+		<li><a href="/uftc/challenge/list"><spring:message code="header.challengePage" /></a></li>
 
 	</ul>
 </div>
