@@ -6,9 +6,8 @@ import java.util.List;
 import net.ambientia.uftc.dao.SportEventDao;
 import net.ambientia.uftc.domain.PointFactorType;
 import net.ambientia.uftc.domain.SportEvent;
-import net.ambientia.uftc.domain.Uftc;
-import net.ambientia.uftc.domain.User;
 import net.ambientia.uftc.domain.SportEvent.FieldTypes;
+import net.ambientia.uftc.domain.Uftc;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

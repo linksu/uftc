@@ -5,7 +5,6 @@ import java.util.EnumSet;
 import java.util.List;
 
 import net.ambientia.uftc.dao.ChallengeSportEventDao;
-import net.ambientia.uftc.domain.Challenge;
 import net.ambientia.uftc.domain.ChallengeSportEvent;
 import net.ambientia.uftc.domain.ChallengeSportEvent.FieldTypes;
 

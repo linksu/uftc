@@ -8,22 +8,19 @@ import java.util.List;
 import net.ambientia.uftc.dao.ChallengeDao;
 import net.ambientia.uftc.dao.UftcDao;
 import net.ambientia.uftc.domain.Challenge;
+import net.ambientia.uftc.domain.Challenge.FieldTypes;
 import net.ambientia.uftc.domain.ChallengeSportEvent;
 import net.ambientia.uftc.domain.SportEvent;
 import net.ambientia.uftc.domain.Uftc;
 import net.ambientia.uftc.domain.User;
-import net.ambientia.uftc.domain.Challenge.FieldTypes;
 
-import org.hibernate.Hibernate;
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("challengeService")
+@Service
 @Transactional
 public class ChallengeService {
 

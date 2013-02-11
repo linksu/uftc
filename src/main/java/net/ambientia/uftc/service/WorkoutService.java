@@ -9,7 +9,6 @@ import java.util.Map;
 
 import net.ambientia.uftc.dao.ChallengeDao;
 import net.ambientia.uftc.dao.ChallengeSportEventDao;
-import net.ambientia.uftc.dao.UserDao;
 import net.ambientia.uftc.dao.WorkoutDao;
 import net.ambientia.uftc.domain.Challenge;
 import net.ambientia.uftc.domain.ChallengeSportEvent;
@@ -20,10 +19,9 @@ import net.ambientia.uftc.domain.Workout.FieldTypes;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("workoutService")
+@Service
 @Transactional
 public class WorkoutService {
 

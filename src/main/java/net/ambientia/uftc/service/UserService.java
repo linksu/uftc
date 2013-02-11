@@ -9,12 +9,10 @@ import net.ambientia.uftc.domain.Challenge;
 import net.ambientia.uftc.domain.Uftc;
 import net.ambientia.uftc.domain.User;
 import net.ambientia.uftc.domain.User.FieldTypes;
-import net.ambientia.uftc.domain.Workout;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
