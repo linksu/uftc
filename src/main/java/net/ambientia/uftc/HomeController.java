@@ -1,17 +1,10 @@
 package net.ambientia.uftc;
 
 import java.security.Principal;
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import javax.annotation.Resource;
-
-import net.ambientia.uftc.dao.ChallengeDao;
 import net.ambientia.uftc.domain.Challenge;
-import net.ambientia.uftc.domain.PointFactorType;
-import net.ambientia.uftc.domain.SportEvent;
 import net.ambientia.uftc.domain.User;
 import net.ambientia.uftc.service.ChallengeService;
 import net.ambientia.uftc.service.SportEventService;
@@ -26,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Handles requests for the application home page.
