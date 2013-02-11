@@ -21,7 +21,7 @@
 			<a href="/uftc/register"><h2><spring:message code="login.register" /></h2></a>
 		</security:authorize>
 		<security:authorize access="isAuthenticated()" var="isAuthed">
-			<a href="<c:url value="/j_spring_security_logout" />">
+			<a href="<c:url value="j_spring_security_logout" />">
 				<h2><spring:message code="login.logout" /></h2>
 			</a>
 		</security:authorize>
