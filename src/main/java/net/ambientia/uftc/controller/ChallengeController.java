@@ -12,7 +12,6 @@ import net.ambientia.uftc.service.UftcService;
 import net.ambientia.uftc.service.UserService;
 import net.ambientia.uftc.service.WorkoutService;
 
-import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

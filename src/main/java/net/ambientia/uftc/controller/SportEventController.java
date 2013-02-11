@@ -4,14 +4,9 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import net.ambientia.uftc.domain.Challenge;
 import net.ambientia.uftc.domain.SportEvent;
 import net.ambientia.uftc.domain.Uftc;
 import net.ambientia.uftc.domain.User;
-import net.ambientia.uftc.domain.Workout;
-import net.ambientia.uftc.service.ChallengeSportEventService;
 import net.ambientia.uftc.service.SportEventService;
 import net.ambientia.uftc.service.UftcService;
 import net.ambientia.uftc.service.UserService;

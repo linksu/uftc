@@ -2,20 +2,15 @@ package net.ambientia.uftc.controller;
 
 import java.security.Principal;
 import java.util.EnumSet;
-import java.util.List;
-
-import javax.annotation.Resource;
 
 import net.ambientia.uftc.domain.Uftc;
 import net.ambientia.uftc.domain.User;
 import net.ambientia.uftc.domain.User.FieldTypes;
-import net.ambientia.uftc.domain.Workout;
 import net.ambientia.uftc.service.ChallengeSportEventService;
 import net.ambientia.uftc.service.UftcService;
 import net.ambientia.uftc.service.UserService;
 import net.ambientia.uftc.service.WorkoutService;
 
-import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

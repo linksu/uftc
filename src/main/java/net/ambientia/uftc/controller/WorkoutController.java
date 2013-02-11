@@ -1,9 +1,6 @@
 package net.ambientia.uftc.controller;
 
 import java.security.Principal;
-import java.util.List;
-
-import javax.annotation.Resource;
 
 import net.ambientia.uftc.domain.Challenge;
 import net.ambientia.uftc.domain.ChallengeSportEvent;
@@ -15,7 +12,6 @@ import net.ambientia.uftc.service.ChallengeSportEventService;
 import net.ambientia.uftc.service.UserService;
 import net.ambientia.uftc.service.WorkoutService;
 
-import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
