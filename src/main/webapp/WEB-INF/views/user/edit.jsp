@@ -24,15 +24,6 @@
 								<br>
 							</c:forEach>
 						</tr>
-						<!--  <tr>
-							<td><form:label path="username">
-									<spring:message code="user.username" text="User name:" />
-								</form:label></td>
-
-							<td><form:input class="teksti"
-									value="${userInstance.getUsername()}" path="username" /></td>
-						</tr>
-						-->
 						<tr>
 							<td><p><form:label path="firstName">
 									<spring:message code="user.firstName" text="First name:" />
@@ -55,20 +46,6 @@
 				</form:form>
 			</div>
 			</div>
-			<!--End of column1-->
-			<%--
-			<div id="column2">
-				<div class="headerbox">
-					<h2 class="headertext">OMA TULOS</h2>
-					<img class="headerlogo" src="/uftc/pics/star.jpg">
-				</div>
-				<div class="chartbox">
-					<p></p>
-				</div>
-
-			</div>
-			--%>
-			<!--End if column2-->
 
 		</div>
 		<!--End of content-->
