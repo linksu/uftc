@@ -14,26 +14,26 @@
 					<table class="challengeTable">
 					<tr>
 							<td>
-									<p><spring:message code="challenge.challengeOwner" text="Challenge owner: " /></p>
+									<p><spring:message code="challenge.challengeOwner" text="Challenge owner " />:</p>
 								</td>
 
 							<td><p>${challenge.getOwner().getUsername()}</p></td>
 						</tr>
 						<tr>
 							<td>
-									<p><spring:message code="challenge.totalPoints" text="Total points: " /></p>
+									<p><spring:message code="challenge.totalPoints" text="Total points " />:</p>
 								</td>
 							<td><p>${challenge.getTotalPoints()}</p></td>
 						</tr>
 						<tr>
 							<td>
-									<p><spring:message code="challenge.startTime" text="Start time: " /></p>
+									<p><spring:message code="challenge.startTime" text="Start time " />:</p>
 								</td>
 							<td><p>${challenge.getStartTimeString()}</p></td>
 						</tr>
 						<tr>
 							<td>
-							<p><spring:message code="challenge.endTime" text="End time: " /></p>
+							<p><spring:message code="challenge.endTime" text="End time " />:</p>
 									</td>
 									<td><p>${challenge.getEndTimeString()}</p></td>
 						</tr>
@@ -54,26 +54,26 @@
 		<div class="chartbox">
 		<table id="workoutTable">
 		<c:forEach items="${workouts}" var="workout">
-							<tr><td>
+							<tr><td class="vasen">
 								<a href="/uftc/workout/edit?workoutId=${workout.getId()}"><c:out
 										value="${workout.getName()}" /></a>
 							</td>
-							<td>
+							<td class="vasen">
 							${workout.getRepetition()} 
 							</td>
 							<td class="oikea">
 							${workout.getPoints()}
 							</td>
 							</tr>
-							<tr>
-							<td style="border-bottom: thin solid white;">
+							<tr class="viiva">
+							<td class="vasen">
 							${workout.getTime()}
 							</td>
-							<td style="border-bottom: thin solid white;">
+							<td class="vasen">
 							<spring:message code="sportEvent.pointFactorType.${workout.getChallengeSportEvent().getPointFactorType()}"
 														text="${workout.getChallengeSportEvent().getPointFactorType()}" />
 							</td>
-							<td class="oikea" style="border-bottom: thin solid white;">
+							<td class="oikea">
 							Pistettä
 							</td>
 							</tr>
