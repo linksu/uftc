@@ -51,10 +51,10 @@ public class ChallengeSportEventsController {
 		}
 
 		List<ChallengeSportEvent> events = challengeSportEventService
-				.getAllByChallengeId(challengeId);
+				.getAllByChallengeId(challenge.getId());
 
 		model.addAttribute("challengeSportEvents", events);
-		model.addAttribute("challengeId", challengeId);
+		model.addAttribute("challengeId", challenge.getId());
 		model.addAttribute("loggedInUser", currentUser);
 		return "challengeSportEvent/show";
 	}

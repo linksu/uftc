@@ -12,7 +12,7 @@
 												<c:url var="saveUrl" value="/challengeSportEvent/edit" />
 						<form:form modelAttribute="challengeSportEventInstance" method="POST"
 							action="${saveUrl}">
-							<table>
+							<table class="challengeSportEventFormTable">
 								<tr>
 									<c:forEach items="${errors}" var="e">
 										<spring:message
@@ -24,7 +24,7 @@
 									<td><p>
 											<form:label path="title">
 												<spring:message code="sportEvent.title"
-													text="SportEvent title:" />
+													text="SportEvent title" />
 											</form:label>
 										</p></td>
 									<td><form:input path="title" class="teksti" /></td>
@@ -34,7 +34,7 @@
 									<td><p>
 											<form:label path="pointFactorType">
 												<spring:message code="sportEvent.pointFactorType"
-													text="Pointfactor type:" />
+													text="Pointfactor type" />
 											</form:label>
 										</p></td>
 									<td><form:select path="pointFactorType" class="teksti">
@@ -54,7 +54,7 @@
 									<td><p>
 											<form:label path="pointFactor">
 												<spring:message code="sportEvent.pointFactor"
-													text="Pointfactor:" />
+													text="Pointfactor" />
 											</form:label>
 										</p></td>
 									<td><form:input path="pointFactor" class="teksti" /></td>
@@ -63,8 +63,9 @@
 							</table>
 							<form:hidden path="id"/>
 							<form:hidden path="version"/>
-							<input type="submit" class="kirjaudu"
+							<input class="nappi" style="float:left;" type="submit" class="kirjaudu"
 								value="<spring:message code="misc.save" text="Save"/>" />
+							<a class="nappi" style="float:right;" href="/uftc/challengeSportEvent/show?challengeId=${challengeId}">Takaisin</a>
 						</form:form>
 						</div>
 

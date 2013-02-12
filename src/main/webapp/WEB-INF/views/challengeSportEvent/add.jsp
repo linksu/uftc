@@ -12,7 +12,7 @@
 												<c:url var="saveUrl" value="/challengeSportEvent/add?challengeId=${challengeId}" />
 						<form:form modelAttribute="challengeSportEventInstance" method="POST"
 							action="${saveUrl}">
-							<table>
+							<table class="challengeSportEventFormTable">
 								<tr>
 									<c:forEach items="${errors}" var="e">
 										<spring:message
@@ -21,23 +21,23 @@
 										<br>
 									</c:forEach>
 
-									<td><p>
+									<td>
 											<form:label path="title">
 												<spring:message code="sportEvent.title"
-													text="SportEvent title:" />
+													text="SportEvent title" />
 											</form:label>
-										</p></td>
-									<td><form:input path="title" class="teksti" /></td>
+										</td>
+									<td class="oikea"><form:input path="title" class="teksti" /></td>
 								</tr>
 
 								<tr>
-									<td><p>
+									<td>
 											<form:label path="pointFactorType">
 												<spring:message code="sportEvent.pointFactorType"
-													text="Pointfactor type:" />
+													text="Pointfactor type" />
 											</form:label>
-										</p></td>
-									<td><form:select path="pointFactorType" class="teksti">
+										</td>
+									<td class="oikea"><form:select path="pointFactorType" class="teksti">
 											<c:forEach items="${pointFactorTypeEnum}" var="type">
 												<form:option value="${type}">
 													<spring:message code="sportEvent.pointFactorType.${type}"
@@ -51,18 +51,19 @@
 								</tr>
 
 								<tr>
-									<td><p>
+									<td>
 											<form:label path="pointFactor">
 												<spring:message code="sportEvent.pointFactor"
 													text="Pointfactor:" />
 											</form:label>
-										</p></td>
-									<td><form:input path="pointFactor" class="teksti" /></td>
+										</td>
+									<td class="oikea"><form:input path="pointFactor"  class="teksti" /></td>
 								</tr>
 
 							</table>
-							<input type="submit" class="kirjaudu"
+							<input style="float:left;" class="nappi" type="submit" class="kirjaudu"
 								value="<spring:message code="misc.save" text="Save"/>" />
+								<a class="nappi" style="float:right;" href="/uftc/challengeSportEvent/show?challengeId=${challengeId}">Takaisin</a>
 						</form:form>
 						</div>
 
