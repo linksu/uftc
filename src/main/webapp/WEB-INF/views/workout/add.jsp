@@ -61,7 +61,7 @@ function createSportEventList(){
 			<div id="column1">
 					<div class="headerbox">
 						<h2 class="headertext">
-							[${challengeInstance.getTitle()}]: <spring:message code="workout.create" text="Create new workout" />
+							[${challengeInstance.getTitle()}]: <spring:message code="workout.create" text="Add workout" />
 						</h2>
 						<img class="headerlogo" src="/uftc/pics/star.jpg">
 					</div>
@@ -72,7 +72,7 @@ function createSportEventList(){
 						<form:form modelAttribute="workoutInstance" method="POST"
 							action="${editUrl}">
 							<br />
-							<table>
+							<table class="workoutFormTable">
 
 								<tr>
 									<td><p>
@@ -84,7 +84,7 @@ function createSportEventList(){
 												
 											
 										</p></td>
-									<td><form:select id="repetition" path="repetition"
+									<td class="oikea"><form:select id="repetition" path="repetition"
 											class="teksti">
 
 											<c:forEach var="i" begin="1" end="200" step="1">
@@ -110,7 +110,7 @@ function createSportEventList(){
 													text="SportEvent: " />
 											</form:label>
 										</p></td>
-									<td><form:select path="challengeSportEventId" class="teksti">
+									<td class="oikea"><form:select path="challengeSportEventId" class="teksti">
 											<c:forEach items="${challengeSportEventsList}"
 												var="sportEvent">
 												<form:option value="${sportEvent.id}">
@@ -121,10 +121,10 @@ function createSportEventList(){
 								<tr>
 									<td><p>
 											<form:label path="points">
-												<spring:message code="workout.points" text="Points: " />
+												<spring:message code="workout.points" text="Points " />
 											</form:label>
 										</p></td>
-									<td><p>
+									<td style="padding-left:15px;"><p>
 											<form:label id="points" path="points">
 												<spring:message text="" />
 											</form:label>
@@ -134,7 +134,7 @@ function createSportEventList(){
 							</table>
 					
 
-							<input type="submit"
+							<input class="nappi" style="float:left;" type="submit"
 								value="<spring:message code="misc.save" text="Save"/>"
 								class="kirjaudu" />
 								

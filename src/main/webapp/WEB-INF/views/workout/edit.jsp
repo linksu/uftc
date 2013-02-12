@@ -60,7 +60,7 @@ function createSportEventList(){
 				<div id="new_user">
 					<div class="headerbox">
 						<h2 class="headertext">
-							<spring:message code="workout.edit" text="Editworkout" />
+							[${challengeInstance.getTitle()}]: <spring:message code="workout.edit" text="Editworkout" />
 						</h2>
 						<img class="headerlogo" src="/uftc/pics/star.jpg">
 					</div>
@@ -78,7 +78,7 @@ function createSportEventList(){
 						<form:form modelAttribute="workoutInstance" method="POST"
 							action="${editUrl}">
 							<br />
-							<table>
+							<table class="workoutFormTable">
 
 								<tr>
 									<td><p>
@@ -92,7 +92,7 @@ function createSportEventList(){
 
 
 										</p></td>
-									<td><form:select id="repetition" path="repetition"
+									<td class="oikea"><form:select id="repetition" path="repetition"
 											class="teksti">
 
 											<c:forEach var="i" begin="1" end="200" step="1">
@@ -118,17 +118,17 @@ function createSportEventList(){
 													text="SportEvent: " />
 											</form:label>
 										</p></td>
-									<td><form:select id="challengeSportEventId"
+									<td class="oikea"><form:select id="challengeSportEventId" class="teksti"
 											path="challengeSportEventId">
 											<form:options items="${challengeSportEventsList}" itemValue="id" itemLabel="title" />
 										</form:select>
 								<tr>
 									<td><p>
 											<form:label path="points">
-												<spring:message code="workout.points" text="Points: " />
+												<spring:message code="workout.points" text="Points " />
 											</form:label>
 										</p></td>
-									<td><p>
+									<td style="padding-left:15px;"><p>
 											<form:label id="points" path="points">
 												<spring:message text="" />
 											</form:label>
@@ -141,7 +141,7 @@ function createSportEventList(){
 						
 						<form:hidden path="version" value="${workout.getVersion() }"/>
 
-							<input type="submit"
+							<input class="nappi" style="float:left;" type="submit"
 								value="<spring:message code="misc.save" text="Save"/>"
 								class="kirjaudu" />
 								<a class="nappi" style="float:right;" href="/uftc/challenge/show?challengeId=${challengeInstance.getId()}"><spring:message code="misc.back" text="Back" /></a>
