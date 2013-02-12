@@ -40,7 +40,7 @@
 						<tr>
 							<td><p>
 									<form:label path="username">
-										<spring:message code="user.username" text="User name" />
+										<spring:message code="user.userName" text="User name" />
 									</form:label>
 								</p></td>
 							<td><form:input path="username" class="teksti" /></td>
