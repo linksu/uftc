@@ -2,12 +2,12 @@
 		<div id="content">
 			<div id="column1">
 				<div class="headerbox">
-					<h2 class="headertext">AVOIMET HAASTEET</h2>
+					<h2 class="headertext"><spring:message code="uftc.openChallenges" text="Open challenges"/></h2>
 				</div>
 
 				<div class="top5">
 					<h3 class="text1">ULTIMATE TOP 5</h3>
-					<h3 class="text2">PISTEET</h3>
+					<h3 class="text2"><spring:message code="uftc.points" text="Points"/></h3>
 				</div>
 
 				<div class="top5_content">
@@ -38,22 +38,24 @@
 					<h2 class="headertext">OSALLISTU TAI HAASTA</h2>
 				</div>
 				<div class="leipis">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Mauris vel libero sed risus consectetur vestibulum id cursus elit.
-						Morbi venenatis hendrerit orci, sed imperdiet lectus pulvinar
-						eget. Ut nulla ligula, rhoncus a mollis ultrices, hendrerit sed
-						odio. Donec consectetur volutpat lacinia. Morbi et magna vel
-						sapien porta rutrum. Aenean auctor porta arcu pellentesque
-						tincidunt. Aenean nibh quam, condimentum vitae eleifend non,
-						commodo id ipsum. Curabitur consequat tincidunt arcu in egestas.
-						Maecenas in leo at urna sagittis elementum eu eget turpis. Quisque
-						magna sem, lobortis sit amet sollicitudin sed, vehicula non
-						tortor. Phasellus facilisis nunc eget arcu tempus semper. Duis
-						blandit neque et dui fermentum id egestas odio dictum. Quisque eu
-						ante tortor, a laoreet augue. Maecenas aliquet condimentum eros,
-						et laoreet leo hendrerit nec. Integer ultricies pretium libero in
-						hendrerit. Quisque imperdiet dapibus nunc, vitae cursus felis
-						eleifend eu.</p>
+					<div class="chartbox">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+							Mauris vel libero sed risus consectetur vestibulum id cursus elit.
+							Morbi venenatis hendrerit orci, sed imperdiet lectus pulvinar
+							eget. Ut nulla ligula, rhoncus a mollis ultrices, hendrerit sed
+							odio. Donec consectetur volutpat lacinia. Morbi et magna vel
+							sapien porta rutrum. Aenean auctor porta arcu pellentesque
+							tincidunt. Aenean nibh quam, condimentum vitae eleifend non,
+							commodo id ipsum. Curabitur consequat tincidunt arcu in egestas.
+							Maecenas in leo at urna sagittis elementum eu eget turpis. Quisque
+							magna sem, lobortis sit amet sollicitudin sed, vehicula non
+							tortor. Phasellus facilisis nunc eget arcu tempus semper. Duis
+							blandit neque et dui fermentum id egestas odio dictum. Quisque eu
+							ante tortor, a laoreet augue. Maecenas aliquet condimentum eros,
+							et laoreet leo hendrerit nec. Integer ultricies pretium libero in
+							hendrerit. Quisque imperdiet dapibus nunc, vitae cursus felis
+							eleifend eu.</p>
+					</div>
 				</div>
 				<div class="alanappi2">
 					<a href="#"><img src="pics/alanappi2.png"></a>
@@ -63,27 +65,28 @@
 
 			<div id="column3">
 				<div class="headerbox">
-					<h2 class="headertext">VIIMEISIMM&Auml;T TAPAHTUMAT</h2>
+					<h2 class="headertext">PARTICIPATE OR CHALLENGE</h2>
 				</div>
 				<div class="leipis">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-						Mauris vel libero sed risus consectetur vestibulum id cursus elit.
-						Morbi venenatis hendrerit orci, sed imperdiet lectus pulvinar
-						eget. Ut nulla ligula, rhoncus a mollis ultrices, hendrerit sed
-						odio. Donec consectetur volutpat lacinia. Morbi et magna vel
-						sapien porta rutrum. Aenean auctor porta arcu pellentesque
-						tincidunt. Aenean nibh quam, condimentum vitae eleifend non,
-						commodo id ipsum. Curabitur consequat tincidunt arcu in egestas.
-						Maecenas in leo at urna sagittis elementum eu eget turpis. Quisque
-						magna sem, lobortis sit amet sollicitudin sed, vehicula non
-						tortor. Phasellus facilisis nunc eget arcu tempus semper. Duis
-						blandit neque et dui fermentum id egestas odio dictum. Quisque eu
-						ante tortor, a laoreet augue. Maecenas aliquet condimentum eros,
-						et laoreet leo hendrerit nec. Integer ultricies pretium libero in
-						hendrerit. Quisque imperdiet dapibus nunc, vitae cursus felis
-						eleifend eu.</p>
+					<div class="chartbox">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+							Mauris vel libero sed risus consectetur vestibulum id cursus elit.
+							Morbi venenatis hendrerit orci, sed imperdiet lectus pulvinar
+							eget. Ut nulla ligula, rhoncus a mollis ultrices, hendrerit sed
+							odio. Donec consectetur volutpat lacinia. Morbi et magna vel
+							sapien porta rutrum. Aenean auctor porta arcu pellentesque
+							tincidunt. Aenean nibh quam, condimentum vitae eleifend non,
+							commodo id ipsum. Curabitur consequat tincidunt arcu in egestas.
+							Maecenas in leo at urna sagittis elementum eu eget turpis. Quisque
+							magna sem, lobortis sit amet sollicitudin sed, vehicula non
+							tortor. Phasellus facilisis nunc eget arcu tempus semper. Duis
+							blandit neque et dui fermentum id egestas odio dictum. Quisque eu
+							ante tortor, a laoreet augue. Maecenas aliquet condimentum eros,
+							et laoreet leo hendrerit nec. Integer ultricies pretium libero in
+							hendrerit. Quisque imperdiet dapibus nunc, vitae cursus felis
+							eleifend eu.</p>
+					</div>
 				</div>
-
 				<div class="alanappi1">
 					<a href="#"><img src="pics/katsolisaa.png"></a>
 				</div>

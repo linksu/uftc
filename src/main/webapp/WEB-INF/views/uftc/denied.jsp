@@ -4,10 +4,10 @@
 
 			<div id="column2">
 				<div class="headerbox">
-					<h2 class="headertext">P‰‰sy ev‰tty!</h2>
+					<h2 class="headertext"><spring:message code="denied.header" text="Denied" /></h2>
 				</div>
-				<div class="leipis">
-					<p>Sinulla ei ole tarvittavia oikeuksia t‰m‰n sivun tarkasteluun.</p>
+				<div class="chartbox">
+					<h4 class="headertext"><spring:message code="denied.message" text="Access denied." /></h4>
 				</div>
 			</div>
 			<!--End if column2-->
@@ -15,4 +15,4 @@
 		</div>
 		<!--End of content-->
 
-		<%@ include file="/templates/footer.jsp"%>
+<%@ include file="/templates/footer.jsp"%>

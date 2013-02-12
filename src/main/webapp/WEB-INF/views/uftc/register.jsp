@@ -19,36 +19,11 @@
 					action="${saveUrl}">
 					<br />
 					<table>
-						<%-- 								<tr>
-								
-								
-									<td><c:if test="${not empty errors}">
-
-
-											<div class="warning">
-
-
-
-												<c:forEach items="${errors}" var="e">
-													
-													<c:set var="theString" value="I am a test String"/>
-													<spring:message
-														code="user.validationErrors.${e.toString()}"
-														text="${e.toString()}" />
-													<br>
-
-												</c:forEach>
-											</div>
-
-
-										</c:if></td>
-								</tr>  --%>
-
 								<tr>
 									<td><p>
 											<form:label path="authority">
 												<spring:message code="user.accountType"
-													text="Account type:" />
+													text="Account type" />
 											</form:label>
 										</p></td>
 									<td><form:select id="authority"
@@ -65,7 +40,7 @@
 						<tr>
 							<td><p>
 									<form:label path="username">
-										<spring:message code="user.username" text="User name:" />
+										<spring:message code="user.username" text="User name" />
 									</form:label>
 								</p></td>
 							<td><form:input path="username" class="teksti" /></td>
@@ -79,7 +54,7 @@
 						<tr>
 							<td><p>
 									<form:label path="password">
-										<spring:message code="user.password" text="Password:" />
+										<spring:message code="user.password" text="Password" />
 									</form:label>
 								</p></td>
 							<td><form:input path="password" type="password" value=""
@@ -111,7 +86,7 @@
 						<tr>
 							<td><p>
 									<form:label path="firstName">
-										<spring:message code="user.firstName" text="First name:" />
+										<spring:message code="user.firstName" text="First name" />
 									</form:label>
 								</p></td>
 							<td><form:input path="firstName" class="teksti" /></td>
@@ -124,7 +99,7 @@
 						<tr>
 							<td><p>
 									<form:label path="lastName">
-										<spring:message code="user.lastName" text="Last name:" />
+										<spring:message code="user.lastName" text="Last name" />
 									</form:label>
 								</p></td>
 							<td><form:input path="lastName" class="teksti" /></td>
@@ -139,7 +114,7 @@
 					<form:input type="hidden" value="true" path="enabled" />
 					<input type="submit"
 						value="<spring:message code="misc.save" text="Save"/>"
-						class="kirjaudu" />
+						class="nappi" />
 				</form:form>
 
 			</div>

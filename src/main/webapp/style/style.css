@@ -245,7 +245,6 @@ a{text-decoration:none; color:white;}
 #column1, #column2, #column3 {width:320px; float:left;}
 
 .leipis{
-	padding-left: 10px;
 	padding-top:48px;	
 }
 .headertext{
@@ -264,12 +263,13 @@ a{text-decoration:none; color:white;}
 }
 
 .top5_content_box{
-	height: 45px;
+	height: 22px;
 	margin: 0px 0px 5px 0px;
 	color:white;
 	border-radius:5px;
 	border: 1px solid black;
-	background-color:#282d33
+	background-color:#282d33;
+	padding: 5px 5px 0px 5px;
 	}
 	
 .top5_content_box a{
@@ -370,4 +370,8 @@ a{text-decoration:none; color:white;}
 	color:white;
 	border:1px solid black;
 	margin: 10px 10px 0px 10px;
+}
+
+.leipis > .chartbox p {
+	padding: 5px 8px 5px 8px;
 }
