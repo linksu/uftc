@@ -10,29 +10,29 @@
 					
 					<table class="userTable">
 					<tr>
-							<td>
-									<p><spring:message code="user.username" text="User name:" /></p>
+							<td class="bold">
+									<spring:message code="user.username" text="User name:" />
 								</td>
 
-							<td><p>${user.getUsername()}</p></td>
+							<td>${user.getUsername()}</td>
 						</tr>
 						<tr>
-							<td>
-									<p><spring:message code="user.firstName" text="First name:" /></p>
+							<td class="bold">
+									<spring:message code="user.firstName" text="First name:" />
 								</td>
 							<td><p>${user.getFirstName()}</p></td>
 						</tr>
 						<tr>
-							<td>
-									<p><spring:message code="user.lastName" text="Last name:" /></p>
+							<td class="bold">
+									<spring:message code="user.lastName" text="Last name:" />
 								</td>
-							<td><p>${user.getLastName()}</p></td>
+							<td>${user.getLastName()}</td>
 						</tr>
 						<tr>
-							<td>
-							<p><spring:message code="user.accountType" text="Account type:" /></p>
+							<td class="bold">
+							<spring:message code="user.accountType" text="Account type:" />
 									</td>
-									<td><p><spring:message code="user.${user.getAuthority()}" text="Unknown" /></p></td>
+									<td><spring:message code="user.${user.getAuthority()}" text="Unknown" /></td>
 						</tr>
 					</table>
 					<c:if test="${loggedInUser.getId() == user.getId()}"><a class="nappi" href="/uftc/user/edit?userId=${loggedInUser.getId()}">Muokkaa</a></c:if>
