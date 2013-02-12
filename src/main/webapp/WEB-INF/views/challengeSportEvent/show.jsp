@@ -5,7 +5,7 @@
 			<div id="column1">				
 						<div class="headerbox" style="width: 350px;">
 							<h2 class="headertext">
-								<spring:message code="challengeSportEvent.challengeSport" text="Sports of the challenge" />
+								[${challenge.getTitle()}]: <spring:message code="challengeSportEvent.challengeSport" text="Sports" />
 							</h2>
 						</div>
 						<div class="chartbox" style="width: 350px;">
@@ -19,8 +19,8 @@
 						</tr>
 						</c:forEach>
 						</table>
-						<a class="nappi" style="float: left;" href="/uftc/challengeSportEvent/add?challengeId=${challengeId}">Lis‰‰ laji</a>
-						<a class="nappi" style="float: right;" href="/uftc/challenge/show?challengeId=${challengeId}">Takaisin</a>
+						<a class="nappi" style="float: left;" href="/uftc/challengeSportEvent/add?challengeId=${challenge.getId()}">Lis‰‰ laji</a>
+						<a class="nappi" style="float: right;" href="/uftc/challenge/show?challengeId=${challenge.getId()}">Takaisin</a>
 						</div>
 					</div>
 					<!-- NEW SPORTEVENT FORM DIV ENDS -->

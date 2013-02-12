@@ -5,7 +5,7 @@
 			<div id="column1">				
 						<div class="headerbox">
 							<h2 class="headertext">
-								<spring:message code="challengeSportEvent.challengeSport" text="Sports of the challenge" />
+								[${challengeSportEventInstance.getChallenge().getTitle()}]: <spring:message code="challengeSportEvent.challengeSport" text="Sports of the challenge" />
 							</h2>
 						</div>
 						<div class="chartbox">
@@ -65,7 +65,7 @@
 							<form:hidden path="version"/>
 							<input class="nappi" style="float:left;" type="submit" class="kirjaudu"
 								value="<spring:message code="misc.save" text="Save"/>" />
-							<a class="nappi" style="float:right;" href="/uftc/challengeSportEvent/show?challengeId=${challengeId}">Takaisin</a>
+							<a class="nappi" style="float:right;" href="/uftc/challengeSportEvent/show?challengeId=${challengeSportEventInstance.getChallenge().getId()}">Takaisin</a>
 						</form:form>
 						</div>
 

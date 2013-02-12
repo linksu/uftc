@@ -54,7 +54,7 @@ public class ChallengeSportEventsController {
 				.getAllByChallengeId(challenge.getId());
 
 		model.addAttribute("challengeSportEvents", events);
-		model.addAttribute("challengeId", challenge.getId());
+		model.addAttribute("challenge", challenge);
 		model.addAttribute("loggedInUser", currentUser);
 		return "challengeSportEvent/show";
 	}
@@ -75,7 +75,7 @@ public class ChallengeSportEventsController {
 		model.addAttribute("challengeSportEventInstance",
 				new ChallengeSportEvent());
 		model.addAttribute("pointFactorTypeEnum", PointFactorType.values());
-		model.addAttribute("challengeId", challengeId);
+		model.addAttribute("challenge", challenge);
 		model.addAttribute("loggedInUser", currentUser);
 
 		return "challengeSportEvent/add";
