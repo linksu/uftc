@@ -20,17 +20,6 @@ td a {color:#ff713f;}
 
 div.yht a{color:#ff713f;}
 
-table.challengeTable{
-	margin-left:auto; 
-    margin-right:auto;
-    width: 255px;
-}
-
-table#challengeTable td{
-	padding-top: 5px;
-	padding-bottom: 5px;
-}
-
 td h3{
 	font-size: 13px;
 }
@@ -48,11 +37,29 @@ td {color:white;}
 	}
 #new_sportevent{width:300px; float:left;}
 #edit_user{width:300px; float:left;}
-table#userTable{
-	float: left;
-	width: 400px;
-	margin-bottom: 10px;
+
+table.userTable{
+	width: 255px;
+	margin-left:auto; 
+    margin-right:auto;
 }
+
+table.userTable td{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+table.challengeTable{
+	margin-left:auto; 
+    margin-right:auto;
+    width: 255px;
+}
+
+table.challengeTable td{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
 table#sportTable{
 	float: left;
 	width: 400px;

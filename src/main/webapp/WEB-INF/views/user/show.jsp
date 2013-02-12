@@ -8,7 +8,7 @@
 				<div class="chartbox">
 					<div class="challenge">
 					
-					<table>
+					<table class="userTable">
 					<tr>
 							<td>
 									<p><spring:message code="user.username" text="User name:" /></p>
