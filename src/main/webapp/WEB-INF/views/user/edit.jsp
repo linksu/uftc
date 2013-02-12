@@ -12,7 +12,7 @@
 				<form:form modelAttribute="userInstance" method="POST"
 					action="${editUrl}">
 					<br />
-					<table>
+					<table class="userTable">
 						<tr>
 							<c:if test="${optimisticLockingError}">
 					Entity lukittu
@@ -25,16 +25,16 @@
 							</c:forEach>
 						</tr>
 						<tr>
-							<td><p><form:label path="firstName">
+							<td><form:label path="firstName">
 									<spring:message code="user.firstName" text="First name:" />
-								</form:label></p></td>
-							<td><form:input class="teksti" path="firstName" /></td>
+								</form:label></td>
+							<td class="oikea"><form:input class="teksti" path="firstName" /></td>
 						</tr>
 						<tr>
-							<td><p><form:label path="lastName">
+							<td><form:label path="lastName">
 									<spring:message code="user.lastName" text="Last name:" />
-								</form:label></p></td>
-							<td><form:input class="teksti" path="lastName" /></td>
+								</form:label></td>
+							<td class="oikea"><form:input class="teksti" path="lastName" /></td>
 						</tr>
 						
 					</table>
