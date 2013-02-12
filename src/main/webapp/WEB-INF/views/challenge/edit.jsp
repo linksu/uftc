@@ -22,7 +22,7 @@
 
 			<div id="column2">
 				<div class="headerbox">
-					<h2 class="headertext">Muokkaa haastetta</h2>
+					<h2 class="headertext"><spring:message code="challenge.edit" text="Edit challenge"/></h2>
 					<img class="headerlogo" src="/uftc/pics/star.jpg">
 				</div>
 
@@ -48,7 +48,7 @@
 								<td><form:label path="title">
 										<h3>
 											<spring:message code="challenge.title"
-												text="Challenge title:" />
+												text="Challenge title" />:
 										</h3>
 									</form:label></td>
 								<td><form:input path="title" id="title"/></td>
@@ -56,7 +56,7 @@
 							<tr>
 								<td><form:label path="startTimeString">
 										<h3>
-											<spring:message code="challenge.startTime" text="StartTime:" />
+											<spring:message code="challenge.startTime" text="StartTime" />:
 										</h3>
 									</form:label></td>
 								<td><form:input type="text"	path="startTimeString" value="" /></td>
@@ -64,7 +64,7 @@
 							<tr>
 								<td><form:label path="endTimeString">
 										<h3>
-											<spring:message code="challenge.endTime" text="EndTime:" />
+											<spring:message code="challenge.endTime" text="EndTime" />:
 										</h3>
 									</form:label></td>
 								<td><form:input type="text" path="endTimeString" value="" /></td>
@@ -77,8 +77,8 @@
 						
 						<input class="nappi" type="submit" value="Save" />
 						
-					<a class="nappi" style="float:left;" href="/uftc/challengeSportEvent/show?challengeId=${challengeInstance.getId()}">Haasteen lajit</a>
-					<a class="nappi" style="float:right;" href="/uftc/challenge/show?challengeId=${challengeInstance.getId()}">Takaisin</a>
+					<a class="nappi" style="float:left;" href="/uftc/challengeSportEvent/show?challengeId=${challengeInstance.getId()}"><spring:message code="challengeSportEvent.challengeSport" text="Sports of the challenge"/></a>
+					<a class="nappi" style="float:right;" href="/uftc/challenge/show?challengeId=${challengeInstance.getId()}"><spring:message code="misc.back" text="Back"/></a>
 					</form:form>
 					
 				</div>
