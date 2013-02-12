@@ -39,7 +39,7 @@ td {color:white;}
 #edit_user{width:300px; float:left;}
 
 table.userTable{
-	width: 255px;
+	width: 280px;
 	margin-left:auto; 
     margin-right:auto;
 }
@@ -47,6 +47,11 @@ table.userTable{
 table.userTable td{
 	padding-top: 5px;
 	padding-bottom: 5px;
+	/*text-align: center;*/
+}
+
+table.userTable td.bold{
+	font-weight:bold;
 }
 
 table.challengeTable{
@@ -72,9 +77,20 @@ table#workoutTable{
 	margin-bottom: 10px;
 }
 
+table#workoutTable td.oikea{
+	padding-right: 15px;
+}
+
+table#workoutTable td.vasen{
+	padding-left: 15px;
+}
+
+table#workoutTable tr.viiva td{
+	 border-bottom: thin solid white;
+}
+
 td.oikea{
 text-align: right;	
-	
 }
 
 td .teksti{
