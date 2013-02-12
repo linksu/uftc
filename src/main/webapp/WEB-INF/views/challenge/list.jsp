@@ -29,14 +29,14 @@
 		<div id="content">
 			<div id="column1">
 				<div class="headerbox">
-					<h2 class="headertext">Kaikki haasteet</h2>
+					<h2 class="headertext"><spring:message code="challenge.allChallenges" text="All challenges"/></h2>
 				</div>
 				<div class="chartbox">
 					<div class="challenge">
 						<table class="challengeTable">
 						<tr>
-							<td><h3>Haasteen nimi</h3></td>
-							<td class="oikea"><h3>Yhteispisteet</h3></td>
+							<td><h3><spring:message code="challenge.title" text="Title"/></h3></td>
+							<td class="oikea"><h3><spring:message code="challenge.totalPoints" text="Total points"/></h3></td>
 						</tr>
 						<c:forEach items="${challenges}" var="challenge">
 						<tr>
@@ -50,7 +50,7 @@
 					</div>
 					
 					<c:if test="${loggedInUser.getAuthority() == 'ROLE_CHALLENGER'}">
-					<a class="nappi" href="/uftc/challenge/add">Lisää haaste</a>
+					<a class="nappi" href="/uftc/challenge/add"><spring:message code="challenge.create" text="Create new challenge"/></a>
 					</c:if>
 				</div>
 				
@@ -69,8 +69,8 @@
 					<div class="challenge">
 					<table class="challengeTable">
 					<tr>
-							<td><h3>Haasteen nimi</h3></td>
-							<td class="oikea"><h3>Yhteispisteet</h3></td>
+							<td><h3><spring:message code="challenge.title" text="Title"/></h3></td>
+							<td class="oikea"><h3><spring:message code="challenge.totalPoints" text="Total points"/></h3></td>
 					</tr>
 						<c:forEach items="${userChallenges}" var="challenge">
 						<tr>

@@ -49,7 +49,7 @@
 								<td><form:label path="title">
 										<h3>
 											<spring:message code="challenge.title"
-												text="Challenge title:" />
+												text="Challenge title" />:
 										</h3>
 									</form:label></td>
 								<td><form:input path="title" /></td>
@@ -57,7 +57,7 @@
 							<tr>
 								<td><form:label path="startTimeString">
 										<h3>
-											<spring:message code="challenge.startTime" text="StartTime:" />
+											<spring:message code="challenge.startTime" text="StartTime" />:
 										</h3>
 									</form:label></td>
 								<td><form:input type="text"	path="startTimeString" value="" /></td>
@@ -65,7 +65,7 @@
 							<tr>
 								<td><form:label path="endTimeString">
 										<h3>
-											<spring:message code="challenge.endTime" text="EndTime:" />
+											<spring:message code="challenge.endTime" text="EndTime" />:
 										</h3>
 									</form:label></td>
 								<td><form:input type="text" path="endTimeString" value="" /></td>
@@ -74,8 +74,8 @@
 
 						</table>
 
-						<input class="kirjaudu" type="submit" value="Save" />
-						<a class="nappi" style="float:right;" href="/uftc/challenge/list">Takaisin</a>
+						<input class="kirjaudu" type="submit" value="<spring:message code="misc.save" text="Save" />" />
+						<a class="nappi" style="float:right;" href="/uftc/challenge/list"><spring:message code="misc.back" text="Back" /></a>
 					</form:form>
 					
 				</div>

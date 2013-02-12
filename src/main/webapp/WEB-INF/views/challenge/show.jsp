@@ -14,34 +14,34 @@
 					<table class="challengeTable">
 					<tr>
 							<td>
-									<p><spring:message code="challenge.challengeOwner" text="Challenge owner " />:</p>
+									<p><spring:message code="challenge.challengeOwner" text="Challenge owner" />:</p>
 								</td>
 
 							<td><p>${challenge.getOwner().getUsername()}</p></td>
 						</tr>
 						<tr>
 							<td>
-									<p><spring:message code="challenge.totalPoints" text="Total points " />:</p>
+									<p><spring:message code="challenge.totalPoints" text="Total points" />:</p>
 								</td>
 							<td><p>${challenge.getTotalPoints()}</p></td>
 						</tr>
 						<tr>
 							<td>
-									<p><spring:message code="challenge.startTime" text="Start time " />:</p>
+									<p><spring:message code="challenge.startTime" text="Start time" />:</p>
 								</td>
 							<td><p>${challenge.getStartTimeString()}</p></td>
 						</tr>
 						<tr>
 							<td>
-							<p><spring:message code="challenge.endTime" text="End time " />:</p>
+							<p><spring:message code="challenge.endTime" text="End time" />:</p>
 									</td>
 									<td><p>${challenge.getEndTimeString()}</p></td>
 						</tr>
 					</table>
 		
-			<c:if test="${challengeOwner}"><a class="nappi" href="/uftc/challenge/edit?challengeId=${challenge.getId()}">Muokkaa</a></c:if>
-			<c:if test="${challengeParticipant}"><a class="nappi" style="float:left;" href="/uftc/workout/add?challengeId=${challenge.getId()}">Lis‰‰ suoritus</a></c:if>
-			<a class="nappi" style="float:right;" href="/uftc/challenge/list">Takaisin</a>
+			<c:if test="${challengeOwner}"><a class="nappi" href="/uftc/challenge/edit?challengeId=${challenge.getId()}"><spring:message code="misc.edit" text="Edit" /></a></c:if>
+			<c:if test="${challengeParticipant}"><a class="nappi" style="float:left;" href="/uftc/workout/add?challengeId=${challenge.getId()}"><spring:message code="workout.create" text="Add workout" /></a></c:if>
+			<a class="nappi" style="float:right;" href="/uftc/challenge/list"><spring:message code="misc.back" text="Back" /></a>
 			
 		</div>
 		</div>
@@ -49,7 +49,7 @@
 					<c:if test="${challengeParticipant}">
 		<div id="column2">
 		<div class="headerbox">
-		<h2 class="headertext">Omat suoritukset</h2>
+		<h2 class="headertext"><spring:message code="workout.ownWorkouts" text="My workouts" /></h2>
 		</div>
 		<div class="chartbox">
 		<table id="workoutTable">
@@ -70,11 +70,11 @@
 							${workout.getTime()}
 							</td>
 							<td class="vasen">
-							<spring:message code="sportEvent.pointFactorType.${workout.getChallengeSportEvent().getPointFactorType()}"
+							<spring:message code="workout.pointFactorType.${workout.getChallengeSportEvent().getPointFactorType()}"
 														text="${workout.getChallengeSportEvent().getPointFactorType()}" />
 							</td>
 							<td class="oikea">
-							Pistett‰
+							<spring:message code="workout.points" text="Points" />
 							</td>
 							</tr>
 					</c:forEach>
@@ -86,15 +86,15 @@
 		
 			<div id="column3">
 				<div class="headerbox">
-					<h2 class="headertext">Haasteen k‰ytt‰j‰t</h2>
+					<h2 class="headertext"><spring:message code="challenge.challengeUsers" text="Participants" /></h2>
 				</div>
 				<div class="chartbox">
 
 					<div class="challenge">
 						<table class="challengeTable">
 						<tr>
-							<td><h3>K‰ytt‰j‰n nimi</h3></td>
-							<td class="oikea"><h3>K‰ytt‰j‰n pisteet</h3></td>
+							<td><h3><spring:message code="user.name" text="Name" /></h3></td>
+							<td class="oikea"><h3><spring:message code="workout.points" text="Points" /></h3></td>
 						</tr>
 						<c:forEach items="${challengeUsers}" var="cUser">
 						<tr>
@@ -109,13 +109,13 @@
 						<p>&nbsp;</p>
 						<table class="challengeTable">
 						<tr>
-						<td><h3>Hyv‰ksytt‰v‰t</h3></td>
-						<td class="oikea"><h3>Toiminto</h3></td>
+						<td><h3><spring:message code="challenge.awaitingUsers" text="Awaiting" /></h3></td>
+						<td class="oikea"><h3><spring:message code="misc.action" text="Action" /></h3></td>
 						</tr>
 						<c:forEach items="${notApprovedUsers}" var="cUser">
 						<tr>
 										<td>${cUser.getFirstName()} ${cUser.getLastName()}</td>
-										<td class="oikea"><a href="/uftc/challenge/accept?challengeId=${challenge.getId()}&userId=${cUser.getId()}">Hyv‰ksy</a></td>
+										<td class="oikea"><a href="/uftc/challenge/accept?challengeId=${challenge.getId()}&userId=${cUser.getId()}"><spring:message code="misc.accept" text="Accept" /></a></td>
 							
 
 						</tr>
@@ -123,8 +123,8 @@
 						</table>
 						</c:if>
 					</div>
-					<c:if test="${!challengeParticipant && !awaitingParticipant || !loggedInUser.getAuthority() == 'ROLE_ADMIN'}"><a class="nappi" href="/uftc/challenge/join?challengeId=${challenge.getId()}">Liity</a></c:if>
-					<c:if test="${awaitingParticipant}"><a class="nappi" style="background-color: grey;" href="#">Odottaa</a></c:if>
+					<c:if test="${!challengeParticipant && !awaitingParticipant || !loggedInUser.getAuthority() == 'ROLE_ADMIN'}"><a class="nappi" href="/uftc/challenge/join?challengeId=${challenge.getId()}"><spring:message code="challenge.join" text="Join" /></a></c:if>
+					<c:if test="${awaitingParticipant}"><a class="nappi" style="background-color: grey;" href="#"><spring:message code="challenge.awaiting" text="Awaiting" /></a></c:if>
 				</div>
 
 

@@ -7,14 +7,14 @@
 		
 		<div id="column2">
 		<div class="headerbox">
-		<h2 class="headertext">${user.getFirstName()} ${user.getLastName()}</h2>
+		<h2 class="headertext">[${challengeInstance.getTitle()}] ${user.getFirstName()} ${user.getLastName()}</h2>
 		</div>
 		<div class="chartbox">
 		<table id="workoutTable">
+		<c:if test="${workouts.size() == 0}"><h3 class="headertext"><spring:message code="workout.noWorkouts" text="No workouts added" /></h3></c:if>
 		<c:forEach items="${workouts}" var="workout">
 							<tr><td>
-								<a href="/uftc/workout/edit?workoutId=${workout.getId()}"><c:out
-										value="${workout.getName()}" /></a>
+								<c:out value="${workout.getName()}" />
 							</td>
 							<td>
 							${workout.getRepetition()} 
@@ -28,16 +28,16 @@
 							${workout.getTime()}
 							</td>
 							<td style="border-bottom: thin solid white;">
-							<spring:message code="sportEvent.pointFactorType.${workout.getChallengeSportEvent().getPointFactorType()}"
+							<spring:message code="workout.pointFactorType.${workout.getChallengeSportEvent().getPointFactorType()}"
 														text="${workout.getChallengeSportEvent().getPointFactorType()}" />
 							</td>
 							<td class="oikea" style="border-bottom: thin solid white;">
-							Pistettä
+							<spring:message code="workout.points" text="Points" />
 							</td>
 							</tr>
 					</c:forEach>
 					</table>
-					<a class="nappi" style="float:right;" href="/uftc/challenge/show?challengeId=${challengeInstance.getId()}">Takaisin</a>
+					<a class="nappi" style="float:right;" href="/uftc/challenge/show?challengeId=${challengeInstance.getId()}"><spring:message code="misc.back" text="Back" /></a>
 		</div>
 		</div>
 
