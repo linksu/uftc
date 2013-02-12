@@ -3,7 +3,7 @@
 		<div id="content">
 			<div id="column1">
 				<div class="headerbox">
-					<h2 class="headertext">Käyttäjätiedot</h2>
+					<h2 class="headertext"><spring:message code="user.info" text="User info" /></h2>
 				</div>
 				<div class="chartbox">
 					<div class="challenge">
@@ -11,31 +11,31 @@
 					<table class="userTable">
 					<tr>
 							<td class="bold">
-									<spring:message code="user.username" text="User name:" />
+									<spring:message code="user.username" text="User name" />:
 								</td>
 
 							<td>${user.getUsername()}</td>
 						</tr>
 						<tr>
 							<td class="bold">
-									<spring:message code="user.firstName" text="First name:" />
+									<spring:message code="user.firstName" text="First name" />:
 								</td>
 							<td><p>${user.getFirstName()}</p></td>
 						</tr>
 						<tr>
 							<td class="bold">
-									<spring:message code="user.lastName" text="Last name:" />
+									<spring:message code="user.lastName" text="Last name" />:
 								</td>
 							<td>${user.getLastName()}</td>
 						</tr>
 						<tr>
 							<td class="bold">
-							<spring:message code="user.accountType" text="Account type:" />
+							<spring:message code="user.accountType" text="Account type" />:
 									</td>
 									<td><spring:message code="user.${user.getAuthority()}" text="Unknown" /></td>
 						</tr>
 					</table>
-					<c:if test="${loggedInUser.getId() == user.getId()}"><a class="nappi" href="/uftc/user/edit?userId=${loggedInUser.getId()}">Muokkaa</a></c:if>
+					<c:if test="${loggedInUser.getId() == user.getId()}"><a class="nappi" href="/uftc/user/edit?userId=${loggedInUser.getId()}"><spring:message code="misc.edit" text="Edit" /></a></c:if>
 					</div>
 					</div>
 					</div>
