@@ -61,7 +61,7 @@ function createSportEventList(){
 			<div id="column1">
 					<div class="headerbox">
 						<h2 class="headertext">
-							<spring:message code="workout.create" text="Create new workout" />
+							[${challengeInstance.getTitle()}]: <spring:message code="workout.create" text="Create new workout" />
 						</h2>
 						<img class="headerlogo" src="/uftc/pics/star.jpg">
 					</div>
@@ -110,7 +110,7 @@ function createSportEventList(){
 													text="SportEvent: " />
 											</form:label>
 										</p></td>
-									<td><form:select path="challengeSportEventId">
+									<td><form:select path="challengeSportEventId" class="teksti">
 											<c:forEach items="${challengeSportEventsList}"
 												var="sportEvent">
 												<form:option value="${sportEvent.id}">
@@ -138,7 +138,7 @@ function createSportEventList(){
 								value="<spring:message code="misc.save" text="Save"/>"
 								class="kirjaudu" />
 								
-								<a class="nappi" style="float:right;" href="/uftc/challenge/show?challengeId=${challengeInstance.getId()}">Takaisin</a>
+								<a class="nappi" style="float:right;" href="/uftc/challenge/show?challengeId=${challengeInstance.getId()}"><spring:message code="misc.back" text="Back" /></a>
 						</form:form>
 
 					</div>

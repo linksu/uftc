@@ -144,7 +144,7 @@ function createSportEventList(){
 							<input type="submit"
 								value="<spring:message code="misc.save" text="Save"/>"
 								class="kirjaudu" />
-								<a class="nappi" style="float:right;" href="/uftc/challenge/show?challengeId=${challengeInstance.getId()}">Takaisin</a>
+								<a class="nappi" style="float:right;" href="/uftc/challenge/show?challengeId=${challengeInstance.getId()}"><spring:message code="misc.back" text="Back" /></a>
 						</form:form>
 
 					</div>
