@@ -49,19 +49,19 @@
 											<spring:message code="challenge.title"
 												text="Challenge title" />:
 									</form:label></td>
-								<td><form:input class="teksti" path="title" id="title"/></td>
+								<td class="oikea"><form:input class="teksti" path="title" id="title"/></td>
 							</tr>
 							<tr>
 								<td><form:label path="startTimeString">
 											<spring:message code="challenge.startTime" text="StartTime" />:
 									</form:label></td>
-								<td><form:input class="teksti" type="text"	path="startTimeString" value="" /></td>
+								<td class="oikea"><form:input class="teksti" type="text"	path="startTimeString" value="" /></td>
 							</tr>
 							<tr>
 								<td><form:label path="endTimeString">
 											<spring:message code="challenge.endTime" text="EndTime" />:
 									</form:label></td>
-								<td><form:input class="teksti" type="text" path="endTimeString" value="" /></td>
+								<td class="oikea"><form:input class="teksti" type="text" path="endTimeString" value="" /></td>
 
 							</tr>
 

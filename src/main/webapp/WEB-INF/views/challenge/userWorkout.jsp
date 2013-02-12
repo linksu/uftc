@@ -13,25 +13,25 @@
 		<table id="workoutTable">
 		<c:if test="${workouts.size() == 0}"><h3 class="headertext"><spring:message code="workout.noWorkouts" text="No workouts added" /></h3></c:if>
 		<c:forEach items="${workouts}" var="workout">
-							<tr><td>
+							<tr><td class="vasen">
 								<c:out value="${workout.getName()}" />
 							</td>
-							<td>
+							<td class="vasen">
 							${workout.getRepetition()} 
 							</td>
 							<td class="oikea">
 							${workout.getPoints()}
 							</td>
 							</tr>
-							<tr>
-							<td style="border-bottom: thin solid white;">
+							<tr class="viiva">
+							<td class="vasen">
 							${workout.getTime()}
 							</td>
-							<td style="border-bottom: thin solid white;">
+							<td class="vasen">
 							<spring:message code="workout.pointFactorType.${workout.getChallengeSportEvent().getPointFactorType()}"
 														text="${workout.getChallengeSportEvent().getPointFactorType()}" />
 							</td>
-							<td class="oikea" style="border-bottom: thin solid white;">
+							<td class="oikea">
 							<spring:message code="workout.points" text="Points" />
 							</td>
 							</tr>

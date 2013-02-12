@@ -75,6 +75,10 @@ table.challengeFormTable td{
 	padding-bottom: 5px;
 }
 
+table.challengeFormTable td.oikea{
+	text-align: right;
+}
+
 table#sportTable{
 	margin-left:auto; 
     margin-right:auto;
@@ -125,6 +129,21 @@ table#workoutTable td.vasen{
 
 table#workoutTable tr.viiva td{
 	 border-bottom: thin solid white;
+}
+
+table.workoutFormTable{
+	width: 280px;
+	margin-left:auto; 
+    margin-right:auto;
+}
+
+table.workoutFormTable td{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+table.workoutFormTable td.oikea{
+	text-align: right;
 }
 
 td.oikea{
