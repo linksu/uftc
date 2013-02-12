@@ -35,7 +35,7 @@
 					<form:form modelAttribute="challengeInstance" method="POST"
 						action="${saveUrl}">
 						<br />
-						<table>
+						<table class="challengeFormTable">
 							<tr>
 
 								<c:forEach items="${errors}" var="a">
@@ -46,28 +46,22 @@
 
 
 								<td><form:label path="title">
-										<h3>
 											<spring:message code="challenge.title"
 												text="Challenge title" />:
-										</h3>
 									</form:label></td>
-								<td><form:input path="title" id="title"/></td>
+								<td><form:input class="teksti" path="title" id="title"/></td>
 							</tr>
 							<tr>
 								<td><form:label path="startTimeString">
-										<h3>
 											<spring:message code="challenge.startTime" text="StartTime" />:
-										</h3>
 									</form:label></td>
-								<td><form:input type="text"	path="startTimeString" value="" /></td>
+								<td><form:input class="teksti" type="text"	path="startTimeString" value="" /></td>
 							</tr>
 							<tr>
 								<td><form:label path="endTimeString">
-										<h3>
 											<spring:message code="challenge.endTime" text="EndTime" />:
-										</h3>
 									</form:label></td>
-								<td><form:input type="text" path="endTimeString" value="" /></td>
+								<td><form:input class="teksti" type="text" path="endTimeString" value="" /></td>
 
 							</tr>
 

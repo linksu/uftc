@@ -47,7 +47,6 @@ table.userTable{
 table.userTable td{
 	padding-top: 5px;
 	padding-bottom: 5px;
-	/*text-align: center;*/
 }
 
 table.userTable td.bold{
@@ -61,6 +60,17 @@ table.challengeTable{
 }
 
 table.challengeTable td{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+table.challengeFormTable{
+	width: 280px;
+	margin-left:auto; 
+    margin-right:auto;
+}
+
+table.challengeFormTable td{
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
