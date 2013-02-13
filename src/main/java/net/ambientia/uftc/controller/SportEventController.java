@@ -1,17 +1,11 @@
 package net.ambientia.uftc.controller;
 
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-
 import net.ambientia.uftc.domain.SportEvent;
 import net.ambientia.uftc.domain.Uftc;
-import net.ambientia.uftc.domain.User;
 import net.ambientia.uftc.service.SportEventService;
 import net.ambientia.uftc.service.UftcService;
 import net.ambientia.uftc.service.UserService;
 
-import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SportEventController {
@@ -36,35 +29,6 @@ public class SportEventController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(SportEventController.class);
-
-	@RequestMapping(value = "/sportEvent/add", method = RequestMethod.GET)
-	public String getAdd(Model model, Principal principal) {
-		User currentUser = userService.getUserByUsername(principal.getName());
-		logger.debug("Received request to show add page");
-		model.addAttribute("uftcIdList", getListOfUftcIds());
-		model.addAttribute("sportEventInstance", new SportEvent());
-		model.addAttribute("loggedInUser", currentUser);
-
-		return "sportEvent/add";
-	}
-
-	private List<Integer> getListOfUftcIds() {
-		List<Integer> ids = new ArrayList<Integer>();
-		List<Uftc> uftcList = uftcService.getAll();
-		for (Uftc uftc : uftcList) {
-			ids.add(uftc.getId());
-		}
-		return ids;
-	}
-	
-	private List<Integer> getListOfSportEventIds(){
-		List<Integer> ids = new ArrayList<Integer>();
-		List<SportEvent> sportEventList = sportEventService.getAll();
-		for (SportEvent sportEvent : sportEventList){
-			ids.add(sportEvent.getId());
-		}
-		return ids;
-	}
 
 	@RequestMapping(value = "/sportEvent/add", method = RequestMethod.POST)
 	public String add(
@@ -87,32 +51,6 @@ public class SportEventController {
 			return "sportEvent/add";
 		}
 	}
-	
-	@RequestMapping(value = "/sportEvent/list", method = RequestMethod.GET)
-	public String getSportEvents(Model model, Principal principal) {
-		logger.debug("Received request to show all sportEvents");
-		User currentUser = userService.getUserByUsername(principal.getName());
-
-		List<SportEvent> sportEvents = sportEventService.getAll();
-
-		model.addAttribute("sportEvents", sportEvents);
-		model.addAttribute("loggedInUser", currentUser);
-		return "sportEvent/list";
-	}
-	
-	@RequestMapping(value = "/sportEvent/edit", method = RequestMethod.GET)
-	public String getEdit(@RequestParam("sportEventId") int sportEventId, Model model, Principal principal) {
-
-		User currentUser = userService.getUserByUsername(principal.getName());
-		SportEvent sportEvent = sportEventService.getById(sportEventId);
-		Hibernate.initialize(sportEvent);	
-		//Hibernate.initialize(user.getWorkouts());
-//		List<SportEvent> sportEventList = (List<SportEvent>) sportEventService.getById(sportEventId);
-		model.addAttribute("uftcIdList", getListOfUftcIds());
-		model.addAttribute("sportEventInstance", getListOfSportEventIds());
-		model.addAttribute("loggedInUser", currentUser);
-		return "sportEvent/edit";
-	}
 
 	@RequestMapping(value = "/sportEvent/edit", method = RequestMethod.POST)
 	public String update(@ModelAttribute("sportEventInstance") SportEvent sportEvent, Model model) {
@@ -131,19 +69,6 @@ public class SportEventController {
 			//return "sportEvent/edit";
 			return "/admin";
 		}
-	}
-
-	@RequestMapping(value = "/sportEvent/delete", method = RequestMethod.GET)
-	public String delete(
-			@RequestParam(value = "id", required = true) SportEvent sportEvent,
-			Model model, Principal principal) {
-		User currentUser = userService.getUserByUsername(principal.getName());
-		logger.debug("Received request to delete existing sportEvent");
-		sportEventService.delete(sportEvent);
-		model.addAttribute("uftcList", uftcService.getAll());
-		model.addAttribute("loggedInUser", currentUser);
-
-		return "sportEvent/list";
 	}
 	
 	private void setupErrorModel(Model model, SportEvent editedSportEvent) {
