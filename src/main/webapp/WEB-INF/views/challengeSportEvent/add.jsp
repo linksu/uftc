@@ -5,7 +5,7 @@
 			<div id="column1">				
 						<div class="headerbox">
 							<h2 class="headertext">
-								[${challenge.getTitle()}]: <spring:message code="challengeSportEvent.challengeSport" text="Sports of the challenge" />
+								[${challenge.getTitle()}]: <spring:message code="challengeSportEvent.challengeSport" text="Sports" />
 							</h2>
 						</div>
 						<div class="chartbox">
@@ -54,16 +54,16 @@
 									<td>
 											<form:label path="pointFactor">
 												<spring:message code="sportEvent.pointFactor"
-													text="Pointfactor:" />
+													text="Pointfactor" />
 											</form:label>
 										</td>
 									<td class="oikea"><form:input path="pointFactor"  class="teksti" /></td>
 								</tr>
 
 							</table>
-							<input style="float:left;" class="nappi" type="submit" class="kirjaudu"
+							<input style="float:left;" class="nappi" type="submit" 
 								value="<spring:message code="misc.save" text="Save"/>" />
-								<a class="nappi" style="float:right;" href="/uftc/challengeSportEvent/show?challengeId=${challenge.getId()}">Takaisin</a>
+								<a class="nappi" style="float:right;" href="/uftc/challengeSportEvent/show?challengeId=${challenge.getId()}"><spring:message code="misc.back" text="Back" /></a>
 						</form:form>
 						</div>
 
