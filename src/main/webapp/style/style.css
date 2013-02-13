@@ -226,13 +226,15 @@ td .teksti{
 	
 /*NAVIGAATIO*/	
 #navi{
-	height: 70px;
+	height: 80px;
 	float:left;
 	width:100%;
 	margin-bottom: 100px;
 	}
 #navi li{
-	
+	height: 80px;
+	width: 80px;
+	margin-right: 5px;
 	float:left;
 	}	
 #navi ul{
@@ -244,7 +246,10 @@ td .teksti{
 	display: block;
 	background-repeat:no-repeat;
 	background-image:url('../pics/navipallo.png');
-	padding: 28px 15px 28px 7px;
+	padding-top: 33px;
+	height: 100%;
+	width: 100%;
+	text-align: center;
 	font-size:12px;
 	font-weight: bold;
 	}
