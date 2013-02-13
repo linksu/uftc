@@ -39,8 +39,7 @@
 						</tr>
 					</table>
 		
-			<c:if test="${challengeOwner}"><a class="nappi" href="/uftc/challenge/edit?challengeId=${challenge.getId()}"><spring:message code="misc.edit" text="Edit" /></a></c:if>
-			<c:if test="${challengeParticipant}"><a class="nappi" style="float:left;" href="/uftc/workout/add?challengeId=${challenge.getId()}"><spring:message code="workout.create" text="Add workout" /></a></c:if>
+			<c:if test="${challengeOwner}"><a style="float:left;" class="nappi" href="/uftc/challenge/edit?challengeId=${challenge.getId()}"><spring:message code="misc.edit" text="Edit" /></a></c:if>
 			<a class="nappi" style="float:right;" href="/uftc/challenge/list"><spring:message code="misc.back" text="Back" /></a>
 			
 		</div>
@@ -79,6 +78,7 @@
 							</tr>
 					</c:forEach>
 					</table>
+					<c:if test="${challengeParticipant}"><a class="nappi" style="float:left;" href="/uftc/workout/add?challengeId=${challenge.getId()}"><spring:message code="workout.create" text="Add workout" /></a></c:if>
 		</div>
 		</div>
 		
