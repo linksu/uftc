@@ -24,16 +24,16 @@
 						<td><p>
 											<form:label path="authority">
 												<spring:message code="user.accountType"
-													text="Account type:" />
+													text="Account type" />
 											</form:label>
 										</p></td>
 									<td class="oikea"><form:select id="authority" class="teksti"
 											path="authority">
 												<form:option value="ROLE_CHALLENGER">
-													<spring:message text="Haastaja" />
+													<spring:message code="user.ROLE_CHALLENGER" text="Challenger" />
 												</form:option>
 												<form:option value="ROLE_USER">
-													<spring:message text="Käyttäjä" />
+													<spring:message code="user.ROLE_USER" text="User" />
 												</form:option>
 
 										</form:select>
@@ -42,21 +42,21 @@
 						
 							<td><p>
 									<form:label path="username">
-										<spring:message code="user.username" text="User name:" />
+										<spring:message code="user.userName" text="User name" />
 									</form:label>
 								</p></td>
 							<td class="oikea"><form:input path="username" class="teksti" /></td>
 
 							<td><c:if test="${fn:contains(error, 'username')}">
 									<div class="warning">
-										<spring:message code="user.validationErrors.username" />
+										<spring:message code="user.validationErrors.userName" />
 									</div>
 								</c:if></td>
 						</tr>
 						<tr>
 							<td><p>
 									<form:label path="password">
-										<spring:message code="user.password" text="Password:" />
+										<spring:message code="user.password" text="Password" />
 									</form:label>
 								</p></td>
 							<td class="oikea"><form:input path="password" type="password" value=""
@@ -72,7 +72,7 @@
 							<td><p>
 									<form:label path="retypePassword">
 										<spring:message code="user.retypePassword"
-											text="Retype password:" />
+											text="Retype password" />
 									</form:label>
 								</p></td>
 							<td class="oikea"><form:input path="retypePassword" type="password"
@@ -88,7 +88,7 @@
 						<tr>
 							<td><p>
 									<form:label path="firstName">
-										<spring:message code="user.firstName" text="First name:" />
+										<spring:message code="user.firstName" text="First name" />
 									</form:label>
 								</p></td>
 							<td class="oikea"><form:input path="firstName" class="teksti" /></td>
@@ -101,7 +101,7 @@
 						<tr>
 							<td><p>
 									<form:label path="lastName">
-										<spring:message code="user.lastName" text="Last name:" />
+										<spring:message code="user.lastName" text="Last name" />
 									</form:label>
 								</p></td>
 							<td class="oikea"><form:input path="lastName" class="teksti" /></td>
@@ -117,7 +117,7 @@
 					<input type="submit"
 						value="<spring:message code="misc.save" text="Save"/>"
 						class="nappi" style="float:left;"/>
-						<a class="nappi" style="float:right;" href="/uftc/admin">Takaisin</a>
+						<a class="nappi" style="float:right;" href="/uftc/admin"><spring:message code="misc.back" text="Back" /></a>
 				</form:form>
 
 			</div>

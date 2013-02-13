@@ -79,7 +79,7 @@
 									<td><p>
 											<form:label path="title">
 												<spring:message code="sportEvent.title"
-													text="Sport event title:" />
+													text="Sport event title" />
 											</form:label>
 										</p></td>
 									<td class="oikea"><form:input path="title" class="teksti" /></td>
@@ -89,7 +89,7 @@
 									<td><p>
 											<form:label path="pointFactorType">
 												<spring:message code="sportEvent.pointFactorType"
-													text="Pointfactor type:" />
+													text="Pointfactor type" />
 											</form:label>
 										</p></td>
 									<td class="oikea"><form:select path="pointFactorType" class="teksti">
@@ -109,7 +109,7 @@
 									<td><p>
 											<form:label path="pointFactor">
 												<spring:message code="sportEvent.pointFactor"
-													text="Pointfactor:" />
+													text="Pointfactor" />
 											</form:label>
 										</p></td>
 									<td class="oikea"><form:input path="pointFactor" class="teksti" /></td>
@@ -145,7 +145,7 @@
 									<td><p>
 											<form:label path="title">
 												<spring:message code="sportEvent.title"
-													text="SportEvent title:" />
+													text="SportEvent title" />
 											</form:label>
 										</p></td>
 									<td class="oikea"><form:input path="title" class="teksti" id="se_title" /></td>
@@ -155,7 +155,7 @@
 									<td><p>
 											<form:label path="pointFactorType">
 												<spring:message code="sportEvent.pointFactorType"
-													text="Pointfactor type:" />
+													text="Pointfactor type" />
 											</form:label>
 										</p></td>
 									<td class="oikea"><form:select id="se_edit_select" path="pointFactorType" class="teksti">
@@ -177,7 +177,7 @@
 									<td><p>
 											<form:label path="pointFactor">
 												<spring:message code="sportEvent.pointFactor"
-													text="Pointfactor:" />
+													text="Pointfactor" />
 											</form:label>
 										</p></td>
 									<td class="oikea"><form:input path="pointFactor" class="teksti"
@@ -189,6 +189,7 @@
 							<form:hidden path="version" id="se_version"/>
 							<input type="submit" class="nappi"
 								value="<spring:message code="misc.save" text="Save"/>" />
+								<a class="nappi" href="/uftc/admin"><spring:message code="misc.back" text="Back" /></a>
 						</form:form>
 
 					</div>
@@ -220,17 +221,17 @@
 				
 				<div class="chartbox">
 				<table class="userTable">
-				<tr><td><h3>Nimi</h3></td><td><h3>Rooli</h3></td><td><h3>Aktivoi</h3></td></tr>
+				<tr><td><h3><spring:message code="user.name" text="Name" /></h3></td><td><h3><spring:message code="user.role" text="Role" /></h3></td><td><h3><spring:message code="admin.activate.action" text="Activate" /></h3></td></tr>
 					<c:forEach items="${userList}" var="user">
 							<tr><td><a style="border-bottom: 1px; " href="/uftc/admin/userShow?userId=${user.getId()}" id="${user.getId()}">
 							<c:out value="${user.getFirstName()}" />
 							<c:out value="${user.getLastName()}" /></a></td>
 									<td><p><spring:message code="user.${user.getAuthority()}" text="Unknown" /></p></td>
-									<td><a href="/uftc/admin/userActivate?userId=${user.getId()}"><c:choose><c:when test="${!user.isEnabled()}">&nbsp;Aktivoi tili</c:when><c:otherwise>Deaktivoi tili</c:otherwise></c:choose></a></td>
+									<td><a href="/uftc/admin/userActivate?userId=${user.getId()}"><c:choose><c:when test="${!user.isEnabled()}"><spring:message code="admin.activate" text="Activate" /></c:when><c:otherwise><spring:message code="admin.deactivate" text="Deactivate" /></c:otherwise></c:choose></a></td>
 									</tr>
 					</c:forEach>
 					</table>
-				<a class="nappi" style="float: left;" href="/uftc/admin/userAdd">Uusi k&auml;ytt&auml;j&auml;</a>
+				<a class="nappi" style="float: left;" href="/uftc/admin/userAdd"><spring:message code="admin.addUser" text="Add new" /></a>
 				</div>
 			</div>
 		<!--End of content-->

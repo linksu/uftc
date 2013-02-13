@@ -11,7 +11,7 @@
 					<table class="userTable">
 					<tr>
 							<td class="bold">
-									<spring:message code="user.username" text="User name" />:
+									<spring:message code="user.userName" text="User name" />:
 								</td>
 
 							<td>${user.getUsername()}</td>
