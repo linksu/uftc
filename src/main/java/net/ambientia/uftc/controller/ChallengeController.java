@@ -95,7 +95,7 @@ public class ChallengeController {
 		Challenge challenge = challengeService.getById(challengeId);
 		User currentUser = userService.getUserByUsername(principal.getName());
 		
-		if (!currentUser.getId().equals(challenge.getOwner().getId())) {
+		if (!currentUser.getId().equals(challenge.getOwner().getId()) && !currentUser.getAuthority().equals(User.ADMIN)) {
 			// Attempted to show wrong challenge data
 			return "redirect:/challenge/show?challengeId=" + challengeId;
 		}
@@ -115,7 +115,7 @@ public class ChallengeController {
 		User currentUser = userService.getUserByUsername(principal.getName());
 		Challenge oldChallenge = challengeService.getById(challenge.getId());
 		
-		if(!currentUser.getId().equals(oldChallenge.getOwner().getId())) {
+		if(!currentUser.getId().equals(oldChallenge.getOwner().getId()) && !currentUser.getAuthority().equals(User.ADMIN)) {
 			// Attempted to edit wrong challenge data
 			return "redirect:/challenge/show?challengeId=" + challenge.getId();
 		}
@@ -151,7 +151,7 @@ public class ChallengeController {
 		List<User> challengeUsers = challengeService.getUsers(challenge);
 		List<User> notApprovedUsers = challengeService.getUsersWaitingForApproval(challenge);
 		
-		if(currentUser.getId().equals(challenge.getOwner().getId())) {
+		if(currentUser.getId().equals(challenge.getOwner().getId()) || currentUser.getAuthority().equals(User.ADMIN)) {
 			model.addAttribute("challengeOwner", true);
 		}
 		
@@ -184,7 +184,7 @@ public class ChallengeController {
 		User currentUser = userService.getUserByUsername(principal.getName());
 		Challenge challenge = challengeService.getById(challengeId);
 		
-		if(challengeService.challengeContainsUser(challenge, currentUser)) {
+		if(challengeService.challengeContainsUser(challenge, currentUser) || currentUser.getAuthority().equals(User.ADMIN)) {
 			model.addAttribute("user", user);
 			List<Workout> workouts = workoutService.getAllByUserAndChallenge(user, challenge);
 			model.addAttribute("workouts",workouts);

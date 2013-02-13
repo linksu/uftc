@@ -56,7 +56,7 @@
 				
 			</div>
 			<!--End of column1-->
-
+				<c:if test="${loggedInUser.getAuthority() != 'ROLE_ADMIN'}"> 
 					<div id="column2">
 				<div class="headerbox">
 					<h2 class="headertext"><spring:message code="challenge.mychallenges" text="My challenges"/></h2>
@@ -87,7 +87,7 @@
 
 			</div>
 			<!--End if column2-->
-
+			</c:if>
 		</div>
 		<!--End of content-->
 

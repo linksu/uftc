@@ -14,26 +14,26 @@
 					<table class="challengeTable">
 					<tr>
 							<td>
-									<p><spring:message code="challenge.challengeOwner" text="Challenge owner" />:</p>
+									<h3><spring:message code="challenge.challengeOwner" text="Creator" />:</h3>
 								</td>
 
 							<td><p>${challenge.getOwner().getUsername()}</p></td>
 						</tr>
 						<tr>
 							<td>
-									<p><spring:message code="challenge.totalPoints" text="Total points" />:</p>
+									<h3><spring:message code="challenge.totalPoints" text="Total points" />:</h3>
 								</td>
 							<td><p>${challenge.getTotalPoints()}</p></td>
 						</tr>
 						<tr>
 							<td>
-									<p><spring:message code="challenge.startTime" text="Start time" />:</p>
+									<h3><spring:message code="challenge.startTime" text="Start time" />:</h3>
 								</td>
 							<td><p>${challenge.getStartTimeString()}</p></td>
 						</tr>
 						<tr>
 							<td>
-							<p><spring:message code="challenge.endTime" text="End time" />:</p>
+							<h3><spring:message code="challenge.endTime" text="End time" />:</h3>
 									</td>
 									<td><p>${challenge.getEndTimeString()}</p></td>
 						</tr>
@@ -123,7 +123,7 @@
 						</table>
 						</c:if>
 					</div>
-					<c:if test="${!challengeParticipant && !awaitingParticipant || !loggedInUser.getAuthority() == 'ROLE_ADMIN'}"><a class="nappi" href="/uftc/challenge/join?challengeId=${challenge.getId()}"><spring:message code="challenge.join" text="Join" /></a></c:if>
+					<c:if test="${!challengeParticipant && !awaitingParticipant && loggedInUser.getAuthority() != 'ROLE_ADMIN'}"><a class="nappi" href="/uftc/challenge/join?challengeId=${challenge.getId()}"><spring:message code="challenge.join" text="Join" /></a></c:if>
 					<c:if test="${awaitingParticipant}"><a class="nappi" style="background-color: grey;" href="#"><spring:message code="challenge.awaiting" text="Awaiting" /></a></c:if>
 				</div>
 
