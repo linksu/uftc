@@ -37,9 +37,9 @@
 			</c:if>
 			<form name='f' action="<c:url value='j_spring_security_check' />"
 				method='POST'>
-				<input type="text" class="teksti" name="j_username" placeholder="<spring:message code="login.username" />"
+				<input style="width:170px;" type="text" class="teksti" name="j_username" placeholder="<spring:message code="login.username" />"
 					maxlength="15" size="15" onfocus="this.value=''" />
-					<input name="j_password" type="password"
+					<input style="width:170px;" name="j_password" type="password"
 					placeholder="<spring:message code="login.password" />" class="teksti"  />
 					<input type="submit" name="submitform" class="kirjaudu" value="<spring:message code="login.login" />" />
 				<p class="forget">

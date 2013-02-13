@@ -18,31 +18,7 @@
 				<form:form modelAttribute="userInstance" method="POST"
 					action="${saveUrl}">
 					<br />
-					<table>
-						<%-- 								<tr>
-								
-								
-									<td><c:if test="${not empty errors}">
-
-
-											<div class="warning">
-
-
-
-												<c:forEach items="${errors}" var="e">
-													
-													<c:set var="theString" value="I am a test String"/>
-													<spring:message
-														code="user.validationErrors.${e.toString()}"
-														text="${e.toString()}" />
-													<br>
-
-												</c:forEach>
-											</div>
-
-
-										</c:if></td>
-								</tr>  --%>
+					<table class="userAddFormTable">
 						<tr>
 						
 						<td><p>
@@ -51,7 +27,7 @@
 													text="Account type:" />
 											</form:label>
 										</p></td>
-									<td><form:select id="authority"
+									<td class="oikea"><form:select id="authority" class="teksti"
 											path="authority">
 												<form:option value="ROLE_CHALLENGER">
 													<spring:message text="Haastaja" />
@@ -69,7 +45,7 @@
 										<spring:message code="user.username" text="User name:" />
 									</form:label>
 								</p></td>
-							<td><form:input path="username" class="teksti" /></td>
+							<td class="oikea"><form:input path="username" class="teksti" /></td>
 
 							<td><c:if test="${fn:contains(error, 'username')}">
 									<div class="warning">
@@ -83,7 +59,7 @@
 										<spring:message code="user.password" text="Password:" />
 									</form:label>
 								</p></td>
-							<td><form:input path="password" type="password" value=""
+							<td class="oikea"><form:input path="password" type="password" value=""
 									onfocus="this.value=''" class="teksti" /></td>
 
 							<td><c:if test="${fn:contains(error, 'password')}">
@@ -99,7 +75,7 @@
 											text="Retype password:" />
 									</form:label>
 								</p></td>
-							<td><form:input path="retypePassword" type="password"
+							<td class="oikea"><form:input path="retypePassword" type="password"
 									value="" onfocus="this.value=''" class="teksti" /></td>
 
 							<td><c:if test="${fn:contains(error, 'retypePassword')}">
@@ -115,7 +91,7 @@
 										<spring:message code="user.firstName" text="First name:" />
 									</form:label>
 								</p></td>
-							<td><form:input path="firstName" class="teksti" /></td>
+							<td class="oikea"><form:input path="firstName" class="teksti" /></td>
 							<td><c:if test="${fn:contains(error, 'firstName')}">
 									<div class="warning">
 										<spring:message code="user.validationErrors.firstName" />
@@ -128,7 +104,7 @@
 										<spring:message code="user.lastName" text="Last name:" />
 									</form:label>
 								</p></td>
-							<td><form:input path="lastName" class="teksti" /></td>
+							<td class="oikea"><form:input path="lastName" class="teksti" /></td>
 							<td><c:if test="${fn:contains(error, 'lastName')}">
 									<div class="warning">
 										<spring:message code="user.validationErrors.lastName" />
@@ -140,7 +116,7 @@
 					<form:input type="hidden" value="true" path="enabled" />
 					<input type="submit"
 						value="<spring:message code="misc.save" text="Save"/>"
-						class="kirjaudu" />
+						class="nappi" style="float:left;"/>
 						<a class="nappi" style="float:right;" href="/uftc/admin">Takaisin</a>
 				</form:form>
 

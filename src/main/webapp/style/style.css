@@ -35,8 +35,10 @@ td {color:white;}
 	height:190px;
 	
 	}
-#new_sportevent{width:300px; float:left;}
-#edit_user{width:300px; float:left;}
+#new_sportevent{
+	width:300px;
+	float:left;
+	}
 
 table.userTable{
 	width: 280px;
@@ -51,6 +53,21 @@ table.userTable td{
 
 table.userTable td.bold{
 	font-weight:bold;
+}
+
+table.userAddFormTable{
+	width: 280px;
+	margin-left:auto; 
+    margin-right:auto;
+}
+
+table.userAddFormTable td{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+table.userAddFormTable td.oikea{
+	text-align: right;
 }
 
 table.challengeTable{
@@ -95,6 +112,21 @@ table#sportTable td.vasen{
 }
 
 table#sportTable td.oikea{
+	text-align: right;
+}
+
+table.sportEventFormTable{
+	width: 290px;
+	margin-left:auto; 
+    margin-right:auto;
+}
+
+table.sportEventFormTable td{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+table.sportEventFormTable td.oikea{
 	text-align: right;
 }
 
@@ -155,11 +187,12 @@ td .teksti{
  color:#333;
  }
  .warning{
- margin: 5px;
+ margin: 3px;
  border-radius:3px;
- padding:5px;
+ padding:3px;
  background:red;
  float:left;
+ font-size: 10px;
  }
 #register{
 	width:150px;
@@ -221,7 +254,7 @@ td .teksti{
 	border-bottom:1px solid #A3A7B0 !important;
 	margin-right: 20px;
 	border-radius: 5px;
-	width: 170px;
+	width: 100%;
 	height: 20px;
 	background-color:#333;
 	border:none;
@@ -342,7 +375,7 @@ a{text-decoration:none; color:white;}
 .pisteet {}
 .yht{float:right; padding-right: 23px;}
 .chartbox{background:#282d33; height: 350px; border-radius:10px;}
-.chartbox_sportevent{background:#282d33; border-radius:10px; margin-bottom: 1px;}
+.chartbox_sportevent{background:#282d33; border-radius:10px; margin-bottom: 1px; padding-bottom:10px;}
 .tapahtumat{padding-top: 15px; padding-left: 10px;} 
 .single{padding-bottom: 15px;}
 .date{float:left; font-size: 12px;}

@@ -67,7 +67,7 @@
 						<c:url var="saveUrl" value="/sportEvent/add" />
 						<form:form modelAttribute="sportEventInstance" method="POST"
 							action="${saveUrl}">
-							<table>
+							<table class="sportEventFormTable">
 								<tr>
 									<c:forEach items="${errors}" var="e">
 										<spring:message
@@ -82,7 +82,7 @@
 													text="Sport event title:" />
 											</form:label>
 										</p></td>
-									<td><form:input path="title" class="teksti" /></td>
+									<td class="oikea"><form:input path="title" class="teksti" /></td>
 								</tr>
 
 								<tr>
@@ -92,7 +92,7 @@
 													text="Pointfactor type:" />
 											</form:label>
 										</p></td>
-									<td><form:select path="pointFactorType" class="teksti">
+									<td class="oikea"><form:select path="pointFactorType" class="teksti">
 											<c:forEach items="${pointFactorTypeEnum}" var="type">
 												<form:option value="${type}">
 													<spring:message code="sportEvent.pointFactorType.${type}"
@@ -112,12 +112,12 @@
 													text="Pointfactor:" />
 											</form:label>
 										</p></td>
-									<td><form:input path="pointFactor" class="teksti" /></td>
+									<td class="oikea"><form:input path="pointFactor" class="teksti" /></td>
 								</tr>
 
 							</table>
 
-							<input type="submit" class="kirjaudu"
+							<input type="submit" class="nappi"
 								value="<spring:message code="misc.save" text="Save"/>" />
 						</form:form>
 					</div>
@@ -133,7 +133,7 @@
 						<c:url var="editUrl" value="/sportEvent/edit" />
 						<form:form modelAttribute="sportEventInstance" method="POST"
 							action="${editUrl}">
-							<table>
+							<table class="sportEventFormTable">
 								<tr>
 									<c:forEach items="${errors}" var="e">
 										<spring:message
@@ -148,7 +148,7 @@
 													text="SportEvent title:" />
 											</form:label>
 										</p></td>
-									<td><form:input path="title" class="teksti" id="se_title" /></td>
+									<td class="oikea"><form:input path="title" class="teksti" id="se_title" /></td>
 								</tr>
 
 								<tr>
@@ -158,7 +158,7 @@
 													text="Pointfactor type:" />
 											</form:label>
 										</p></td>
-									<td><form:select id="se_edit_select" path="pointFactorType" class="teksti">
+									<td class="oikea"><form:select id="se_edit_select" path="pointFactorType" class="teksti">
 											<%--  											<form:options items="${pointfactortype}" /> --%>
 
 											<c:forEach items="${pointFactorTypeEnum}" var="type">
@@ -180,21 +180,21 @@
 													text="Pointfactor:" />
 											</form:label>
 										</p></td>
-									<td><form:input path="pointFactor" class="teksti"
+									<td class="oikea"><form:input path="pointFactor" class="teksti"
 											id="se_pointFactor" /></td>
 								</tr>
 
 							</table>
 							<form:hidden path="id" id="se_id"/>
 							<form:hidden path="version" id="se_version"/>
-							<input type="submit" class="kirjaudu"
+							<input type="submit" class="nappi"
 								value="<spring:message code="misc.save" text="Save"/>" />
 						</form:form>
 
 					</div>
 					<!-- EDIT SPORTEVENT FORM DIV END-->
 
-					<div class="headerbox">
+					<div class="headerbox" style="margin-top:5px;">
 						<h2 class="headertext">
 							<spring:message code="sportEvent.allDefaultSportEvents" text="All default sport events" />
 						</h2>
@@ -211,18 +211,16 @@
 
 				</div>
 			</div>
-			<div id="column2" style="background-color: rgb(40, 45, 51); padding-left: 10px; width: 400px;">
-				<div id="edit_user" style="width: 400px;">
-					<div class="headerbox" style="width: 400px;">
-						<h2 class="headertext" style="width: 400px;">
+			<div id="column2">
+					<div class="headerbox">
+						<h2 class="headertext">
 							<spring:message code="user.listAll" />
 						</h2>
-					</div>
 				</div>
 				
-				<div class="chartbox" style="height: auto;">
-				<table id="userTable">
-				<tr><td>Nimi</td><td>Rooli</td><td>Aktivoi</td></tr>
+				<div class="chartbox">
+				<table class="userTable">
+				<tr><td><h3>Nimi</h3></td><td><h3>Rooli</h3></td><td><h3>Aktivoi</h3></td></tr>
 					<c:forEach items="${userList}" var="user">
 							<tr><td><a style="border-bottom: 1px; " href="/uftc/admin/userShow?userId=${user.getId()}" id="${user.getId()}">
 							<c:out value="${user.getFirstName()}" />

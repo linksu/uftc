@@ -18,7 +18,7 @@
 				<form:form modelAttribute="userInstance" method="POST"
 					action="${saveUrl}">
 					<br />
-					<table>
+					<table class="userAddFormTable">
 								<tr>
 									<td><p>
 											<form:label path="authority">
@@ -26,7 +26,7 @@
 													text="Account type" />
 											</form:label>
 										</p></td>
-									<td><form:select id="authority"
+									<td class="oikea"><form:select id="authority" class="teksti"
 											path="authority">
 												<form:option value="ROLE_CHALLENGER">
 													<spring:message code="user.ROLE_CHALLENGER" text="Challenger" />
@@ -43,7 +43,7 @@
 										<spring:message code="user.userName" text="User name" />
 									</form:label>
 								</p></td>
-							<td><form:input path="username" class="teksti" /></td>
+							<td class="oikea"><form:input path="username" class="teksti" /></td>
 
 							<td><c:if test="${fn:contains(error, 'username')}">
 									<div class="warning">
@@ -57,7 +57,7 @@
 										<spring:message code="user.password" text="Password" />
 									</form:label>
 								</p></td>
-							<td><form:input path="password" type="password" value=""
+							<td class="oikea"><form:input path="password" type="password" value=""
 									onfocus="this.value=''" class="teksti" /></td>
 
 							<td><c:if test="${fn:contains(error, 'password')}">
@@ -73,7 +73,7 @@
 											text="Retype password:" />
 									</form:label>
 								</p></td>
-							<td><form:input path="retypePassword" type="password"
+							<td class="oikea"><form:input path="retypePassword" type="password"
 									value="" onfocus="this.value=''" class="teksti" /></td>
 
 							<td><c:if test="${fn:contains(error, 'retypePassword')}">
@@ -89,7 +89,7 @@
 										<spring:message code="user.firstName" text="First name" />
 									</form:label>
 								</p></td>
-							<td><form:input path="firstName" class="teksti" /></td>
+							<td class="oikea"><form:input path="firstName" class="teksti" /></td>
 							<td><c:if test="${fn:contains(error, 'firstName')}">
 									<div class="warning">
 										<spring:message code="user.validationErrors.firstName" />
@@ -102,7 +102,7 @@
 										<spring:message code="user.lastName" text="Last name" />
 									</form:label>
 								</p></td>
-							<td><form:input path="lastName" class="teksti" /></td>
+							<td class="oikea"><form:input path="lastName" class="teksti" /></td>
 							<td><c:if test="${fn:contains(error, 'lastName')}">
 									<div class="warning">
 										<spring:message code="user.validationErrors.lastName" />
