@@ -47,7 +47,7 @@
 
 							<td><c:if test="${fn:contains(error, 'username')}">
 									<div class="warning">
-										<spring:message code="user.validationErrors.username" />
+										<spring:message code="user.validationErrors.userName" />
 									</div>
 								</c:if></td>
 						</tr>
