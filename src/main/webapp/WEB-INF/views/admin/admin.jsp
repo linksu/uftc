@@ -117,7 +117,7 @@
 
 							</table>
 
-							<input type="submit" class="nappi"
+							<input style="float:left;" type="submit" class="nappi"
 								value="<spring:message code="misc.save" text="Save"/>" />
 						</form:form>
 					</div>
@@ -187,14 +187,15 @@
 							</table>
 							<form:hidden path="id" id="se_id"/>
 							<form:hidden path="version" id="se_version"/>
-							<input type="submit" class="nappi"
+							<input type="submit" class="nappi" style="float:left;"
 								value="<spring:message code="misc.save" text="Save"/>" />
-								<a class="nappi" href="/uftc/admin"><spring:message code="misc.back" text="Back" /></a>
+								<a class="nappi" style="float:right;" href="/uftc/admin"><spring:message code="misc.back" text="Back" /></a>
 						</form:form>
 
 					</div>
+					</div>
 					<!-- EDIT SPORTEVENT FORM DIV END-->
-
+					<div class="allDefaultSports">
 					<div class="headerbox" style="margin-top:5px;">
 						<h2 class="headertext">
 							<spring:message code="sportEvent.allDefaultSportEvents" text="All default sport events" />
@@ -209,7 +210,6 @@
 							</div>
 						</c:forEach>
 					</div>
-
 				</div>
 			</div>
 			<div id="column2">

@@ -35,10 +35,17 @@ td {color:white;}
 	height:190px;
 	
 	}
+	
 #new_sportevent{
 	width:300px;
+	height:100%;
 	float:left;
 	}
+	
+.allDefaultSports{
+	width:300px;
+	float:left;
+}
 
 table.userTable{
 	width: 280px;
@@ -380,7 +387,7 @@ a{text-decoration:none; color:white;}
 .pisteet {}
 .yht{float:right; padding-right: 23px;}
 .chartbox{background:#282d33; height: 350px; border-radius:10px;}
-.chartbox_sportevent{background:#282d33; border-radius:10px; margin-bottom: 1px; padding-bottom:10px;}
+.chartbox_sportevent{background:#282d33; border-radius:10px; margin-bottom: 1px; padding-bottom:10px; height: 180px;}
 .tapahtumat{padding-top: 15px; padding-left: 10px;} 
 .single{padding-bottom: 15px;}
 .date{float:left; font-size: 12px;}
