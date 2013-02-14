@@ -27,7 +27,7 @@
     	<intercept-url pattern="/challenge/accept" access="hasAnyRole('ROLE_CHALLENGER','ROLE_ADMIN')" />
     	<intercept-url pattern="/challenge/edit" access="hasAnyRole('ROLE_CHALLENGER','ROLE_ADMIN')" />
     	<intercept-url pattern="/challenge/update" access="hasAnyRole('ROLE_CHALLENGER','ROLE_ADMIN')" />
-    	<intercept-url pattern="/challengeSportEvent/**" access="hasRole('ROLE_CHALLENGER','ROLE_ADMIN')" />
+    	<intercept-url pattern="/challengeSportEvent/**" access="hasAnyRole('ROLE_CHALLENGER','ROLE_ADMIN')" />
     	
     	<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
     	<intercept-url pattern="/sportEvent/**" access="hasRole('ROLE_ADMIN')" />
