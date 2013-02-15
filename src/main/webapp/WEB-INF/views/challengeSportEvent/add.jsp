@@ -9,7 +9,7 @@
 							</h2>
 						</div>
 						<div class="chartbox">
-												<c:url var="saveUrl" value="/challengeSportEvent/add?challengeId=${challengeId}" />
+												<c:url var="saveUrl" value="/challengeSportEvent/add?challengeId=${challenge.getId()}" />
 						<form:form modelAttribute="challengeSportEventInstance" method="POST"
 							action="${saveUrl}">
 							<table class="challengeSportEventFormTable">
