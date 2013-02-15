@@ -219,9 +219,9 @@
 						</h2>
 				</div>
 				
-				<div class="chartbox">
+				<div class="chartbox" style="height:auto;">
 				<table class="userTable">
-				<tr><td><h3><spring:message code="user.name" text="Name" /></h3></td><td><h3><spring:message code="user.role" text="Role" /></h3></td><td><h3><spring:message code="admin.activate.action" text="Activate" /></h3></td></tr>
+				<tr><td><h3><spring:message code="user.name" text="Name" /></h3></td><td style="width:100px;"><h3><spring:message code="user.role" text="Role" /></h3></td><td><h3><spring:message code="admin.activate.action" text="Activate" /></h3></td></tr>
 					<c:forEach items="${userList}" var="user">
 							<tr><td><a style="border-bottom: 1px; " href="/uftc/admin/userShow?userId=${user.getId()}" id="${user.getId()}">
 							<c:out value="${user.getFirstName()}" />
@@ -230,8 +230,10 @@
 									<td><a href="/uftc/admin/userActivate?userId=${user.getId()}"><c:choose><c:when test="${!user.isEnabled()}"><spring:message code="admin.activate" text="Activate" /></c:when><c:otherwise><spring:message code="admin.deactivate" text="Deactivate" /></c:otherwise></c:choose></a></td>
 									</tr>
 					</c:forEach>
+					<tr>
+					<td><a class="nappi" style="float:left;" href="/uftc/admin/userAdd"><spring:message code="admin.addUser" text="Add new" /></a></td>
+					</tr>
 					</table>
-				<a class="nappi" style="float: left;" href="/uftc/admin/userAdd"><spring:message code="admin.addUser" text="Add new" /></a>
 				</div>
 			</div>
 		<!--End of content-->
