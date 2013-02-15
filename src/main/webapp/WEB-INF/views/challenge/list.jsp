@@ -56,14 +56,46 @@
 				
 			</div>
 			<!--End of column1-->
+			<!-- Beginning of if column2 -->
+			<c:if test="${loggedInUser.getAuthority() == 'ROLE_CHALLENGER'}">
+				<div id="column2">
+				<div class="headerbox">
+					<h2 class="headertext"><spring:message code="challenge.ownedChallenges" text="Owned challenges"/></h2>
+					<img class="headerlogo" src="/uftc/pics/star.jpg">
+				</div>
+
+				<div class="chartbox">
+					<div class="challenge">
+					<table class="challengeTable">
+					<tr>
+							<td><h3><spring:message code="challenge.title" text="Title"/></h3></td>
+							<td class="oikea"><h3><spring:message code="challenge.totalPoints" text="Total points"/></h3></td>
+					</tr>
+						<c:forEach items="${ownedChallenges}" var="challenge">
+						<tr>
+										<td><a href="/uftc/challenge/show?challengeId=${challenge.getId()}">${challenge.getTitle()}</a></td>
+										<td class="oikea">${challenge.getTotalPoints()}</td>
+						</tr>
+
+
+						</c:forEach>
+						</table>
+						<c:if test="${ownedChallenges.size() == 0}"><h3 class="headertext"><spring:message code="challenge.noOwnedChallenges" text="No owned challenges" /></h3></c:if>
+
+					</div>
+				</div>
+
+			</div>
+			<!--End if column2-->
+			</c:if>
+			
+			<!--Beginning if column3 begins -->
 				<c:if test="${loggedInUser.getAuthority() != 'ROLE_ADMIN'}"> 
-					<div id="column2">
+					<div id="column3">
 				<div class="headerbox">
 					<h2 class="headertext"><spring:message code="challenge.mychallenges" text="My challenges"/></h2>
 					<img class="headerlogo" src="/uftc/pics/star.jpg">
 				</div>
-
-
 
 				<div class="chartbox">
 					<div class="challenge">
@@ -81,13 +113,16 @@
 
 						</c:forEach>
 						</table>
+						
+						<c:if test="${userChallenges.size() == 0}"><h3 class="headertext"><spring:message code="challenge.noMyChallenges" text="No challenges" /></h3></c:if>
 
 					</div>
 				</div>
 
 			</div>
-			<!--End if column2-->
+			<!--End if column3-->
 			</c:if>
+			
 		</div>
 		<!--End of content-->
 

@@ -5,6 +5,8 @@ import java.util.List;
 import net.ambientia.uftc.domain.Challenge;
 import net.ambientia.uftc.domain.ChallengeSportEvent;
 import net.ambientia.uftc.domain.Uftc;
+import net.ambientia.uftc.domain.User;
+import net.ambientia.uftc.domain.Workout;
 
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
@@ -24,6 +26,14 @@ public class ChallengeDao extends DaoBase<Challenge> {
 	public List<Challenge> getAll() {
 		Query query = getCurrentSession().createQuery("FROM Challenge");
 		return query.list();
+	}
+	
+	public List<Challenge> getAllChallengesByOwner(User user) {
+		Query query = getCurrentSession()
+				.createQuery("FROM Challenge WHERE userId = :userId");
+		query.setParameter("userId", user.getId());
+		List<Challenge> challenges = query.list();
+		return challenges;
 	}
 
 	public Integer add(Integer parentId, Challenge challenge) {

@@ -150,6 +150,10 @@ public class ChallengeService {
 		}
 		return false;
 	}
+	
+	public List<Challenge> getChallengesByOwner(User user) {
+		return challengeDao.getAllChallengesByOwner(user);
+	}
 
 
 }

@@ -49,6 +49,7 @@ public class ChallengeController {
 		
 		model.addAttribute("challenges", challenges);
 		model.addAttribute("userChallenges", currentUser.getChallenges());
+		model.addAttribute("ownedChallenges", challengeService.getChallengesByOwner(currentUser));
 		model.addAttribute("loggedInUser", currentUser);
 		return "challenge/list";
 	}
