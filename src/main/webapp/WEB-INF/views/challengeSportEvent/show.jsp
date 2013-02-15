@@ -22,7 +22,7 @@
 						</tr>
 						</c:forEach>
 						</table>
-						<a class="nappi" style="float: left;" href="/uftc/challengeSportEvent/add?challengeId=${challenge.getId()}"><spring:message code="challengeSportEvent.create" text="Add new sports" /></a>
+						<c:if test="${loggedInUser.getAuthority() != 'ROLE_ADMIN'}"><a class="nappi" style="float: left;" href="/uftc/challengeSportEvent/add?challengeId=${challenge.getId()}"><spring:message code="challengeSportEvent.create" text="Add new sports" /></a></c:if>
 						<a class="nappi" style="float: right;" href="/uftc/challenge/show?challengeId=${challenge.getId()}"><spring:message code="misc.back" text="Back" /></a>
 						</div>
 					</div>
