@@ -95,8 +95,10 @@ public class ChallengeSportEventsController {
 			// Attempted to edit wrong challenge data
 			return "redirect:/denied";
 		}
+		
+		challengeSportEvent.setChallenge(challenge);
 
-		if (challenge != null) {
+		if (challengeSportEventService.validate(challengeSportEvent)) {
 			challengeSportEventService.add(challengeId, challengeSportEvent);
 		}
 
@@ -138,12 +140,20 @@ public class ChallengeSportEventsController {
 			// Attempted to edit wrong challenge data
 			return "redirect:/denied";
 		}
+		
+		oldChallengeSportEvent = null;
 
 		ChallengeSportEvent editedSportEvent = challengeSportEventService
 				.setNewPropertiesToExistingChallenge(challengeSportEvent);
-		challengeSportEventService.save(editedSportEvent);
-		return "redirect:/challengeSportEvent/show?challengeId="
-				+ editedSportEvent.getChallenge().getId();
+		
+		if (challengeSportEventService.validate(editedSportEvent)) {
+			challengeSportEventService.save(editedSportEvent);
+			return "redirect:/challengeSportEvent/show?challengeId=" + editedSportEvent.getChallenge().getId();
+		} else {
+			return "redirect:/";
+		}
+		
+		
 	}
 
 }
