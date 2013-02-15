@@ -63,7 +63,14 @@ public class ChallengeSportEvent {
 	
 	public EnumSet<FieldTypes> validate() {
 		EnumSet<FieldTypes> fieldTypeErrorList = EnumSet.noneOf(FieldTypes.class);
-		if(challenge != null)
+		if (title != null
+				&& (title.length() > 20 || title.length() < 3))
+			fieldTypeErrorList.add(FieldTypes.title);
+		if(pointFactor == null)
+			fieldTypeErrorList.add(FieldTypes.pointFactor);
+		if(pointFactorType == null)
+			fieldTypeErrorList.add(FieldTypes.pointFactorType);
+		if(challenge == null)
 			fieldTypeErrorList.add(FieldTypes.challenge);
 		return fieldTypeErrorList;
 	}
