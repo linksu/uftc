@@ -45,7 +45,7 @@ public class ChallengeSportEventsController {
 		Challenge challenge = challengeService.getById(challengeId);
 		User currentUser = userService.getUserByUsername(principal.getName());
 
-		if (!currentUser.getId().equals(challenge.getOwner().getId())) {
+		if (!currentUser.getId().equals(challenge.getOwner().getId()) && !currentUser.getAuthority().equals(User.ADMIN)) {
 			// Attempted to edit wrong challenge data
 			return "redirect:/denied";
 		}
@@ -112,8 +112,7 @@ public class ChallengeSportEventsController {
 		ChallengeSportEvent challengeSportEvent = challengeSportEventService
 				.getById(challengeSportEventId);
 
-		if (!currentUser.getId().equals(
-				challengeSportEvent.getChallenge().getOwner().getId())) {
+		if (!currentUser.getId().equals(challengeSportEvent.getChallenge().getOwner().getId()) && !currentUser.getAuthority().equals(User.ADMIN)) {
 			// Attempted to edit wrong challenge data
 			return "redirect:/denied";
 		}
@@ -135,8 +134,7 @@ public class ChallengeSportEventsController {
 		ChallengeSportEvent oldChallengeSportEvent = challengeSportEventService
 				.getById(challengeSportEvent.getId());
 
-		if (!currentUser.getId().equals(
-				oldChallengeSportEvent.getChallenge().getOwner().getId())) {
+		if (!currentUser.getId().equals(oldChallengeSportEvent.getChallenge().getOwner().getId()) && !currentUser.getAuthority().equals(User.ADMIN)) {
 			// Attempted to edit wrong challenge data
 			return "redirect:/denied";
 		}
