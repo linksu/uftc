@@ -4,10 +4,12 @@
 
 			<div id="column1">
 				<div class="headerbox">
-					<h2 class="headertext"><spring:message code="denied.header" text="Denied" /></h2>
+					<h2 class="headertext"><spring:message code="registerSucceeded.header" text="Register succeeded" /></h2>
 				</div>
 				<div class="chartbox">
-					<h4 class="headertext"><spring:message code="denied.message" text="Access denied." /></h4>
+					<h4 class="headertext"><spring:message code="registerSucceeded.message" text="Registering your account succeeded." /></h4>
+					<br />
+					<p style="margin-right:10px; margin-left:10px; text-align:center;"><spring:message code="registerSucceeded.message2" text="" /></p>
 				</div>
 			</div>
 			<!--End if column2-->
