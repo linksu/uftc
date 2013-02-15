@@ -76,7 +76,7 @@ public class ChallengeService {
 	}
 
 	public boolean isValid(Challenge challenge) {
-		return challenge.validate().size() > 0;
+		return challenge.validate().size() == 0;
 	}
 
 	public EnumSet<FieldTypes> getValidationErrorList(Challenge challenge) {

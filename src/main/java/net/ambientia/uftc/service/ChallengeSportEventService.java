@@ -67,6 +67,7 @@ public class ChallengeSportEventService {
 	}
 
 	public boolean validate(ChallengeSportEvent challengeSportEvent) {
+		boolean jep = challengeSportEvent.validate().size() == 0;
 		return challengeSportEvent.validate().size() == 0;
 	}
 

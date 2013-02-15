@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="/templates/header.jsp"%>
 
 <script type="text/javascript"
@@ -39,31 +40,39 @@
 						<table class="challengeFormTable">
 							<tr>
 
-								<c:forEach items="${errors}" var="a">
-									<c:out value="${a.toString()}" />
-									<br>
-								</c:forEach>
-
-
 
 								<td><form:label path="title">
 											<spring:message code="challenge.title"
 												text="Challenge title" />
 									</form:label></td>
 								<td><form:input path="title" class="teksti" /></td>
+								<td><c:if test="${fn:contains(error, 'title')}">
+									<div class="warning">
+										<spring:message code="challenge.validationErrors.title" />
+									</div>
+								</c:if></td>
 							</tr>
 							<tr>
 								<td><form:label path="startTimeString">
 											<spring:message code="challenge.startTime" text="StartTime" />
 									</form:label></td>
 								<td><form:input type="text" class="teksti"	path="startTimeString" value="" /></td>
+								<td><c:if test="${fn:contains(error, 'startTime')}">
+									<div class="warning">
+										<spring:message code="challenge.validationErrors.startTime" />
+									</div>
+								</c:if></td>
 							</tr>
 							<tr>
 								<td><form:label path="endTimeString">
 											<spring:message code="challenge.endTime" text="EndTime" />
 									</form:label></td>
 								<td><form:input type="text" class="teksti" path="endTimeString" value="" /></td>
-
+								<td><c:if test="${fn:contains(error, 'endTime')}">
+									<div class="warning">
+										<spring:message code="challenge.validationErrors.endTime" />
+									</div>
+								</c:if></td>
 							</tr>
 
 						</table>

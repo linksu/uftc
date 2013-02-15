@@ -159,10 +159,6 @@ public class Challenge {
 			fieldTypeErrorList.add(FieldTypes.starttime);
 		if (endTime == null)
 			fieldTypeErrorList.add(FieldTypes.endtime);
-		if (challengeSportEvents == null)
-			fieldTypeErrorList.add(FieldTypes.challengesportevents);
-		if (uftc == null)
-			fieldTypeErrorList.add(FieldTypes.uftc);
 		return fieldTypeErrorList;
 	}
 	

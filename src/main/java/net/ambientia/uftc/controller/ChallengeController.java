@@ -79,6 +79,7 @@ public class ChallengeController {
 			return "redirect:/challenge/list";
 
 		} else {
+			model.addAttribute("loggedInUser", currentUser);
 			model.addAttribute("challengeInstance", challenge);
 			model.addAttribute("errors",
 					challengeService.getValidationErrorList(challenge));
@@ -130,7 +131,7 @@ public class ChallengeController {
 		Challenge editedChallenge = challengeService
 				.setNewPropertiesToExistingChallenge(challenge);
 		
-		if (!challengeService.isValid(editedChallenge)) {
+		if (challengeService.isValid(editedChallenge)) {
 			challengeService.save(editedChallenge);
 			return "redirect:/challenge/show?challengeId="
 					+ editedChallenge.getId();
