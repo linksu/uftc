@@ -39,6 +39,12 @@ public class UserController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(UserController.class);
 	
+	@RequestMapping(value = "/registerSucceeded", method = RequestMethod.GET)
+	public String getRegisterSucceeded(Model model, Principal principal) {
+		logger.debug("Received request to show register succeeded page");
+		return "uftc/registerSucceeded";
+	}
+	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String getRegisterUser(Model model, Principal principal) {
 		logger.debug("Received request to show register page");
@@ -56,7 +62,7 @@ public class UserController {
 				user.setEnabled(false);
 			}
 			userService.add(user);
-			return "redirect:/";
+			return "redirect:/registerSucceeded";
 		} else {
 			setupErrorModel(model, user);
 			return "uftc/register";
