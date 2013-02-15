@@ -2,7 +2,7 @@
 
 		<div id="content">
 
-			<div id="column2">
+			<div id="column1">
 				<div class="headerbox">
 					<h2 class="headertext"><spring:message code="denied.header" text="Denied" /></h2>
 				</div>
