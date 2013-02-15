@@ -58,7 +58,7 @@ public class Workout {
 		this.version = version;
 	}
 	public enum FieldTypes{
-		repetition,name,user
+		repetition,challengeSportEvent,user
 	}
 
 	public Integer getId() {
@@ -91,6 +91,8 @@ public class Workout {
 			fieldTypeErrorList.add(FieldTypes.repetition);
 		if(user == null)
 			fieldTypeErrorList.add(FieldTypes.user);
+		if(challengeSportEvent == null)
+			fieldTypeErrorList.add(FieldTypes.challengeSportEvent);
 		return fieldTypeErrorList;
 	}
 
