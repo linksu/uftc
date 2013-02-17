@@ -37,20 +37,20 @@ public class BootStrap {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		Uftc uftc = addUftc(session);
-		addSportEvent(session, uftc);
-		Challenge challenge = addChallenge(session, "BootstrapChallenge");
-		ChallengeSportEvent sportEvent = addChallengeSportEvent(session,challenge,"Juoksu");
-		addChallengeSportEvent(session,challenge,"Kävely");
-		User user = addUser(session, "testi", ADMIN);
-		User user2 = addUser(session, "testi2", CHALLENGER);
-		User user3 = addUser(session, "testi3", USER);
-		User user4 = addUser(session, "testi4", USER);
-		User user5 = addUser(session, "testi5", USER);
-		User user6 = addUser(session, "testi6", USER);
-		User user7 = addUser(session, "testi7", USER);
-		User user8 = addUser(session, "testi8", USER);
-		User user9 = addUser(session, "testi9", USER);
-		addWorkout(session,sportEvent, user3);
+//		addSportEvent(session, uftc);
+//		Challenge challenge = addChallenge(session, "BootstrapChallenge");
+//		ChallengeSportEvent sportEvent = addChallengeSportEvent(session,challenge,"Juoksu");
+//		addChallengeSportEvent(session,challenge,"Kävely");
+		User user = addUser(session, "admin", ADMIN);
+//		User user2 = addUser(session, "testi2", CHALLENGER);
+//		User user3 = addUser(session, "testi3", USER);
+//		User user4 = addUser(session, "testi4", USER);
+//		User user5 = addUser(session, "testi5", USER);
+//		User user6 = addUser(session, "testi6", USER);
+//		User user7 = addUser(session, "testi7", USER);
+//		User user8 = addUser(session, "testi8", USER);
+//		User user9 = addUser(session, "testi9", USER);
+//		addWorkout(session,sportEvent, user3);
 		session.getTransaction().commit();
 
 

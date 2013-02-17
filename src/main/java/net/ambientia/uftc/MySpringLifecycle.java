@@ -18,7 +18,7 @@ public class MySpringLifecycle implements SmartLifecycle {
 	public void start() {
 		System.out.println("STARTED!!!");
 		isRunning = true;
-		bootStrap.runBootStrap();
+//		bootStrap.runBootStrap();
 
 	}
 
