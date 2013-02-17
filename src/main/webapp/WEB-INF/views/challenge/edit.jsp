@@ -23,7 +23,6 @@
 			<div id="column2">
 				<div class="headerbox">
 					<h2 class="headertext"><spring:message code="challenge.edit" text="Edit challenge"/></h2>
-					<img class="headerlogo" src="/uftc/pics/star.jpg">
 				</div>
 
 

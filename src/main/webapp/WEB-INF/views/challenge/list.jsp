@@ -61,7 +61,6 @@
 				<div id="column2">
 				<div class="headerbox">
 					<h2 class="headertext"><spring:message code="challenge.ownedChallenges" text="Owned challenges"/></h2>
-					<img class="headerlogo" src="/uftc/pics/star.jpg">
 				</div>
 
 				<div class="chartbox">
@@ -94,7 +93,6 @@
 					<div id="column3">
 				<div class="headerbox">
 					<h2 class="headertext"><spring:message code="challenge.mychallenges" text="My challenges"/></h2>
-					<img class="headerlogo" src="/uftc/pics/star.jpg">
 				</div>
 
 				<div class="chartbox">

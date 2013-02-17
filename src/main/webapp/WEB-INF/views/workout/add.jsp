@@ -63,7 +63,6 @@ function createSportEventList(){
 						<h2 class="headertext">
 							[${challengeInstance.getTitle()}]: <spring:message code="workout.create" text="Add workout" />
 						</h2>
-						<img class="headerlogo" src="/uftc/pics/star.jpg">
 					</div>
 					<div class="chartbox">
 

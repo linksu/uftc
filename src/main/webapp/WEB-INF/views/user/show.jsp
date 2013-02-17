@@ -45,7 +45,6 @@
 				<div class="headerbox">
 					<h2 class="headertext">TAPAHTUMAT</h2>
 					</div>
-					<img class="headerlogo" src="/uftc/pics/runner.jpg">
 					<div class="chartbox">
 				<div class="tapahtumat">
 					<div class="single">

@@ -24,7 +24,6 @@
 					<div id="column2">
 				<div class="headerbox">
 					<h2 class="headertext"><spring:message code="challenge.create" text="Create New Challenge"/></h2>
-					<img class="headerlogo" src="/uftc/pics/star.jpg">
 				</div>
 
 

@@ -9,7 +9,6 @@
 				<h2 class="headertext">
 					<spring:message code="user.create" text="Create new user" />
 				</h2>
-				<img class="headerlogo" src="/uftc/pics/star.jpg">
 			</div>
 			<div class="chartbox">
 
