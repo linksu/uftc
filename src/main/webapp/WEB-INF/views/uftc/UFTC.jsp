@@ -39,22 +39,16 @@
 				</div>
 				<div class="leipis">
 					<div class="chartbox">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Mauris vel libero sed risus consectetur vestibulum id cursus elit.
-							Morbi venenatis hendrerit orci, sed imperdiet lectus pulvinar
-							eget. Ut nulla ligula, rhoncus a mollis ultrices, hendrerit sed
-							odio. Donec consectetur volutpat lacinia. Morbi et magna vel
-							sapien porta rutrum. Aenean auctor porta arcu pellentesque
-							tincidunt. Aenean nibh quam, condimentum vitae eleifend non,
-							commodo id ipsum. Curabitur consequat tincidunt arcu in egestas.
-							Maecenas in leo at urna sagittis elementum eu eget turpis. Quisque
-							magna sem, lobortis sit amet sollicitudin sed, vehicula non
-							tortor. Phasellus facilisis nunc eget arcu tempus semper. Duis
-							blandit neque et dui fermentum id egestas odio dictum. Quisque eu
-							ante tortor, a laoreet augue. Maecenas aliquet condimentum eros,
-							et laoreet leo hendrerit nec. Integer ultricies pretium libero in
-							hendrerit. Quisque imperdiet dapibus nunc, vitae cursus felis
-							eleifend eu.</p>
+						<p><b> UFTC =	Ultimate Functional Training Challenge </b></p>
+						<p>	UFTC on verkkosovellus, joka on toteutettu Java-ohjelmointikielell&auml Spring Frameworkia hy&oumldynt&aumlen.</p>
+						<p>	Haastajana sin&auml voit luoda haasteita yhteis&oumlsi j&aumlsenille ja jopa osallistua niihin tai muiden luomiin haasteisiin. </p>
+						<p>	Perusk&aumlytt&aumlj&aumln&auml sin&auml voit osallistua mihin tahansa yhteis&oumlsi haasteeseen, johon sinut on kutsuttu.</p>
+						<br />
+						<p>	Esimerkkihaaste: </p>
+						<p><i> "kuka kuntoilee, esim. punnertaa tai h&oumllkk&auml&auml, eniten ty&oumlp&aumliv&aumln aikana?"</i></p>
+						<br />
+						<p>	Tehdyt suoritukset kirjataan UFTC-sovellukseen.</p>
+						<p> Voit my&oumls kannustaa muita haasteeseen osallistujia, seurata heid&aumln edistymist&auml&aumln ja kommentoida heid&aumln suorituksiaan.</p>
 					</div>
 				</div>
 				<div class="alanappi2">
@@ -69,22 +63,16 @@
 				</div>
 				<div class="leipis">
 					<div class="chartbox">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Mauris vel libero sed risus consectetur vestibulum id cursus elit.
-							Morbi venenatis hendrerit orci, sed imperdiet lectus pulvinar
-							eget. Ut nulla ligula, rhoncus a mollis ultrices, hendrerit sed
-							odio. Donec consectetur volutpat lacinia. Morbi et magna vel
-							sapien porta rutrum. Aenean auctor porta arcu pellentesque
-							tincidunt. Aenean nibh quam, condimentum vitae eleifend non,
-							commodo id ipsum. Curabitur consequat tincidunt arcu in egestas.
-							Maecenas in leo at urna sagittis elementum eu eget turpis. Quisque
-							magna sem, lobortis sit amet sollicitudin sed, vehicula non
-							tortor. Phasellus facilisis nunc eget arcu tempus semper. Duis
-							blandit neque et dui fermentum id egestas odio dictum. Quisque eu
-							ante tortor, a laoreet augue. Maecenas aliquet condimentum eros,
-							et laoreet leo hendrerit nec. Integer ultricies pretium libero in
-							hendrerit. Quisque imperdiet dapibus nunc, vitae cursus felis
-							eleifend eu.</p>
+						<p><b> UFTC = Ultimate Functional Training Challenge </b></p>
+						<p>	UFTC is web-based application coded in Java utilizing the Spring Framework. </p>
+						<p>	As a challenger you can create exercising challenges for your community and also participate in them yourself. </p>
+						<p> As a normal user you can partcipate in any challenge if you belong to some community and owner of the challenge has invited you to join his challenge.</p>
+						<br />
+						<p>	Example-challenge: </p>
+						<p><i>"who does the most exercising during the work day e.g. push-ups or jogging?"</i></p>
+						<br />
+						<p>	Done exercises are logged into the UFTC-application. </p>
+						<p> You can also cheer other participants of the challenge and follow or comment their achievements.
 					</div>
 				</div>
 				<div class="alanappi1">
