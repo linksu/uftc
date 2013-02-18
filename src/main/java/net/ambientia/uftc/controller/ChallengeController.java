@@ -191,7 +191,7 @@ public class ChallengeController {
 			List<Workout> workouts = workoutService.getAllByUserAndChallenge(user, challenge);
 			model.addAttribute("workouts",workouts);
 		}else{
-			return "redirect:/challenge/show?challengeId=" + challengeId;
+			return "redirect:/denied";
 		}
 		
 		model.addAttribute("loggedInUser", currentUser);
