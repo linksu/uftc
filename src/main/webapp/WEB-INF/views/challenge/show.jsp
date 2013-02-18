@@ -17,7 +17,7 @@
 									<h3><spring:message code="challenge.challengeOwner" text="Creator" />:</h3>
 								</td>
 
-							<td><p>${challenge.getOwner().getUsername()}</p></td>
+							<td><p>${challenge.getOwner().getFirstName()} ${challenge.getOwner().getLastName()}</p></td>
 						</tr>
 						<tr>
 							<td>
