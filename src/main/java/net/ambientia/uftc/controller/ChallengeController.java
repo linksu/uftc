@@ -186,7 +186,7 @@ public class ChallengeController {
 		User currentUser = userService.getUserByUsername(principal.getName());
 		Challenge challenge = challengeService.getById(challengeId);
 		
-		if(challengeService.challengeContainsUser(challenge, currentUser) || currentUser.getAuthority().equals(User.ADMIN)) {
+		if(challengeService.challengeContainsUser(challenge, currentUser) || currentUser.getAuthority().equals(User.ADMIN) || currentUser.getId().equals(challenge.getOwner().getId())) {
 			model.addAttribute("user", user);
 			List<Workout> workouts = workoutService.getAllByUserAndChallenge(user, challenge);
 			model.addAttribute("workouts",workouts);
