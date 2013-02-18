@@ -68,7 +68,7 @@
 						<form:input type="hidden" path="version" />
 						<form:input type="hidden" path="id" />
 						
-						<input class="nappi" type="submit" value="<spring:message code="challenge.save" text="Save"/>" />
+						<input class="nappi" type="submit" value="<spring:message code="misc.save" text="Save"/>" />
 						
 					<a class="nappi" style="float:left;" href="/uftc/challengeSportEvent/show?challengeId=${challengeInstance.getId()}"><spring:message code="challengeSportEvent.challengeSport" text="Sports of the challenge"/></a>
 					<a class="nappi" style="float:right;" href="/uftc/challenge/show?challengeId=${challengeInstance.getId()}"><spring:message code="misc.back" text="Back"/></a>
